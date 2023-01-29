@@ -35,6 +35,8 @@ public class Lane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool missedNote = false;
+
         if (spawnIndex < timeStamps.Count)
         {
             if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
@@ -54,24 +56,30 @@ public class Lane : MonoBehaviour
 
             if (Input.GetKeyDown(input))
             {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                if (Math.Abs(audioTime - timeStamp) < marginOfError / 3)
                 {
                     Hit();
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
-                } 
-                else
+                    missedNote = false;
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2)
                 {
-                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    OK();
+                    print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    Destroy(notes[inputIndex].gameObject);
+                    inputIndex++;
+                    missedNote = false;
                 }
             }
 
-            if (timeStamp + marginOfError <= audioTime)
+            if (timeStamp + marginOfError <= audioTime && !missedNote)
             {
                 Miss();
                 print($"Missed {inputIndex} note");
                 inputIndex++;
+                missedNote = true;
             }
         }
     }
@@ -79,6 +87,11 @@ public class Lane : MonoBehaviour
     private void Hit()
     {
         ScoreManager.Hit();
+    }
+
+    private void OK()
+    {
+        ScoreManager.OK();
     }
 
     private void Miss()
