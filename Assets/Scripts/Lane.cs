@@ -8,10 +8,9 @@ public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
     public KeyCode input;
-    public GameObject notePrefab;
+    public GameObject notePrefab; public GameObject statusTextPrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
-
     int spawnIndex = 0;
     int inputIndex = 0;
 
@@ -59,6 +58,7 @@ public class Lane : MonoBehaviour
                 if (Math.Abs(audioTime - timeStamp) < marginOfError / 3)
                 {
                     Hit();
+                    showResult("Based!");
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -67,6 +67,7 @@ public class Lane : MonoBehaviour
                 else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2)
                 {
                     OK();
+                    showResult("mid");
                     print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -77,6 +78,7 @@ public class Lane : MonoBehaviour
             if (timeStamp + marginOfError <= audioTime && !missedNote)
             {
                 Miss();
+                showResult("cringe..");
                 print($"Missed {inputIndex} note");
                 inputIndex++;
                 missedNote = true;
@@ -97,6 +99,14 @@ public class Lane : MonoBehaviour
     private void Miss()
     {
         ScoreManager.Miss();
+    }
+
+    void showResult(string text) {
+        if (statusTextPrefab) 
+        {
+            GameObject prefab = Instantiate(statusTextPrefab, transform.position, Quaternion.identity);
+            prefab.GetComponentInChildren<TextMesh>().text = text;
+        }
     }
 }
 
