@@ -1158,7 +1158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641029050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 5, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2586,8 +2586,8 @@ MonoBehaviour:
   inputDelayInMilliseconds: 0
   fileLocation: drive_beatmap.mid
   noteTime: 1
-  noteSpawnY: 7
-  noteTapY: -3
+  noteSpawnY: -7
+  noteTapY: 3
 --- !u!4 &1719683859
 Transform:
   m_ObjectHideFlags: 0
