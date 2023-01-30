@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
         debugPerfectValue = 0;
         debugOKValue = 0;
         debugMissValue = 0;
-        health = 70;
+        health = 100;
     }
 
     public static void Hit()
@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour
         if (health >= 199) {
             health = 200;
         } else {
-            health += 1;
+            health += 2;
         }
     }
 
@@ -62,7 +62,7 @@ public class ScoreManager : MonoBehaviour
         comboScore = 0;
         debugMissValue += 1;
         Instance.missSFX.Play();
-        health -= 8;
+        health -= 5;
         if (health <= 0) {
             Application.Quit();
         }
