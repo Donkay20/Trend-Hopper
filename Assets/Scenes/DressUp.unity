@@ -395,9 +395,13 @@ MonoBehaviour:
   startText: {fileID: 1466109047}
   backText: {fileID: 498018592}
   inputUp: 273
+  inputUpAlt: 0
   inputDown: 274
+  inputDownAlt: 0
   inputRight: 275
+  inputRightAlt: 0
   inputLeft: 276
+  inputLeftAlt: 0
   hairBox: {fileID: 5890951617971533192, guid: e08707c45e5162d4eaa3668f13bf0fef, type: 3}
   topBox: {fileID: 5890951617971533192, guid: e08707c45e5162d4eaa3668f13bf0fef, type: 3}
   bottomBox: {fileID: 5890951617971533192, guid: e08707c45e5162d4eaa3668f13bf0fef, type: 3}
@@ -1114,8 +1118,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979172135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: -5, y: -1.4, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 221624198}

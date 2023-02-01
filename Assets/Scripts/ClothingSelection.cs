@@ -14,10 +14,10 @@ public class ClothingSelection : MonoBehaviour
     public TMPro.TextMeshPro startText;
     public TMPro.TextMeshPro backText;
 
-    public KeyCode inputUp; 
-    public KeyCode inputDown; 
-    public KeyCode inputRight; 
-    public KeyCode inputLeft;
+    public KeyCode inputUp; public KeyCode inputUpAlt;
+    public KeyCode inputDown; public KeyCode inputDownAlt;
+    public KeyCode inputRight; public KeyCode inputRightAlt;
+    public KeyCode inputLeft; public KeyCode inputLeftAlt;
 
     private int selectedCategory;
     private int selectedClothingHair;
@@ -66,7 +66,7 @@ public class ClothingSelection : MonoBehaviour
             backText.text = "Back!";
         }
 
-        if (Input.GetKeyDown(inputUp)) {            //go down a category
+        if (Input.GetKeyDown(inputUp) || Input.GetKeyDown(inputUpAlt)) {            //go up a category
             if (selectedCategory == 1) {
                 selectedCategory = 6;
             } else {
@@ -75,7 +75,7 @@ public class ClothingSelection : MonoBehaviour
             UpdateCategoryIndicator(selectedCategory);
         }
 
-         if (Input.GetKeyDown(inputDown)) {         //go up a category
+         if (Input.GetKeyDown(inputDown)) {         //go down a category
             if (selectedCategory == 6) {
                 selectedCategory = 1;
             } else {
