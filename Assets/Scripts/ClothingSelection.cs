@@ -12,7 +12,7 @@ public class ClothingSelection : MonoBehaviour
     public TMPro.TextMeshPro bonusBottomText;
     public TMPro.TextMeshPro bonusShoeText;
     public TMPro.TextMeshPro startText;
-    public TMPro.TextMeshPro backText;
+//  public TMPro.TextMeshPro backText;
 
     public KeyCode inputUp; public KeyCode inputUpAlt;
     public KeyCode inputDown; public KeyCode inputDownAlt;
@@ -40,7 +40,7 @@ public class ClothingSelection : MonoBehaviour
         selectedClothingBottom = 1; //category 3
         selectedClothingShoe = 1;   //category 4
         startText.text = "Start!";  //category 5
-        backText.text = "Back!";    //category 6
+    //  backText.text = "Back!";    //category 6
 
         categoryBox = Instantiate(categoryBox);
         hairBox = Instantiate(hairBox);
@@ -62,13 +62,13 @@ public class ClothingSelection : MonoBehaviour
         if (selectedCategory != 5) {
             startText.text = "Start!";
         }
-        if (selectedCategory != 6) {
-            backText.text = "Back!";
-        }
+        //if (selectedCategory != 6) {
+        //  backText.text = "Back!";
+        //}
 
         if (Input.GetKeyDown(inputUp) || Input.GetKeyDown(inputUpAlt)) {            //go up a category
             if (selectedCategory == 1) {
-                selectedCategory = 6;
+                selectedCategory = 5;
             } else {
                 selectedCategory--;
             }
@@ -76,7 +76,7 @@ public class ClothingSelection : MonoBehaviour
         }
 
          if (Input.GetKeyDown(inputDown)) {         //go down a category
-            if (selectedCategory == 6) {
+            if (selectedCategory == 5) {
                 selectedCategory = 1;
             } else {
                 selectedCategory++;
@@ -126,8 +126,7 @@ public class ClothingSelection : MonoBehaviour
             }
 
             if (selectedCategory == 5) {
-                //TODO
-                //load rhythm game scene
+                SceneManager.LoadScene("RhythmGame");
             }
         }
 
@@ -169,10 +168,11 @@ public class ClothingSelection : MonoBehaviour
                 UpdateShoeIndicator(selectedClothingShoe);
             }
             
-            if (selectedCategory == 6) {
+            //if (selectedCategory == 6) {
                 //TODO
                 //go back to world hub?? screen
-            }
+                //defunct
+            //}
         }
     }
 
@@ -264,13 +264,13 @@ public class ClothingSelection : MonoBehaviour
         }
 
         if (x == 5) {
-            categoryBox.transform.position = new Vector3(6f, -3.8f, 0f);
+            categoryBox.transform.position = new Vector3(4f, -3.8f, 0f);
             startText.text = "→ to start!";
         }
-
-        if (x == 6) {
-            categoryBox.transform.position = new Vector3(1f, -3.8f, 0f);
-            backText.text = "← to return!";
-        }
+        
+        //if (x == 6) {
+        //  categoryBox.transform.position = new Vector3(1f, -3.8f, 0f);
+        //  backText.text = "← to return!";
+        //}
     }
 }
