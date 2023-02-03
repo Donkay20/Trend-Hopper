@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        comboScoreText.faceColor = new Color32(255, 255, 255, 30);
         Instance = this;
         comboScore = 0;
         score = 0;
@@ -71,7 +72,35 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        comboScoreText.text = comboScore.ToString();
+        if (comboScore >= 2 && comboScore <= 9) {
+            if (comboScore == 2) {
+                comboScoreText.text = "two";
+            }
+            if (comboScore == 3) {
+                comboScoreText.text = "three";
+            }
+            if (comboScore == 4) {
+                comboScoreText.text = "four";
+            }
+            if (comboScore == 5) {
+                comboScoreText.text = "five";
+            }
+            if (comboScore == 6) {
+                comboScoreText.text = "six";
+            }
+            if (comboScore == 7) {
+                comboScoreText.text = "seven";
+            }
+            if (comboScore == 8) {
+                comboScoreText.text = "eight";
+            }
+            if (comboScore == 9) {
+                comboScoreText.text = "nine";
+            }
+        } else {
+            comboScoreText.text = comboScore.ToString();
+        }
+        //comboScoreText.text = comboScore.ToString();
         scoreText.text = score.ToString();
         healthText.text = health.ToString();
         debugPerfectText.text = debugPerfectValue.ToString();
