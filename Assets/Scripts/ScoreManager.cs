@@ -6,20 +6,26 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
     public AudioSource hitSFX;
     public AudioSource missSFX;
+
     public TMPro.TextMeshPro comboScoreText;
     public TMPro.TextMeshPro scoreText;
     public TMPro.TextMeshPro healthText;
     public TMPro.TextMeshPro debugPerfectText;
     public TMPro.TextMeshPro debugOKText;
     public TMPro.TextMeshPro debugMissText;
+
     static int comboScore;
     static int score;
     static int health;
     static int debugPerfectValue;
     static int debugOKValue;
     static int debugMissValue;
+    static int failCheck;
+
+    private int[] comboLog = new int[4];
 
     void Start()
     {
@@ -30,6 +36,7 @@ public class ScoreManager : MonoBehaviour
         debugPerfectValue = 0;
         debugOKValue = 0;
         debugMissValue = 0;
+        failCheck = 0;
         health = 100;
     }
 
@@ -65,7 +72,9 @@ public class ScoreManager : MonoBehaviour
         Instance.missSFX.Play();
         health -= 5;
         if (health <= 0) {
-            Application.Quit();
+            failCheck = 1;
+            SceneManager.LoadScene("Results");
+            //Application.Quit();
         }
     }
 
@@ -106,5 +115,13 @@ public class ScoreManager : MonoBehaviour
         debugPerfectText.text = debugPerfectValue.ToString();
         debugOKText.text = debugOKValue.ToString();
         debugMissText.text = debugMissValue.ToString();
+    }
+
+    public int[] getScoreLog() {
+        comboLog[0] = debugPerfectValue;
+        comboLog[1] = debugOKValue;
+        comboLog[2] = debugMissValue;
+        comboLog[3] = failCheck;
+        return comboLog;
     }
 }

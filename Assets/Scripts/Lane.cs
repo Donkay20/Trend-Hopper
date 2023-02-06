@@ -58,7 +58,7 @@ public class Lane : MonoBehaviour
                 if (Math.Abs(audioTime - timeStamp) < marginOfError / 3)
                 {
                     Hit();
-                    showResult("Based!");
+                    RhythmFeedback.Instance.showResult("Based!");
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -67,7 +67,7 @@ public class Lane : MonoBehaviour
                 else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2)
                 {
                     OK();
-                    showResult("mid");
+                    RhythmFeedback.Instance.showResult("mid");
                     print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -78,7 +78,7 @@ public class Lane : MonoBehaviour
             if (timeStamp + marginOfError <= audioTime && !missedNote)
             {
                 Miss();
-                showResult("cringe..");
+                RhythmFeedback.Instance.showResult("cringe..");
                 print($"Missed {inputIndex} note");
                 inputIndex++;
                 missedNote = true;
@@ -101,12 +101,12 @@ public class Lane : MonoBehaviour
         ScoreManager.Miss();
     }
 
-    void showResult(string text) {
-        if (statusTextPrefab) 
-        {
-            GameObject prefab = Instantiate(statusTextPrefab, transform.position, Quaternion.identity);
-            prefab.GetComponentInChildren<TextMesh>().text = text;
-        }
-    }
+    // void showResult(string text) {
+    //     if (statusTextPrefab) 
+    //     {
+    //         GameObject prefab = Instantiate(statusTextPrefab, transform.position, Quaternion.identity);
+    //         prefab.GetComponentInChildren<TextMesh>().text = text;
+    //     }
+    // }
 }
 
