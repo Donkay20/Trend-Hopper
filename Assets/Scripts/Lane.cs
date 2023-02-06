@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lane : MonoBehaviour
 {
@@ -84,6 +85,10 @@ public class Lane : MonoBehaviour
                 missedNote = true;
             }
         }
+        else  
+        {
+            Invoke(nameof(delayLoadSuccess), 8.0f);
+        }
     }
 
     private void Hit()
@@ -99,6 +104,11 @@ public class Lane : MonoBehaviour
     private void Miss()
     {
         ScoreManager.Miss();
+    }
+
+    private void delayLoadSuccess() 
+    {
+        SceneManager.LoadScene("Results");
     }
 
     // void showResult(string text) {

@@ -25,11 +25,15 @@ public class ScoreManager : MonoBehaviour
     static int debugMissValue;
     static int failCheck;
 
-    private int[] comboLog = new int[4];
+    private int[] comboLog = new int[4]; //array for score & pass/fail value
+    // 0 = perfect / 1 = ok / 2 = bad / 3 = pass/fail
+    // 1 = ok
+    // 2 = bad
+    // 3 = pass/fail check; 0 is pass, 1 is fail
 
     void Start()
     {
-        comboScoreText.faceColor = new Color32(255, 255, 255, 30);
+        comboScoreText.faceColor = new Color32(255, 255, 255, 30); //last value is opacity
         Instance = this;
         comboScore = 0;
         score = 0;
