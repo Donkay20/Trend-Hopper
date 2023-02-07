@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+Whatever this class is attached to will be responsible for the management of the UI controls for the dress-up function of the game.
+Controls are set up in such a way that it is possible to navigate this menu using only the arrow keys.
+*/
+
 public class ClothingSelection : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,7 +19,7 @@ public class ClothingSelection : MonoBehaviour
     public TMPro.TextMeshPro startText;
 //  public TMPro.TextMeshPro backText;
 
-    public KeyCode inputUp;
+    public KeyCode inputUp;                 //controls
     public KeyCode inputDown;
     public KeyCode inputRight;
     public KeyCode inputLeft;
@@ -24,14 +29,14 @@ public class ClothingSelection : MonoBehaviour
     private int selectedClothingAccessory;
     private int selectedClothingShoe;
     private int selectedClothingTop;
-    private int selectedClothingBottom;
+    private int selectedClothingBottom;     //variables set for the categories and clothings within said categories
 
     public GameObject hairBox;
     public GameObject accessoryBox;
     public GameObject shoeBox;
     public GameObject topBox;
     public GameObject bottomBox;
-    public GameObject categoryBox;
+    public GameObject categoryBox;          //this is where the prefabs go
 
     void Start()
     {
@@ -50,21 +55,21 @@ public class ClothingSelection : MonoBehaviour
         accessoryBox = Instantiate(accessoryBox);
         shoeBox = Instantiate(shoeBox);
         topBox = Instantiate(topBox);
-        bottomBox = Instantiate(bottomBox);
+        bottomBox = Instantiate(bottomBox);                     //add that stuff on the screen!
 
         UpdateCategoryIndicator(selectedCategory);
         UpdateHairIndicator(selectedClothingHair);
         UpdateAccessoryIndicator(selectedClothingAccessory);
         UpdateShoeIndicator(selectedClothingShoe);
         UpdateTopIndicator(selectedClothingTop);
-        UpdateBottomIndicator(selectedClothingBottom);
+        UpdateBottomIndicator(selectedClothingBottom);          //initializes all of the categories to 1, the first in each category. The category indicator is also initialized to 1, the hair category.
     }
 
     // Update is called once per frame
     void Update()
     {   
 
-        if (selectedCategory != 6) {
+        if (selectedCategory != 6) {                //the text changes off "> to start!" when it isn't on the right category
             startText.text = "Start!";
         }
 
@@ -197,6 +202,8 @@ public class ClothingSelection : MonoBehaviour
             //}
         }
     }
+
+    //manipulates indicator positions for all clothing, as well as the category position. Vectors are hardcoded.
 
     private void UpdateHairIndicator(int x) {
         if (x == 1) {

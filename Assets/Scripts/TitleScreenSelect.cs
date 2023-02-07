@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+This class manipulates the title screen. Pretty standard stuff tbh. Refer to the clothing selection script as it's implemented similarly.
+*/
+
 public class TitleScreenSelect : MonoBehaviour
 {
     // Start is called before the first frame update

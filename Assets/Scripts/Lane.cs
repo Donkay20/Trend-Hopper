@@ -5,6 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+This class is responsible for the logic of sending notes down the "lanes", and is responsible for timings and when notes can/should be hit.
+Probably not a good idea to edit stuff in here unless the logic for hitting notes gets really bad somehow idk
+Uses a lot of the DryWetMidi plugin stuff, refer to its documentation
+
+This class still needs to be edited to add pre- and post- animation stuff
+*/
+
 public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
@@ -51,12 +59,12 @@ public class Lane : MonoBehaviour
         if (inputIndex < timeStamps.Count)
         {
             double timeStamp = timeStamps[inputIndex];
-            double marginOfError = SongManager.Instance.marginOfError;
+            double marginOfError = SongManager.Instance.marginOfError; //the margin of error is how long the note is in a hit-able range
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 
-            if (Input.GetKeyDown(input))
+            if (Input.GetKeyDown(input)) //this area is for imposing timing restrictions to inputs
             {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError / 3)
+                if (Math.Abs(audioTime - timeStamp) < marginOfError / 3) //perfect timing
                 {
                     Hit();
                     RhythmFeedback.Instance.showResult("Based!");
@@ -65,7 +73,7 @@ public class Lane : MonoBehaviour
                     inputIndex++;
                     missedNote = false;
                 }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2)
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2) //ok timing
                 {
                     OK();
                     RhythmFeedback.Instance.showResult("mid");
@@ -76,7 +84,7 @@ public class Lane : MonoBehaviour
                 }
             }
 
-            if (timeStamp + marginOfError <= audioTime && !missedNote)
+            if (timeStamp + marginOfError <= audioTime && !missedNote) //ngl, I don't know what's going on here but it works so whatever
             {
                 Miss();
                 RhythmFeedback.Instance.showResult("cringe..");
@@ -85,8 +93,8 @@ public class Lane : MonoBehaviour
                 missedNote = true;
             }
         }
-        else  
-        {
+        else  //if the song is finished, wait 8 seconds and then load the results screen
+        {     //there is a better way to code this which I will fix later but not rn, will prob do so for prototype 2
             Invoke(nameof(delayLoadSuccess), 8.0f);
         }
     }
@@ -106,7 +114,7 @@ public class Lane : MonoBehaviour
         ScoreManager.Miss();
     }
 
-    private void delayLoadSuccess() 
+    private void delayLoadSuccess() //after a song is finished, load the results screen
     {
         SceneManager.LoadScene("Results");
     }

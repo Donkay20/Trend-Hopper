@@ -7,6 +7,10 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
+/*
+This class is responsible for loading the MIDI file and grabbing the notes from it. Prob nothing much to touch in here tbh
+*/
+
 public class SongManager : MonoBehaviour
 {
     public static SongManager Instance;
@@ -45,7 +49,7 @@ public class SongManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ReadFromWebsite()
+    private IEnumerator ReadFromWebsite()   //we shouldn't really be using this method tbh, might remove it later
     {
         using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + "/" + fileLocation))
         {
@@ -67,12 +71,12 @@ public class SongManager : MonoBehaviour
         }
     }
 
-    private void ReadFromFile()
+    private void ReadFromFile() 
     {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
         GetDataFromMidi();
     }
-    public void GetDataFromMidi()
+    public void GetDataFromMidi()   //grabs notes & timings from the midi and copies them to an array, then puts them in their lanes
     {
         var notes = midiFile.GetNotes();
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
@@ -83,7 +87,7 @@ public class SongManager : MonoBehaviour
 
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
-    public void StartSong()
+    public void StartSong() //plays the song I think, smile
     {
         audioSource.Play();
     }
@@ -92,7 +96,8 @@ public class SongManager : MonoBehaviour
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
-    public int getMaxIndex() 
+    public int getMaxIndex()    //I put this here but I don't think I need it anymore, we'll see
+                                //actually I might need it for the results screen so it isn't hardcoded
     {
         return maxIndex;
     }

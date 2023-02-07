@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+This class is responsible for the score; this includes the amt. of perfect/ok/miss notes in any given song.
+*/
+
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
@@ -44,6 +48,8 @@ public class ScoreManager : MonoBehaviour
         health = 100;
     }
 
+    //below: perfect/ok/miss methods, doing different things in each one.
+
     public static void Hit()
     {
         score += 100;
@@ -69,7 +75,8 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public static void Miss()
+    public static void Miss()   //missing a note that would cause you to drop to 0 health or below triggers the fail trigger and loads the results cutscene.
+                                //this code will be edited to include a delay to display a "failure" graphic before a transition happens.
     {
         comboScore = 0;
         debugMissValue += 1;
@@ -85,7 +92,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (comboScore >= 2 && comboScore <= 9) {
+        if (comboScore >= 2 && comboScore <= 9) {   //ngl I was kinda bored, might remove this later
             if (comboScore == 2) {
                 comboScoreText.text = "two";
             }
@@ -121,7 +128,7 @@ public class ScoreManager : MonoBehaviour
         debugMissText.text = debugMissValue.ToString();
     }
 
-    public int[] getScoreLog() {
+    public int[] getScoreLog() {        //builds the info needed to send to the results screen. may or may not need to reset its values for multiple levels but we'll see idk
         comboLog[0] = debugPerfectValue;
         comboLog[1] = debugOKValue;
         comboLog[2] = debugMissValue;
