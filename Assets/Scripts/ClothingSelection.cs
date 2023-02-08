@@ -31,6 +31,7 @@ public class ClothingSelection : MonoBehaviour
     private int selectedClothingTop;
     private int selectedClothingBottom;     //variables set for the categories and clothings within said categories
 
+    public GameObject bonusBox;
     public GameObject hairBox;
     public GameObject accessoryBox;
     public GameObject shoeBox;
@@ -39,8 +40,11 @@ public class ClothingSelection : MonoBehaviour
     public GameObject categoryBox;          //this is where the prefabs go
 
     void Start()
-    {
+    {        
         Instance = this;
+        DressUpStatBonuses.scoreMultiplier = 1.0;
+        DressUpStatBonuses.leniency = 0;
+        DressUpStatBonuses.scoreThreshold = 120;
         selectedCategory = 1;           
         selectedClothingHair = 1;       //category 1
         selectedClothingAccessory = 1;  //category 2

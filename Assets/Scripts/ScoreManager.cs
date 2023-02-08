@@ -15,11 +15,13 @@ public class ScoreManager : MonoBehaviour
     public AudioSource missSFX;
 
     public TMPro.TextMeshPro comboScoreText;
+    public TMPro.TextMeshPro comboSplash;
     public TMPro.TextMeshPro scoreText;
     public TMPro.TextMeshPro healthText;
     public TMPro.TextMeshPro debugPerfectText;
     public TMPro.TextMeshPro debugOKText;
     public TMPro.TextMeshPro debugMissText;
+    //public GameObject bonusBox;
 
     static int comboScore;
     static int score;
@@ -38,7 +40,9 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        comboScoreText.faceColor = new Color32(255, 255, 255, 30); //last value is opacity
+        comboScoreText.faceColor = new Color32(255, 255, 255, 70); //last value is opacity
+        comboSplash.faceColor = new Color32(255, 255, 255, 90);
+        //bonusBox.renderer.material.color.a = 0.5f;
         Instance = this;
         comboScore = 0;
         score = 0;
@@ -134,7 +138,7 @@ public class ScoreManager : MonoBehaviour
         comboLog[1] = debugOKValue;
         comboLog[2] = debugMissValue;
         comboLog[3] = failCheck;
-        comboLog[4] = maxCombo;
+        comboLog[4] = score;
         return comboLog;
     }
 }

@@ -26,6 +26,7 @@ public class RhythmFeedback : MonoBehaviour
     public void showResult(string text) {   //accepts the text to insert in the prefab as an argument
         if (statTextPrefab)                 //the prefab must be assigned
         {
+            //DestroyInSeconds.Instance.duplicateDestroy();
             GameObject prefab = Instantiate(statTextPrefab, transform.position, Quaternion.identity);   //idk what this is doing here tbh
             prefab.GetComponentInChildren<TextMesh>().text = text;                                      //this is changing the text
         }
