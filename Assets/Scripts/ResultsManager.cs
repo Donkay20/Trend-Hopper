@@ -16,6 +16,7 @@ public class ResultsManager : MonoBehaviour
     public TMPro.TextMeshPro okText;
     public TMPro.TextMeshPro missText;
     public TMPro.TextMeshPro gradeText;
+    public TMPro.TextMeshPro totalNotes;
     
     void Start()
     {
@@ -23,6 +24,7 @@ public class ResultsManager : MonoBehaviour
         perfectText.text = results[0].ToString();   //0 is for perfect
         okText.text = results[1].ToString();        //1 is for ok
         missText.text = results[2].ToString();      //2 is for miss
+        totalNotes.text = results[4].ToString();    //4 is for the max combo, might just hard code this cause this is giving me an anyeurism
         letterGrade();                              //invoke the letter grade class, dependent on the values above (may change)
     }
 

@@ -20,6 +20,7 @@ public class Lane : MonoBehaviour
     public GameObject notePrefab; public GameObject statusTextPrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
+    public float spawnDelay = 0.0f; //make sure this is the same as the song delay
     int spawnIndex = 0;
     int inputIndex = 0;
 
@@ -35,7 +36,7 @@ public class Lane : MonoBehaviour
             if (note.NoteName == noteRestriction)
             {
                 var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
-                timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                timeStamps.Add(((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f));
             }
         }
     }
@@ -60,11 +61,11 @@ public class Lane : MonoBehaviour
         {
             double timeStamp = timeStamps[inputIndex];
             double marginOfError = SongManager.Instance.marginOfError; //the margin of error is how long the note is in a hit-able range
-            double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+            double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0) - spawnDelay;
 
             if (Input.GetKeyDown(input)) //this area is for imposing timing restrictions to inputs
             {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError / 3) //perfect timing
+                if (Math.Abs(audioTime - timeStamp) - spawnDelay < marginOfError / 3) //perfect timing
                 {
                     Hit();
                     RhythmFeedback.Instance.showResult("Based!");
@@ -73,7 +74,7 @@ public class Lane : MonoBehaviour
                     inputIndex++;
                     missedNote = false;
                 }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError / 2) //ok timing
+                else if (Math.Abs(audioTime - timeStamp) - spawnDelay < marginOfError / 2) //ok timing
                 {
                     OK();
                     RhythmFeedback.Instance.showResult("mid");
@@ -84,7 +85,7 @@ public class Lane : MonoBehaviour
                 }
             }
 
-            if (timeStamp + marginOfError <= audioTime && !missedNote) //ngl, I don't know what's going on here but it works so whatever
+            if (((timeStamp + marginOfError)-spawnDelay <= audioTime) && !missedNote) //ngl, I don't know what's going on here but it works so whatever
             {
                 Miss();
                 RhythmFeedback.Instance.showResult("cringe..");
@@ -95,7 +96,7 @@ public class Lane : MonoBehaviour
         }
         else  //if the song is finished, wait 8 seconds and then load the results screen
         {     //there is a better way to code this which I will fix later but not rn, will prob do so for prototype 2
-            Invoke(nameof(delayLoadSuccess), 8.0f);
+            Invoke(nameof(delayLoadSuccess), 12.0f);
         }
     }
 

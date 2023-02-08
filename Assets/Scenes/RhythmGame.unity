@@ -1012,6 +1012,7 @@ MonoBehaviour:
   notePrefab: {fileID: 1540995729271134361, guid: 83e6e5ca93675cb4487d54962bedc4ec, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
+  spawnDelay: 3
 --- !u!4 &582219906
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,6 +1065,7 @@ MonoBehaviour:
   debugPerfectText: {fileID: 201744642}
   debugOKText: {fileID: 2048578996}
   debugMissText: {fileID: 1704300907}
+  maxCombo: 500
 --- !u!4 &633352010
 Transform:
   m_ObjectHideFlags: 0
@@ -1486,6 +1488,7 @@ MonoBehaviour:
   notePrefab: {fileID: 4637578502970691336, guid: be0e8796d3bcfe64ebed981cadf4a730, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
+  spawnDelay: 3
 --- !u!4 &963751254
 Transform:
   m_ObjectHideFlags: 0
@@ -2223,6 +2226,7 @@ MonoBehaviour:
   notePrefab: {fileID: 779972560006352567, guid: 1324764744c56b24ba1c8a8b1ecd2af7, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
+  spawnDelay: 3
 --- !u!4 &1469793574
 Transform:
   m_ObjectHideFlags: 0
@@ -2266,7 +2270,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 528bf74877665f8429dfa73840cae104, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2688,11 +2692,11 @@ MonoBehaviour:
   - {fileID: 1469793573}
   - {fileID: 582219905}
   - {fileID: 963751253}
-  songDelayInSeconds: 0
+  songDelayInSeconds: 3
   marginOfError: 0.15
   inputDelayInMilliseconds: 0
   maxIndex: 0
-  fileLocation: PsychedelicacyMap_Normal.mid
+  fileLocation: Psychedelicacy_Normal03.mid
   noteTime: 1
   noteSpawnY: -7
   noteTapY: 3
@@ -3045,6 +3049,7 @@ MonoBehaviour:
   notePrefab: {fileID: 3687433756572859469, guid: 92db99fa332db3f4a8b51a15d0007f07, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
+  spawnDelay: 3
 --- !u!4 &1877329063
 Transform:
   m_ObjectHideFlags: 0

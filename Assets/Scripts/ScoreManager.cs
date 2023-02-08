@@ -28,8 +28,9 @@ public class ScoreManager : MonoBehaviour
     static int debugOKValue;
     static int debugMissValue;
     static int failCheck;
+    public int maxCombo = 500;
 
-    private int[] comboLog = new int[4]; //array for score & pass/fail value
+    private int[] comboLog = new int[5]; //array for score & pass/fail value
     // 0 = perfect / 1 = ok / 2 = bad / 3 = pass/fail
     // 1 = ok
     // 2 = bad
@@ -133,6 +134,7 @@ public class ScoreManager : MonoBehaviour
         comboLog[1] = debugOKValue;
         comboLog[2] = debugMissValue;
         comboLog[3] = failCheck;
+        comboLog[4] = maxCombo;
         return comboLog;
     }
 }

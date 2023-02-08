@@ -81,6 +81,8 @@ public class SongManager : MonoBehaviour
         var notes = midiFile.GetNotes();
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         int maxIndex = notes.Count;
+        setMaxIndex();
+        print($"{notes.Count}");
         notes.CopyTo(array, 0);
 
         foreach (var lane in lanes) lane.SetTimeStamps(array);
@@ -100,6 +102,11 @@ public class SongManager : MonoBehaviour
                                 //actually I might need it for the results screen so it isn't hardcoded
     {
         return maxIndex;
+    }
+
+    public void setMaxIndex() 
+    {
+        ScoreManager.Instance.maxCombo = maxIndex;
     }
 
     void Update()
