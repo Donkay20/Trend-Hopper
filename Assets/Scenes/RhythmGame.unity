@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 9
+  noteRestriction: 3
   input: 274
   notePrefab: {fileID: 1540995729271134361, guid: 83e6e5ca93675cb4487d54962bedc4ec, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
@@ -1164,6 +1164,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &830456814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830456815}
+  m_Layer: 0
+  m_Name: 'DRIVE: F/G/A/B'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830456815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830456814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841579553
 GameObject:
@@ -1450,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 11
+  noteRestriction: 4
   input: 275
   notePrefab: {fileID: 4637578502970691336, guid: be0e8796d3bcfe64ebed981cadf4a730, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
@@ -2187,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 7
+  noteRestriction: 2
   input: 273
   notePrefab: {fileID: 779972560006352567, guid: 1324764744c56b24ba1c8a8b1ecd2af7, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
@@ -2234,7 +2265,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 598963bc24f043142b9d9980e385d7ee, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 528bf74877665f8429dfa73840cae104, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2416,6 +2447,37 @@ Transform:
   - {fileID: 1326622391}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1646453610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646453611}
+  m_Layer: 0
+  m_Name: 'Psych: C#/D/D#/E'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646453611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646453610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704300906
 GameObject:
@@ -2629,7 +2691,8 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.15
   inputDelayInMilliseconds: 0
-  fileLocation: drive_beatmap.mid
+  maxIndex: 0
+  fileLocation: PsychedelicacyMap_Normal.mid
   noteTime: 1
   noteSpawnY: -7
   noteTapY: 3
@@ -2977,7 +3040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 5
+  noteRestriction: 1
   input: 276
   notePrefab: {fileID: 3687433756572859469, guid: 92db99fa332db3f4a8b51a15d0007f07, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
