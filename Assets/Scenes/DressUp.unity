@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 292181360}
   - component: {fileID: 292181359}
   m_Layer: 0
-  m_Name: Clothing Categories
+  m_Name: Clothing Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 413803046}
   - component: {fileID: 413803045}
   m_Layer: 0
-  m_Name: BonusDisplayBox
+  m_Name: Bonus Display Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1583,7 +1583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554394851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9, y: -0.65, z: 0}
+  m_LocalPosition: {x: 2.8, y: -0.65, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2011,7 +2011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672546487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8, y: -0.3, z: 0}
+  m_LocalPosition: {x: 7, y: -0.3, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2179,7 +2179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767442102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: -0.35, z: 0}
+  m_LocalPosition: {x: 4.9, y: -0.35, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2310,7 +2310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: add48b52c81b119448eabd1cc893f89f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2632,7 +2632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2190\u2192\n- Change clothing\n"
+  m_text: "\u2190\u2192\nChange clothing\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_sharedMaterial: {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
@@ -2756,7 +2756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913539805}
   m_Layer: 0
-  m_Name: Clothing Images
+  m_Name: Clothing Images (Closet)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3054,7 +3054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190374697}
   m_Layer: 0
-  m_Name: Variable Bonus Text
+  m_Name: Variable Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3134,7 +3134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2191\u2193\n- Change category"
+  m_text: "\u2191\u2193\nChange category"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_sharedMaterial: {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}

@@ -11,6 +11,7 @@ Controls are set up in such a way that it is possible to navigate this menu usin
 public class ClothingSelection : MonoBehaviour
 {
     public static ClothingSelection Instance;
+    
     public TMPro.TextMeshPro startText;
     public TMPro.TextMeshPro scoreMultiplierText;
     public TMPro.TextMeshPro leniencyText;
@@ -49,7 +50,7 @@ public class ClothingSelection : MonoBehaviour
         Instance = this;
         DressUpStatBonuses.scoreMultiplier = 1.0;
         DressUpStatBonuses.leniency = 0;
-        DressUpStatBonuses.scoreThreshold = 120;
+        DressUpStatBonuses.scoreThreshold = 150;
         selectedCategory = 1;           
         selectedClothingHair = 2;       //category 1
         selectedClothingAccessory = 2;  //category 2
