@@ -354,7 +354,7 @@ public class ClothingSelection : MonoBehaviour
             }
         }
         scoreMultiplierText.text = (1.0 + allocateScore).ToString(); DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
-        leniencyText.text = (100 + allocateLeniency).ToString(); DressUpStatBonuses.leniency = (100 + allocateLeniency);
+        leniencyText.text = (100 + allocateLeniency).ToString(); DressUpStatBonuses.leniency = (0.001*allocateLeniency);
         coolnessText.text = (150 + allocateCoolness).ToString(); DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
     }
 }

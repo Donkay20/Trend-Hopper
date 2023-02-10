@@ -60,7 +60,7 @@ public class Lane : MonoBehaviour
         if (inputIndex < timeStamps.Count)
         {
             double timeStamp = timeStamps[inputIndex];
-            double marginOfError = SongManager.Instance.marginOfError + DressUpStatBonuses.leniency; //the margin of error is how long the note is in a hit-able range
+            double marginOfError = SongManager.Instance.marginOfError + DressUpStatBonuses.leniency;    //the margin of error is how long the note is in a hit-able range
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0) - spawnDelay;
 
             if (Input.GetKeyDown(input)) //this area is for imposing timing restrictions to inputs
