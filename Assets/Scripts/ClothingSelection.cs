@@ -10,14 +10,11 @@ Controls are set up in such a way that it is possible to navigate this menu usin
 
 public class ClothingSelection : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static ClothingSelection Instance;
-//  public TMPro.TextMeshPro bonusHairText;
-//  public TMPro.TextMeshPro bonusTopText;
-//  public TMPro.TextMeshPro bonusBottomText;
-//  public TMPro.TextMeshPro bonusShoeText;
     public TMPro.TextMeshPro startText;
-//  public TMPro.TextMeshPro backText;
+    public TMPro.TextMeshPro scoreMultiplierText;
+    public TMPro.TextMeshPro leniencyText;
+    public TMPro.TextMeshPro coolnessText;
 
     public KeyCode inputUp;                 //controls
     public KeyCode inputDown;
@@ -31,7 +28,15 @@ public class ClothingSelection : MonoBehaviour
     private int selectedClothingTop;
     private int selectedClothingBottom;     //variables set for the categories and clothings within said categories
 
-    public GameObject bonusBox;
+    private int[] bonuses = new int[5];     //this array will be used to store the dress-up bonuses. 1 slot from 0-4 each for the category, and 1-3 within each slot for the type of bonus.
+                                            //1 = score multiplier, 2 = leniency, 3 = coolness threshold
+
+    public GameObject[] hairOverlay = new GameObject[3];
+    public GameObject[] accessoryOverlay = new GameObject[3];
+    public GameObject[] shoeOverlay = new GameObject[3];
+    public GameObject[] topOverlay = new GameObject[3];
+    public GameObject[] bottomOverlay = new GameObject[3];  //these are where the overlays are held
+
     public GameObject hairBox;
     public GameObject accessoryBox;
     public GameObject shoeBox;
@@ -46,13 +51,12 @@ public class ClothingSelection : MonoBehaviour
         DressUpStatBonuses.leniency = 0;
         DressUpStatBonuses.scoreThreshold = 120;
         selectedCategory = 1;           
-        selectedClothingHair = 1;       //category 1
-        selectedClothingAccessory = 1;  //category 2
-        selectedClothingShoe = 1;       //category 3
-        selectedClothingTop = 1;        //category 4
-        selectedClothingBottom = 1;     //category 5
+        selectedClothingHair = 2;       //category 1
+        selectedClothingAccessory = 2;  //category 2
+        selectedClothingShoe = 2;       //category 3
+        selectedClothingTop = 2;        //category 4
+        selectedClothingBottom = 2;     //category 5
         startText.text = "Start!";      //category 6
-    //  backText.text = "Back!";
 
         categoryBox = Instantiate(categoryBox);
         hairBox = Instantiate(hairBox);
@@ -72,7 +76,6 @@ public class ClothingSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-
         if (selectedCategory != 6) {                //the text changes off "> to start!" when it isn't on the right category
             startText.text = "Start!";
         }
@@ -198,12 +201,6 @@ public class ClothingSelection : MonoBehaviour
                 }
                 UpdateBottomIndicator(selectedClothingBottom);
             }
-            
-            //if (selectedCategory == 6) {
-                //TODO
-                //go back to world hub?? screen
-                //defunct
-            //}
         }
     }
 
@@ -211,106 +208,153 @@ public class ClothingSelection : MonoBehaviour
 
     private void UpdateHairIndicator(int x) {
         if (x == 1) {
-            hairBox.transform.position = new Vector3(-0.76f, 3.53f, 0f);
+            hairBox.transform.position = new Vector3(-2.1f, 3.5f, 0f);
+            hairOverlay[0].SetActive(true); hairOverlay[1].SetActive(false); hairOverlay[2].SetActive(false);
+            bonuses[0] = 1;
         }
 
         if (x == 2) {
-            hairBox.transform.position = new Vector3(0.5f, 3.53f, 0f);
+            hairBox.transform.position = new Vector3(-0.6f, 3.5f, 0f);
+            hairOverlay[0].SetActive(false); hairOverlay[1].SetActive(true); hairOverlay[2].SetActive(false);
+            bonuses[0] = 2;
         }
 
         if (x == 3) {
-            hairBox.transform.position = new Vector3(1.7f, 3.54f, 0f);
+            hairBox.transform.position = new Vector3(0.7f, 3.5f, 0f);
+            hairOverlay[0].SetActive(false); hairOverlay[1].SetActive(false); hairOverlay[2].SetActive(true);
+            bonuses[0] = 3;
         }
-        
+        UpdateBonusTooltip();
     }
 
     private void UpdateAccessoryIndicator(int x) {
         if (x == 1) {
-            accessoryBox.transform.position = new Vector3(-0.82f, 1.44f, 0f);
+            accessoryBox.transform.position = new Vector3(-2f, 1.1f, 0f);
+            accessoryOverlay[0].SetActive(true); accessoryOverlay[1].SetActive(false); accessoryOverlay[2].SetActive(false);
+            bonuses[1] = 1; 
         }
 
         if (x == 2) {
-            accessoryBox.transform.position = new Vector3(0.53f, 1.42f, 0f);
+            accessoryBox.transform.position = new Vector3(-0.6f, 1.1f, 0f);
+            accessoryOverlay[0].SetActive(false); accessoryOverlay[1].SetActive(true); accessoryOverlay[2].SetActive(false);
+            bonuses[1] = 2;  
         }
 
         if (x == 3) {
-            accessoryBox.transform.position = new Vector3(1.84f, 1.42f, 0f);
+            accessoryBox.transform.position = new Vector3(0.8f, 1.1f, 0f);
+            accessoryOverlay[0].SetActive(false); accessoryOverlay[1].SetActive(false); accessoryOverlay[2].SetActive(true);
+            bonuses[1] = 3;  
         }
-        
+        UpdateBonusTooltip();
     }
 
     private void UpdateShoeIndicator(int x) {
         if (x == 1) {
-            shoeBox.transform.position = new Vector3(-0.83f, -0.77f, 0f);
+            shoeBox.transform.position = new Vector3(-2.2f, -1.4f, 0f);
+            shoeOverlay[0].SetActive(true); shoeOverlay[1].SetActive(false); shoeOverlay[2].SetActive(false);
+            bonuses[2] = 1; 
         }
 
         if (x == 2) {
-            shoeBox.transform.position = new Vector3(0.44f, -0.79f, 0f);
+            shoeBox.transform.position = new Vector3(-0.75f, -1.4f, 0f);
+            shoeOverlay[0].SetActive(false); shoeOverlay[1].SetActive(true); shoeOverlay[2].SetActive(false); 
+            bonuses[2] = 2; 
         }
 
         if (x == 3) {
-            shoeBox.transform.position = new Vector3(1.71f, -0.76f, 0f);
+            shoeBox.transform.position = new Vector3(0.8f, -1.4f, 0f);
+            shoeOverlay[0].SetActive(false); shoeOverlay[1].SetActive(false); shoeOverlay[2].SetActive(true); 
+            bonuses[2] = 3; 
         }
+        UpdateBonusTooltip();
     }
 
     private void UpdateTopIndicator(int x) {
         if (x == 1) {
-            topBox.transform.position = new Vector3(3.8f, 3f, 0f);
+            topBox.transform.position = new Vector3(2.9f, 2.8f, 0f);
+            topOverlay[0].SetActive(true); topOverlay[1].SetActive(false); topOverlay[2].SetActive(false); 
+            bonuses[3] = 1; 
         }
 
         if (x == 2) {
-            topBox.transform.position = new Vector3(5.52f, 3f, 0f);
+            topBox.transform.position = new Vector3(4.9f, 2.8f, 0f);
+            topOverlay[0].SetActive(false); topOverlay[1].SetActive(true); topOverlay[2].SetActive(false); 
+            bonuses[3] = 2; 
         }
 
         if (x == 3) {
-            topBox.transform.position = new Vector3(7.28f, 3f, 0f);
+            topBox.transform.position = new Vector3(7f, 2.8f, 0f);
+            topOverlay[0].SetActive(false); topOverlay[1].SetActive(false); topOverlay[2].SetActive(true); 
+            bonuses[3] = 3; 
         }
+        UpdateBonusTooltip();
     }
 
     private void UpdateBottomIndicator(int x) {
         if (x == 1) {
-            bottomBox.transform.position = new Vector3(3.71f, 0f, 0f);
+            bottomBox.transform.position = new Vector3(2.8f, -0.3f, 0f);
+            bottomOverlay[0].SetActive(true); bottomOverlay[1].SetActive(false); bottomOverlay[2].SetActive(false); 
+            bonuses[4] = 1; 
         }
 
         if (x == 2) {
-            bottomBox.transform.position = new Vector3(5.62f, 0f, 0f);
+            bottomBox.transform.position = new Vector3(4.9f, -0.65f, 0f);
+            bottomOverlay[0].SetActive(false); bottomOverlay[1].SetActive(true); bottomOverlay[2].SetActive(false); 
+            bonuses[4] = 2; 
         }
 
         if (x == 3) {
-            bottomBox.transform.position = new Vector3(7.41f, 0f, 0f);
+            bottomBox.transform.position = new Vector3(7f, -0.35f, 0f);
+            bottomOverlay[0].SetActive(false); bottomOverlay[1].SetActive(false); bottomOverlay[2].SetActive(true); 
+            bonuses[4] = 3; 
         }
+        UpdateBonusTooltip();
     }
 
     private void UpdateCategoryIndicator(int x) {
 
         if (x == 1) {   //hair
-            categoryBox.transform.position = new Vector3(0.5f, 3.53f, 0f);
+            categoryBox.transform.position = new Vector3(-0.6f, 3.5f, 0f);
         }
 
         if (x == 2) {   //accessory
-            categoryBox.transform.position = new Vector3(0.53f, 1.42f, 0f);
+            categoryBox.transform.position = new Vector3(-0.6f, 1.1f, 0f);
         }
 
         if (x == 3) {   //shoe
-            categoryBox.transform.position = new Vector3(0.44f, -0.79f, 0f);
+            categoryBox.transform.position = new Vector3(-0.75f, -1.4f, 0f);
         }
 
         if (x == 4) {   //top
-            categoryBox.transform.position = new Vector3(5.52f, 3f, 0f);
+            categoryBox.transform.position = new Vector3(4.9f, 2.8f, 0f);
         }
 
         if (x == 5) {   //bottom
-            categoryBox.transform.position = new Vector3(5.62f, 0f, 0f);
+            categoryBox.transform.position = new Vector3(4.9f, -0.65f, 0f);
         }
 
         if (x == 6) {   //start btn
-            categoryBox.transform.position = new Vector3(4f, -3.8f, 0f);
+            categoryBox.transform.position = new Vector3(7f, -3.7f, 0f);
             startText.text = "→ to start!";
         }
-        
-        //if (x == 6) {
-        //  categoryBox.transform.position = new Vector3(1f, -3.8f, 0f);
-        //  backText.text = "← to return!";
-        //}
+    }
+
+    private void UpdateBonusTooltip() {
+        double allocateScore = 0.0; int allocateLeniency = 0; int allocateCoolness = 0;
+
+        for (int i = 0; i < 5; i++) {
+            if (bonuses[i] == 1) {
+                allocateScore += 0.2;
+            }
+            if (bonuses[i] == 2) {
+                allocateLeniency += 10;
+            }
+            if (bonuses[i] == 3) {
+                allocateCoolness -= 5;
+            }
+        }
+        scoreMultiplierText.text = (1.0 + allocateScore).ToString(); DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
+        leniencyText.text = (100 + allocateLeniency).ToString(); DressUpStatBonuses.leniency = (100 + allocateLeniency);
+        coolnessText.text = (150 + allocateCoolness).ToString(); DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
     }
 }

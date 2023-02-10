@@ -60,7 +60,7 @@ public class Lane : MonoBehaviour
         if (inputIndex < timeStamps.Count)
         {
             double timeStamp = timeStamps[inputIndex];
-            double marginOfError = SongManager.Instance.marginOfError; //the margin of error is how long the note is in a hit-able range
+            double marginOfError = SongManager.Instance.marginOfError + DressUpStatBonuses.leniency; //the margin of error is how long the note is in a hit-able range
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0) - spawnDelay;
 
             if (Input.GetKeyDown(input)) //this area is for imposing timing restrictions to inputs
@@ -94,7 +94,7 @@ public class Lane : MonoBehaviour
                 missedNote = true;
             }
         }
-        else  //if the song is finished, wait 8 seconds and then load the results screen
+        else  //if the song is finished, wait x seconds and then load the results screen
         {     //there is a better way to code this which I will fix later but not rn, will prob do so for prototype 2
             Invoke(nameof(delayLoadSuccess), 12.0f);
         }
