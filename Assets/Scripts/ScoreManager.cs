@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro debugPerfectText;
     public TMPro.TextMeshPro debugOKText;
     public TMPro.TextMeshPro debugMissText;
+    public TMPro.TextMeshPro healthRequirementText;
     //public GameObject bonusBox;
 
     static int comboScore;
@@ -30,16 +31,20 @@ public class ScoreManager : MonoBehaviour
     static int debugOKValue;
     static int debugMissValue;
     static int failCheck;
+    static int comboRecord;
     public int maxCombo = 500;
 
-    private int[] comboLog = new int[5]; //array for score & pass/fail value
-    // 0 = perfect / 1 = ok / 2 = bad / 3 = pass/fail
+    private int[] comboLog = new int[6]; //array for score & pass/fail value
+    // 0 = perfect
     // 1 = ok
     // 2 = bad
     // 3 = pass/fail check; 0 is pass, 1 is fail
+    // 4 = score total
+    // 5 = highest combo
 
     void Start()
     {
+        healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
         comboScoreText.faceColor = new Color32(255, 255, 255, 70); //last value is opacity
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
         //bonusBox.renderer.material.color.a = 0.5f;
@@ -50,6 +55,7 @@ public class ScoreManager : MonoBehaviour
         debugOKValue = 0;
         debugMissValue = 0;
         failCheck = 0;
+        comboRecord = 0;
         health = 100;
     }
 
@@ -59,6 +65,9 @@ public class ScoreManager : MonoBehaviour
     {
         score += 100;
         comboScore += 1;
+        if (comboScore > comboRecord) {
+            comboRecord = comboScore;
+        }
         debugPerfectValue += 1;
         Instance.hitSFX.Play();
         if (health >= 199) {
@@ -125,7 +134,12 @@ public class ScoreManager : MonoBehaviour
         } else {
             comboScoreText.text = comboScore.ToString();
         }
-        //comboScoreText.text = comboScore.ToString();
+        if (health < DressUpStatBonuses.scoreThreshold) {
+            failCheck = 1;
+        }
+        if (health >= DressUpStatBonuses.scoreThreshold) {
+            failCheck = 0;
+        }
         scoreText.text = score.ToString();
         healthText.text = health.ToString();
         debugPerfectText.text = debugPerfectValue.ToString();
@@ -139,6 +153,7 @@ public class ScoreManager : MonoBehaviour
         comboLog[2] = debugMissValue;
         comboLog[3] = failCheck;
         comboLog[4] = score;
+        comboLog[5] = comboRecord;
         return comboLog;
     }
 }
