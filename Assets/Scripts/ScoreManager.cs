@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour
         debugMissValue = 0;
         failCheck = 0;
         comboRecord = 0;
-        health = 100;
+        health = 75;
     }
 
     //below: perfect/ok/miss methods, doing different things in each one.

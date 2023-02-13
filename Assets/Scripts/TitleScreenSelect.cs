@@ -11,8 +11,10 @@ public class TitleScreenSelect : MonoBehaviour
 {
     // Start is called before the first frame update
     public static TitleScreenSelect Instance;
-    public TMPro.TextMeshPro startText;
-    public TMPro.TextMeshPro exitText;
+    public TMPro.TextMeshPro toolTipStart;
+    public TMPro.TextMeshPro toolTipExit;
+    //public TMPro.TextMeshPro startText;
+    //public TMPro.TextMeshPro exitText;
 
     public KeyCode inputUp;
     public KeyCode inputDown;
@@ -26,8 +28,9 @@ public class TitleScreenSelect : MonoBehaviour
     {
         Instance = this;
         selectedCategory = 1;
-        startText.text = "> to Start!";
-        exitText.text = "Exit!";
+        toolTipStart.text = "Press →";
+        //startText.text = "> to Start!";
+        //exitText.text = "Exit!";
         selector = Instantiate(selector);
         updateCategoryIndicatorPosition(selectedCategory);
     }
@@ -36,11 +39,11 @@ public class TitleScreenSelect : MonoBehaviour
     void Update()
     {
         if (selectedCategory != 1) {
-            startText.text = "Start!";
+            toolTipStart.text = "";
         }
 
-        if (selectedCategory !=2) {
-            exitText.text = "Exit!";
+        if (selectedCategory != 2) {
+            toolTipExit.text = "";
         }
 
         if (Input.GetKeyDown(inputUp)) {
@@ -77,12 +80,12 @@ public class TitleScreenSelect : MonoBehaviour
 
     private void updateCategoryIndicatorPosition(int pos) {
         if (pos == 1) {
-            selector.transform.position = new Vector3(-4.3f, -1.2f, 0f);
-            startText.text = "> to Start!";
+            selector.transform.position = new Vector3(0.96f, -1.65f, 0f);
+            toolTipStart.text = "Press →";
         }
         if (pos == 2) {
-            selector.transform.position = new Vector3(-3.8f, -3.2f, 0f);
-            exitText.text = "< to Exit!";
+            selector.transform.position = new Vector3(0.96f, -3.15f, 0f);
+            toolTipExit.text = "Press ←";
         }
     }
 }
