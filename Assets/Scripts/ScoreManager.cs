@@ -156,4 +156,8 @@ public class ScoreManager : MonoBehaviour
         comboLog[5] = comboRecord;
         return comboLog;
     }
+
+    public int getCombo() {
+        return comboScore;
+    }   
 }

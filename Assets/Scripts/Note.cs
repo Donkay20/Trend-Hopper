@@ -14,7 +14,8 @@ public class Note : MonoBehaviour
 
     void Start() //reference point to the song
     {
-        timeInstantiated = SongManager.GetAudioSourceTime();
+        //timeInstantiated = SongManager.GetAudioSourceTime();
+        timeInstantiated = assignedTime - SongManager.Instance.noteTime;
     }
 
     // Update is called once per frame
