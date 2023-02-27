@@ -205,25 +205,28 @@ public class ClothingSelection : MonoBehaviour
         }
     }
 
-    //manipulates indicator positions for all clothing, as well as the category position. Vectors are hardcoded.
+    //manipulates indicator positions for all clothing, the category position, and the global variable to carry onto the rhythm game portion. Vectors are hardcoded.
 
     private void UpdateHairIndicator(int x) {
         if (x == 1) {
             hairBox.transform.position = new Vector3(-2.1f, 3.5f, 0f);
             hairOverlay[0].SetActive(true); hairOverlay[1].SetActive(false); hairOverlay[2].SetActive(false);
             bonuses[0] = 1;
+            DressUpStatBonuses.punkHair = 1;
         }
 
         if (x == 2) {
             hairBox.transform.position = new Vector3(-0.6f, 3.5f, 0f);
             hairOverlay[0].SetActive(false); hairOverlay[1].SetActive(true); hairOverlay[2].SetActive(false);
             bonuses[0] = 2;
+            DressUpStatBonuses.punkHair = 2;
         }
 
         if (x == 3) {
             hairBox.transform.position = new Vector3(0.7f, 3.5f, 0f);
             hairOverlay[0].SetActive(false); hairOverlay[1].SetActive(false); hairOverlay[2].SetActive(true);
             bonuses[0] = 3;
+            DressUpStatBonuses.punkHair = 3;
         }
         UpdateBonusTooltip();
     }
@@ -232,19 +235,22 @@ public class ClothingSelection : MonoBehaviour
         if (x == 1) {
             accessoryBox.transform.position = new Vector3(-2f, 1.1f, 0f);
             accessoryOverlay[0].SetActive(true); accessoryOverlay[1].SetActive(false); accessoryOverlay[2].SetActive(false);
-            bonuses[1] = 1; 
+            bonuses[1] = 1;
+            DressUpStatBonuses.punkAccessory = 1;
         }
 
         if (x == 2) {
             accessoryBox.transform.position = new Vector3(-0.6f, 1.1f, 0f);
             accessoryOverlay[0].SetActive(false); accessoryOverlay[1].SetActive(true); accessoryOverlay[2].SetActive(false);
-            bonuses[1] = 2;  
+            bonuses[1] = 2;
+            DressUpStatBonuses.punkAccessory = 2;
         }
 
         if (x == 3) {
             accessoryBox.transform.position = new Vector3(0.8f, 1.1f, 0f);
             accessoryOverlay[0].SetActive(false); accessoryOverlay[1].SetActive(false); accessoryOverlay[2].SetActive(true);
-            bonuses[1] = 3;  
+            bonuses[1] = 3;
+            DressUpStatBonuses.punkAccessory = 3;
         }
         UpdateBonusTooltip();
     }
@@ -254,18 +260,21 @@ public class ClothingSelection : MonoBehaviour
             shoeBox.transform.position = new Vector3(-2.2f, -1.4f, 0f);
             shoeOverlay[0].SetActive(true); shoeOverlay[1].SetActive(false); shoeOverlay[2].SetActive(false);
             bonuses[2] = 1; 
+            DressUpStatBonuses.punkShoe = 1;
         }
 
         if (x == 2) {
             shoeBox.transform.position = new Vector3(-0.75f, -1.4f, 0f);
             shoeOverlay[0].SetActive(false); shoeOverlay[1].SetActive(true); shoeOverlay[2].SetActive(false); 
             bonuses[2] = 2; 
+            DressUpStatBonuses.punkShoe = 2;
         }
 
         if (x == 3) {
             shoeBox.transform.position = new Vector3(0.8f, -1.4f, 0f);
             shoeOverlay[0].SetActive(false); shoeOverlay[1].SetActive(false); shoeOverlay[2].SetActive(true); 
             bonuses[2] = 3; 
+            DressUpStatBonuses.punkShoe = 3;
         }
         UpdateBonusTooltip();
     }
@@ -275,18 +284,21 @@ public class ClothingSelection : MonoBehaviour
             topBox.transform.position = new Vector3(2.9f, 2.8f, 0f);
             topOverlay[0].SetActive(true); topOverlay[1].SetActive(false); topOverlay[2].SetActive(false); 
             bonuses[3] = 1; 
+            DressUpStatBonuses.punkTop = 1;
         }
 
         if (x == 2) {
             topBox.transform.position = new Vector3(4.9f, 2.8f, 0f);
             topOverlay[0].SetActive(false); topOverlay[1].SetActive(true); topOverlay[2].SetActive(false); 
             bonuses[3] = 2; 
+            DressUpStatBonuses.punkTop = 2;
         }
 
         if (x == 3) {
             topBox.transform.position = new Vector3(7f, 2.8f, 0f);
             topOverlay[0].SetActive(false); topOverlay[1].SetActive(false); topOverlay[2].SetActive(true); 
             bonuses[3] = 3; 
+            DressUpStatBonuses.punkTop = 3;
         }
         UpdateBonusTooltip();
     }
@@ -296,18 +308,21 @@ public class ClothingSelection : MonoBehaviour
             bottomBox.transform.position = new Vector3(2.8f, -0.3f, 0f);
             bottomOverlay[0].SetActive(true); bottomOverlay[1].SetActive(false); bottomOverlay[2].SetActive(false); 
             bonuses[4] = 1; 
+            DressUpStatBonuses.punkBottom = 1;
         }
 
         if (x == 2) {
             bottomBox.transform.position = new Vector3(4.9f, -0.65f, 0f);
             bottomOverlay[0].SetActive(false); bottomOverlay[1].SetActive(true); bottomOverlay[2].SetActive(false); 
             bonuses[4] = 2; 
+            DressUpStatBonuses.punkBottom = 2;
         }
 
         if (x == 3) {
             bottomBox.transform.position = new Vector3(7f, -0.35f, 0f);
             bottomOverlay[0].SetActive(false); bottomOverlay[1].SetActive(false); bottomOverlay[2].SetActive(true); 
             bonuses[4] = 3; 
+            DressUpStatBonuses.punkBottom = 3;
         }
         UpdateBonusTooltip();
     }
