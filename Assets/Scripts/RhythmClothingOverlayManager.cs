@@ -8,7 +8,14 @@ public class RhythmClothingOverlayManager : MonoBehaviour
     public GameObject[] accessoryOverlay = new GameObject[3];
     public GameObject[] shoeOverlay = new GameObject[3];
     public GameObject[] topOverlay = new GameObject[3];
-    public GameObject[] bottomOverlay = new GameObject[3];  //these are where the overlays are held
+    public GameObject[] bottomOverlay = new GameObject[3];  
+    //these are where the chibi overlays are held
+
+    public GameObject[] hairVSOverlay = new GameObject[3];
+    public GameObject[] accessoryVSOverlay = new GameObject[3];
+    public GameObject[] topVSOverlay = new GameObject[3];
+    public GameObject[] bottomVSOverlay = new GameObject[3];  
+    //these are where the vs overlays are held
 
     void Start()
     {
@@ -20,6 +27,7 @@ public class RhythmClothingOverlayManager : MonoBehaviour
             DressUpStatBonuses.punkBottom = 1;
         }
 
+        //THE OVERLAYS FOR THE ON-SCREEN CHIBI STARTS HERE
 
         if (DressUpStatBonuses.punkHair == 1) { 
             hairOverlay[0].SetActive(true); hairOverlay[1].SetActive(false); hairOverlay[2].SetActive(false);
@@ -70,5 +78,48 @@ public class RhythmClothingOverlayManager : MonoBehaviour
         if (DressUpStatBonuses.punkBottom == 3) {
             bottomOverlay[0].SetActive(false); bottomOverlay[1].SetActive(false); bottomOverlay[2].SetActive(true); 
         }
+
+        //THE OVERLAYS FOR THE VS SCREEN STARTS HERE
+
+        if (DressUpStatBonuses.punkHair == 1) { 
+            hairVSOverlay[0].SetActive(true); hairVSOverlay[1].SetActive(false); hairVSOverlay[2].SetActive(false);
+        }
+        if (DressUpStatBonuses.punkHair == 2) {
+            hairVSOverlay[0].SetActive(false); hairVSOverlay[1].SetActive(true); hairVSOverlay[2].SetActive(false);
+        }
+        if (DressUpStatBonuses.punkHair == 3) {
+            hairVSOverlay[0].SetActive(false); hairVSOverlay[1].SetActive(false); hairVSOverlay[2].SetActive(true);
+        }
+
+        if (DressUpStatBonuses.punkAccessory == 1) {
+            accessoryVSOverlay[0].SetActive(true); accessoryVSOverlay[1].SetActive(false); accessoryVSOverlay[2].SetActive(false);
+        }
+        if (DressUpStatBonuses.punkAccessory == 2) {
+            accessoryVSOverlay[0].SetActive(false); accessoryVSOverlay[1].SetActive(true); accessoryVSOverlay[2].SetActive(false);
+        }
+        if (DressUpStatBonuses.punkAccessory == 3) {
+            accessoryVSOverlay[0].SetActive(false); accessoryVSOverlay[1].SetActive(false); accessoryVSOverlay[2].SetActive(true);
+        }
+
+        if (DressUpStatBonuses.punkTop == 1) {
+            topVSOverlay[0].SetActive(true); topVSOverlay[1].SetActive(false); topVSOverlay[2].SetActive(false); 
+        }
+        if (DressUpStatBonuses.punkTop == 2) {
+            topVSOverlay[0].SetActive(false); topVSOverlay[1].SetActive(true); topVSOverlay[2].SetActive(false); 
+        }
+        if (DressUpStatBonuses.punkTop == 3) {
+            topVSOverlay[0].SetActive(false); topVSOverlay[1].SetActive(false); topVSOverlay[2].SetActive(true); 
+        }
+
+        if (DressUpStatBonuses.punkBottom == 1) {
+            bottomVSOverlay[0].SetActive(true); bottomVSOverlay[1].SetActive(false); bottomVSOverlay[2].SetActive(false); 
+        }
+        if (DressUpStatBonuses.punkBottom == 2) {
+            bottomVSOverlay[0].SetActive(false); bottomVSOverlay[1].SetActive(true); bottomVSOverlay[2].SetActive(false); 
+        }
+        if (DressUpStatBonuses.punkBottom == 3) {
+            bottomVSOverlay[0].SetActive(false); bottomVSOverlay[1].SetActive(false); bottomVSOverlay[2].SetActive(true); 
+        }
+
     }
 }
