@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
 This class is responsible for the score; this includes the amt. of perfect/ok/miss notes in any given song.
@@ -10,6 +11,8 @@ This class is responsible for the score; this includes the amt. of perfect/ok/mi
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
+    public Image healthFill;
 
     public AudioSource hitSFX;
     public AudioSource missSFX;
@@ -26,7 +29,8 @@ public class ScoreManager : MonoBehaviour
 
     static int comboScore;
     static int score;
-    static int health;
+    static float health;
+    static float maxHealth;
     static int debugPerfectValue;
     static int debugOKValue;
     static int debugMissValue;
@@ -57,6 +61,8 @@ public class ScoreManager : MonoBehaviour
         failCheck = 0;
         comboRecord = 0;
         health = 75;
+        maxHealth = 200;
+        Instance.UpdateHealthUI();
     }
 
     //below: perfect/ok/miss methods, doing different things in each one.
@@ -75,6 +81,7 @@ public class ScoreManager : MonoBehaviour
         } else {
             health += 2;
         }
+        Instance.UpdateHealthUI();
     }
 
     public static void OK()
@@ -87,6 +94,7 @@ public class ScoreManager : MonoBehaviour
         } else {
             health += 1;
         }
+        Instance.UpdateHealthUI();
     }
 
     public static void Miss()   //missing a note that would cause you to drop to 0 health or below triggers the fail trigger and loads the results cutscene.
@@ -96,6 +104,7 @@ public class ScoreManager : MonoBehaviour
         debugMissValue += 1;
         Instance.missSFX.Play();
         health -= 5;
+        Instance.UpdateHealthUI();
         if (health <= 0) {
             failCheck = 1;
             SceneManager.LoadScene("Results");
@@ -106,6 +115,8 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health = Mathf.Clamp(health,0,200);
+
         if (comboScore >= 2 && comboScore <= 9) {   //ngl I was kinda bored, might remove this later
             if (comboScore == 2) {
                 comboScoreText.text = "two";
@@ -155,6 +166,11 @@ public class ScoreManager : MonoBehaviour
         comboLog[4] = score;
         comboLog[5] = comboRecord;
         return comboLog;
+    }
+
+    public void UpdateHealthUI() {
+        float hpFraction = health / maxHealth;
+        healthFill.fillAmount = hpFraction;
     }
 
     public int getCombo() {
