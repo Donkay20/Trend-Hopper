@@ -25,6 +25,8 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro debugOKText;
     public TMPro.TextMeshPro debugMissText;
     public TMPro.TextMeshPro healthRequirementText;
+
+    public GameObject thresholdIndicator;
     //public GameObject bonusBox;
 
     static int comboScore;
@@ -49,6 +51,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
+        thresholdIndicator = Instantiate(thresholdIndicator); positionThresholdIndicator();
         comboScoreText.faceColor = new Color32(255, 255, 255, 70); //last value is opacity
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
         //bonusBox.renderer.material.color.a = 0.5f;
@@ -171,6 +174,29 @@ public class ScoreManager : MonoBehaviour
     public void UpdateHealthUI() {
         float hpFraction = health / maxHealth;
         healthFill.fillAmount = hpFraction;
+    }
+
+    public void positionThresholdIndicator() {
+        switch (DressUpStatBonuses.scoreThreshold) {
+            case 125:
+                thresholdIndicator.transform.position = new Vector3(0.82f, 4.45f, 0f);
+                break;
+            case 130:
+                thresholdIndicator.transform.position = new Vector3(1.21f, 4.45f, 0f);
+                break;
+            case 135:
+                thresholdIndicator.transform.position = new Vector3(1.597f, 4.45f, 0f);
+                break;
+            case 140:
+                thresholdIndicator.transform.position = new Vector3(1.987f, 4.45f, 0f);
+                break;
+            case 145:
+                thresholdIndicator.transform.position = new Vector3(2.375f, 4.45f, 0f);
+                break;
+            case 150:
+                thresholdIndicator.transform.position = new Vector3(2.765f, 4.45f, 0f);
+                break;  
+        }
     }
 
     public int getCombo() {

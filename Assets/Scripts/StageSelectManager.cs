@@ -27,9 +27,6 @@ public class StageSelectManager : MonoBehaviour
     {   
         Instance = this;
         selector = Instantiate(selector);
-        //preview1 = GetComponent<AudioSource>();
-        //preview2 = GetComponent<AudioSource>();
-        //preview3 = GetComponent<AudioSource>();
 
         phase = 1;
         selectedLevel = 1;
