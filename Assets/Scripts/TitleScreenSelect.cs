@@ -66,7 +66,7 @@ public class TitleScreenSelect : MonoBehaviour
 
         if (Input.GetKeyDown(inputRight)) {
             if (selectedCategory == 1) {
-                SceneManager.LoadScene("DressUp");
+                SceneManager.LoadScene("StageSelect");
             }
         }
 
