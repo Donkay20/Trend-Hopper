@@ -10,11 +10,15 @@ public class DialogueManager : MonoBehaviour
 
     private bool conversationStarted = false;
     private Queue<string> sentences;
+    private Queue<string> namesList;
     public KeyCode nextButton;
+
+    public GameObject dialogueToTrigger;
 
     void Start()
     {   
         sentences = new Queue<string>();
+        namesList = new Queue<string>();
     }
 
     void Update()
@@ -23,6 +27,7 @@ public class DialogueManager : MonoBehaviour
             switch (conversationStarted) {
                 case false:
                     DialogueTrigger.Instance.TriggerDialogue();
+                    //dialogueToTrigger.GetComponent<DialogueTrigger>().Instance.TriggerDialogue();
                     conversationStarted = true;
                     break;
                 case true:
@@ -34,13 +39,19 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue) 
     {
-        nameText.text = dialogue.name;
         sentences.Clear();
+        namesList.Clear();
 
         foreach (string sentence in dialogue.sentences) 
         {
             sentences.Enqueue(sentence);
         }
+
+        foreach (string name in dialogue.names) 
+        {
+            namesList.Enqueue(name);
+        }
+
         DisplayNextSentence();
     }
 
@@ -49,8 +60,21 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        string name = namesList.Dequeue();
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+        nameText.text = name;
+    }
+
+    IEnumerator TypeSentence (string sentence) {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.04f);
+        }
     }
 
     void EndDialogue() {

@@ -181,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95bb660d9b0d1214ca3caec5c7dcfb65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1fc32772d9c1b541a9d981ff515e7ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 177196654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.925, y: 0.83, z: 1}
+  m_LocalScale: {x: 0.925, y: 0.925, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 297967814}
   - component: {fileID: 297967815}
   m_Layer: 0
-  m_Name: Robyn
+  m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,11 +252,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Robyn
+    names:
+    - Jassmea
+    - Rocky
+    - Tyler
+    - Vicky
+    - Jassmea
     sentences:
-    - cringe 2
-    - 'cringe 2: electric boogaloo'
-    - 'cringe 2: cringe 3'
+    - why the fuck did my parents name me Jassmea
+    - Because you are bald and poor
+    - go back to H&M and get a better outfit
+    - ayyy drag her ass, snatch her wig!!!!
+    - WHY am I being bullied???
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,9 +430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Test text lorem ipsum moment
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
@@ -537,7 +542,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &510726758
 GameObject:
@@ -549,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 510726759}
   m_Layer: 0
-  m_Name: Character dialogues
+  m_Name: Character Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,6 +608,7 @@ MonoBehaviour:
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
   nextButton: 275
+  dialogueToTrigger: {fileID: 0}
 --- !u!4 &576580606
 Transform:
   m_ObjectHideFlags: 0
@@ -690,9 +696,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.9411765}
+  m_Color: {r: 0.9339623, g: 0.24142039, b: 0.81220394, a: 0.7411765}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -945,7 +951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NPCName
+  m_text: MC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
   m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
@@ -1057,7 +1063,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1327525030
 GameObject:
@@ -1131,7 +1137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 95c676667911a414f8834dabf497499b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
