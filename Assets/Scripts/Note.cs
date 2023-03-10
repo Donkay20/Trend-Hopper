@@ -8,7 +8,6 @@ This class is responsible for each Note's behavior, such as when it should be de
 
 public class Note : MonoBehaviour
 {
-
     double timeInstantiated;
     public float assignedTime;
 

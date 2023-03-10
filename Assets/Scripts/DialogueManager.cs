@@ -10,21 +10,26 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TextMeshPro dialogueText;      //altering the textfields in-game.
 
     private bool conversationStarted = false;   //boolean trigger to see if conversation has started.
+    private bool changedPrior = false;          //checks to see if name was changed earlier in the method.
 
     private Queue<string> sentences;
     private Queue<string> namesList;    //one queue for the text, another queue for the names of who's speaking
 
+    private string status;              //main character(left side)'s emotional status
+
     public KeyCode nextButton;          //key for navigating through the dialogue
 
     public GameObject characterOnLeft;
-    public GameObject characterOnRight; //the gameobjects control the images (I hope (untested))
+    public GameObject characterOnRight; //the gameobjects control the images
     public Animator animateLeft;
     public Animator animateRight;       //the animators control the fade-in/fade-out
 
     void Start()
     {   
+        //Time.timeScale = 0.3f;
+        status = "neutral";
         sentences = new Queue<string>();
-        namesList = new Queue<string>();        //initializes the queues. queues are FIFO
+        namesList = new Queue<string>();                        //initializes the queues. queues are FIFO
         animateLeft.SetBool("mainCharIsSpeaking", false);
         animateRight.SetBool("rightCharIsSpeaking", false);     //initializes both characters to not be speaking
     }
@@ -71,9 +76,62 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();  //offload the next sentences and name in the queue
         string name = namesList.Dequeue();      
 
-        if (name == "Jassmea") {                //this logic is under the assumption that the main character is always on the left.
+        if (name.Contains("Jassmea")) {                //this logic is under the assumption that the main character is always on the left.
             animateLeft.SetBool("mainCharIsSpeaking", true);    
             animateRight.SetBool("rightCharIsSpeaking", false);
+            switch(name) {
+                case "Jassmea_MAD":
+                    switch(status) {
+                        case "mad": break;
+                        case "neutral":
+                            animateLeft.SetBool("NeutralToMad", true);
+                            animateLeft.SetBool("MadToNeutral", false); animateLeft.SetBool("HappyToNeutral", false);
+                            nameText.text = "Jassmea"; changedPrior = true;
+                            status = "mad";
+                            break;
+                        case "happy":
+                            animateLeft.SetBool("HappyToMad", true);
+                            animateLeft.SetBool("NeutralToHappy", false); animateLeft.SetBool("MadToHappy", false);
+                            nameText.text = "Jassmea"; changedPrior = true;
+                            status = "mad";
+                            break;
+                    }
+                    break;
+                case "Jassmea_NEUTRAL":
+                    switch(status) {
+                        case "neutral": break;
+                        case "happy":
+                            animateLeft.SetBool("HappyToNeutral", true);
+                            animateLeft.SetBool("NeutralToHappy", false); animateLeft.SetBool("MadToHappy", false);
+                            nameText.text = "Jassmea"; changedPrior = true;
+                            status = "neutral";
+                            break;
+                        case "mad":
+                            animateLeft.SetBool("MadToNeutral", true);
+                            animateLeft.SetBool("NeutralToMad", false); animateLeft.SetBool("HappyToMad", false);
+                            nameText.text = "Jassmea"; changedPrior = true;
+                            status = "neutral";
+                            break;
+                    }
+                    break;
+                case "Jassmea_HAPPY":
+                    switch(status) {
+                        case "happy": break;
+                        case "neutral":
+                        animateLeft.SetBool("NeutralToHappy", true);
+                        animateLeft.SetBool("HappyToNeutral", false); animateLeft.SetBool("MadToNeutral", false);
+                        nameText.text = "Jassmea"; changedPrior = true;
+                        status = "happy";
+                        break;
+                        case "mad":
+                        animateLeft.SetBool("MadToHappy", true);
+                        animateLeft.SetBool("HappyToMad", false); animateLeft.SetBool("NeutralToMad", false);
+                        nameText.text = "Jassmea"; changedPrior = true;
+                        status = "happy";
+                        break;
+                    }
+                    break;
+            }
         } else {                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
             animateLeft.SetBool("mainCharIsSpeaking", false);   
             animateRight.SetBool("rightCharIsSpeaking", true);
@@ -81,7 +139,11 @@ public class DialogueManager : MonoBehaviour
 
         StopAllCoroutines();    //<- when the next sentence is loaded when the next one isn't finished yet.
         StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
-        nameText.text = name;
+        if (!changedPrior) {
+                nameText.text = name;
+        }
+
+        changedPrior = false;
     }
 
     IEnumerator TypeSentence (string sentence) {
