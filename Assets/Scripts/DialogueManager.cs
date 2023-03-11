@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject characterOnRight; //the gameobjects control the images
     public Animator animateLeft;
     public Animator animateRight;       //the animators control the fade-in/fade-out
+    public Animator nameTag;            //the animator for the name tag text box
 
     void Start()
     {   
@@ -32,6 +33,7 @@ public class DialogueManager : MonoBehaviour
         namesList = new Queue<string>();                        //initializes the queues. queues are FIFO
         animateLeft.SetBool("mainCharIsSpeaking", false);
         animateRight.SetBool("rightCharIsSpeaking", false);     //initializes both characters to not be speaking
+        nameTag.SetBool("MCisSpeaking", true);
     }
 
     void Update()
@@ -77,9 +79,10 @@ public class DialogueManager : MonoBehaviour
         string name = namesList.Dequeue();      
 
         if (name.Contains("Jassmea")) {                //this logic is under the assumption that the main character is always on the left.
+            nameTag.SetBool("MCisSpeaking", true);
             animateLeft.SetBool("mainCharIsSpeaking", true);    
             animateRight.SetBool("rightCharIsSpeaking", false);
-            switch(name) {
+            switch(name) {              //tldr: checks the mc for an emotion, if so, parses it out and applies the correct facial expression via animation. then updates the status.
                 case "Jassmea_MAD":
                     switch(status) {
                         case "mad": break;
@@ -135,6 +138,7 @@ public class DialogueManager : MonoBehaviour
         } else {                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
             animateLeft.SetBool("mainCharIsSpeaking", false);   
             animateRight.SetBool("rightCharIsSpeaking", true);
+            nameTag.SetBool("MCisSpeaking", false);
         }
 
         StopAllCoroutines();    //<- when the next sentence is loaded when the next one isn't finished yet.
@@ -146,7 +150,7 @@ public class DialogueManager : MonoBehaviour
         changedPrior = false;
     }
 
-    IEnumerator TypeSentence (string sentence) {
+    IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {

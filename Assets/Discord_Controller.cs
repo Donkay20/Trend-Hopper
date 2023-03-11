@@ -6,12 +6,9 @@ public class Discord_Controller : MonoBehaviour
     public long applicationID;
     [Space]
     public string details = "vs Punk";
-    public string combo = "Combo: ";
     [Space]
     public string largeImage = "th_logo";
     public string largeText = "Trend Hopper";
-
-    private string comboCounter;
     private long time;
 
     private static bool instanceExists;
@@ -65,7 +62,6 @@ public class Discord_Controller : MonoBehaviour
             var activity = new Discord.Activity 
             {
                 Details = details,
-                State = combo + ScoreManager.Instance.getCombo().ToString(),
                 Assets = 
                 {
                     LargeImage = largeImage,
