@@ -178,23 +178,23 @@ public class ScoreManager : MonoBehaviour
 
     public void positionThresholdIndicator() {
         switch (DressUpStatBonuses.scoreThreshold) {
-            case 125:
-                thresholdIndicator.transform.position = new Vector3(0.82f, 4.45f, 0f);
+            case 125: //0.625
+                thresholdIndicator.transform.position = new Vector3(-1.02f, 4.58f, 0f);
                 break;
-            case 130:
-                thresholdIndicator.transform.position = new Vector3(1.21f, 4.45f, 0f);
+            case 130: //0.65
+                thresholdIndicator.transform.position = new Vector3(-0.69f, 4.58f, 0f);
                 break;
-            case 135:
-                thresholdIndicator.transform.position = new Vector3(1.597f, 4.45f, 0f);
+            case 135: //0.675
+                thresholdIndicator.transform.position = new Vector3(-0.362f, 4.58f, 0f);
                 break;
-            case 140:
-                thresholdIndicator.transform.position = new Vector3(1.987f, 4.45f, 0f);
+            case 140: //0.7
+                thresholdIndicator.transform.position = new Vector3(-0.033f, 4.58f, 0f);
                 break;
-            case 145:
-                thresholdIndicator.transform.position = new Vector3(2.375f, 4.45f, 0f);
+            case 145: //0.725
+                thresholdIndicator.transform.position = new Vector3(0.298f, 4.58f, 0f);
                 break;
-            case 150:
-                thresholdIndicator.transform.position = new Vector3(2.765f, 4.45f, 0f);
+            case 150: //0.75
+                thresholdIndicator.transform.position = new Vector3(0.627f, 4.58f, 0f);
                 break;  
         }
     }

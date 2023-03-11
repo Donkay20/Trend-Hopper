@@ -21,9 +21,18 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject characterOnLeft;
     public GameObject characterOnRight; //the gameobjects control the images
+    public GameObject background;
     public Animator animateLeft;
     public Animator animateRight;       //the animators control the fade-in/fade-out
     public Animator nameTag;            //the animator for the name tag text box
+    [Space]
+    public Sprite school_bg;
+    public Sprite home_bg;
+    [Space]
+    public Sprite EMPTY;
+    public Sprite Vicky;
+    public Sprite Rocky;
+    public Sprite Tyler;
 
     void Start()
     {   
@@ -135,7 +144,33 @@ public class DialogueManager : MonoBehaviour
                     }
                     break;
             }
-        } else {                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
+        } else if (name.Contains("TRANSITION")){                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
+            switch(name) {
+                case "TRANSITION_SCHOOL":
+                background.GetComponent<SpriteRenderer>().sprite = school_bg;
+                nameText.text = "-"; changedPrior = true;
+                break;
+                case "TRANSITION_HOME":
+                background.GetComponent<SpriteRenderer>().sprite = home_bg;
+                nameText.text = "-"; changedPrior = true;
+                break;
+            }
+        } else {
+            switch(name) {
+                case "EMPTY":
+                characterOnRight.GetComponent<Image>().sprite = EMPTY;
+                nameText.text = "-"; changedPrior = true;
+                break;
+                case "Vicky":
+                characterOnRight.GetComponent<Image>().sprite = Vicky;
+                break;
+                case "Rocky":
+                characterOnRight.GetComponent<Image>().sprite = Rocky;
+                break;
+                case "Tyler":
+                characterOnRight.GetComponent<Image>().sprite = Tyler;
+                break;
+            }
             animateLeft.SetBool("mainCharIsSpeaking", false);   
             animateRight.SetBool("rightCharIsSpeaking", true);
             nameTag.SetBool("MCisSpeaking", false);
@@ -146,7 +181,6 @@ public class DialogueManager : MonoBehaviour
         if (!changedPrior) {
                 nameText.text = name;
         }
-
         changedPrior = false;
     }
 
