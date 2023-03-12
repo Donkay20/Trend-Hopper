@@ -386,39 +386,37 @@ MonoBehaviour:
     - Jassmea_HAPPY
     - '-'
     sentences:
-    - "Ahhh!! It's the first day of school!! I'm so excited and nervous at the same
-      time I could vomit. \r"
-    - "The first day of school gives me a chance at a fresh start so the first few
-      days are crucial. \r"
+    - Ahhh!! It's the first day of school!! I'm so excited and nervous at the same
+      time I could puke!
+    - "Today is a chance at a fresh start so the first few days are crucial. \r"
     - "Oh gosh, I just hope everyone likes me. All I want is to fit in and find a
-      group of friends I can hangout with at lunch and potentially a new BFF I can
-      spill all the tea to.\r"
+      group of friends I can hangout with, and potentially a new BFF I can spill
+      all the tea to.\r"
     - "Maybe I'll even get a boyfriend this year *squeal*. Justin Bieber will always
       be my bae though.\r"
-    - "Ah! I need to stop daydreaming and leave for school or else I am gonna be
-      late.\r"
+    - Ah! I need to stop daydreaming and leave for school, or else I'm gonna be late!
     - '[Jassmea arrives at school.]'
-    - There are so many new faces! Oh. My. Gosh. Look at that hottie over there!
+    - "There are so many new faces! \nO.M.G. Look at that hottie over there!"
     - "Chill, stop gawking at my man. He's off limits. \r"
     - "Eyes to yourself newbie.\r"
     - Yeah, you are giving off real creep vibes right now.
-    - I'm so sorry, I had no idea. Forget him though, you guys look SO freaking cool!
+    - I'm so sorry, I had no idea. Forget about it, you guys look SO freaking cool!
     - "Thanks newbie. We'll see you around I guess.\r"
-    - "WAIT! Um, I was wondering if it's possible\u2026 Could we be friends?"
+    - WAIT! Um, I was wondering if... Maybe we could be friends?
     - Ha! You're funny if you think you could join our group looking like that.
     - Not to mention you gotta know how to bust a move to hang with us.
     - Calm down guys, let's give her a chance.
     - Meet me after school tomorrow at the detention room and we'll have a dance
-      off. Let's see if you can move to our groove.
+      off. Let's see if you can rock with us.
     - By the way, your sweater is SO not in right now. Maybe you can change it up
       a little. Later.
-    - "Later loser.\r"
+    - "Later, poser.\r"
     - You are sooo going to look stupid tomorrow, ha ha, see ya.
     - '[The trio leave.]'
     - '*internally dies*'
     - '*slaps face*'
     - I gotta snap outta of it! This is my chance to prove myself. They were kind
-      of scary but nothing I can't take.
+      of scary but nothing I can't take!
     - I'm gonna make myself look so cool tomorrow!
     - '[Jassmea spends the rest of the school day restless just DYING for the next
       day to come.]'
@@ -735,6 +733,7 @@ MonoBehaviour:
   characterOnLeft: {fileID: 740297272}
   characterOnRight: {fileID: 1677480849}
   background: {fileID: 177196654}
+  continuePrefab: {fileID: 4464487864350222266, guid: 3ee942ec3e5aa104eaec0a9ae65aa3f6, type: 3}
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
@@ -868,6 +867,7 @@ GameObject:
   - component: {fileID: 743659528}
   - component: {fileID: 743659527}
   - component: {fileID: 743659526}
+  - component: {fileID: 743659530}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -959,6 +959,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &743659530
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743659525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8c0f9933f179604eac30ff1e28b0e81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &813344844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.08001709, y: -0.010009766}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.7, y: 0.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179568436
@@ -1146,7 +1166,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MC
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
   m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}

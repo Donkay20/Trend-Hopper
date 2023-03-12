@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject characterOnLeft;
     public GameObject characterOnRight; //the gameobjects control the images
     public GameObject background;
+    public GameObject continuePrefab;   //the little icon thingy that shows when to continue
     public Animator animateLeft;
     public Animator animateRight;       //the animators control the fade-in/fade-out
     public Animator nameTag;            //the animator for the name tag text box
@@ -36,6 +37,8 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {   
+        continuePrefab = Instantiate(continuePrefab);
+        continuePrefab.SetActive(false);
         //Time.timeScale = 0.3f;
         status = "neutral";
         sentences = new Queue<string>();
@@ -79,6 +82,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void DisplayNextSentence() {
+        continuePrefab.SetActive(false);
         if (sentences.Count == 0) {     //if there are no sentences left, end the dialogue
             EndDialogue();
             return;
@@ -191,6 +195,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.04f);
         }
+        continuePrefab.SetActive(true);
     }
 
     void EndDialogue() {

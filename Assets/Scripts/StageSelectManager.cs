@@ -20,7 +20,7 @@ public class StageSelectManager : MonoBehaviour
 
     public GameObject selector;
     public AudioSource preview1;
-    //public AudioSource preview2;
+    public AudioSource preview2;
     //public AudioSource preview3;
 
     void Start()
@@ -89,7 +89,7 @@ public class StageSelectManager : MonoBehaviour
                     break;
                 case 2:
                     if (difficulty == "normal") {
-                        SceneManager.LoadScene("DressUp");
+                        SceneManager.LoadScene("Dialogue_Day1");
                     }
                     break;
             }
@@ -115,9 +115,19 @@ public class StageSelectManager : MonoBehaviour
                 switch(selectedLevel) {
                     case 1:
                         selector.transform.position = new Vector3(-0.75f, 0.4f, 0f);
-                        preview1.Play();
+                        if (preview1.isPlaying) {
+                            //do nothing
+                        } else {
+                            preview1.Play();
+                        }
                         break;
-                    //case 2: todo when diff levels are avail.
+                    case 2:
+                        if (preview2.isPlaying) {
+                            //do nothing
+                        } else {
+                            preview2.Play();
+                        }
+                        break;
                 }
                 break;
             case 2:

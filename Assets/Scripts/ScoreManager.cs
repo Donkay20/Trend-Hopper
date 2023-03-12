@@ -27,6 +27,7 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro healthRequirementText;
 
     public GameObject thresholdIndicator;
+    public GameObject hundredTextPrefab;
     //public GameObject bonusBox;
 
     static int comboScore;
@@ -39,6 +40,7 @@ public class ScoreManager : MonoBehaviour
     static int failCheck;
     static int comboRecord;
     public int maxCombo = 500;
+    private string hundredToText;        //juice to show each 100 in score.
 
     private int[] comboLog = new int[6]; //array for score & pass/fail value
     // 0 = perfect
@@ -74,6 +76,10 @@ public class ScoreManager : MonoBehaviour
     {
         score += 100;
         comboScore += 1;
+        if (comboScore % 100 == 0) {
+            Instance.hundredToText = comboScore.ToString();
+            Instance.hundredIndicator();
+        }
         if (comboScore > comboRecord) {
             comboRecord = comboScore;
         }
@@ -91,6 +97,10 @@ public class ScoreManager : MonoBehaviour
     {
         score += 50;
         comboScore += 1;
+        if (comboScore % 100 == 0) {
+            Instance.hundredToText = comboScore.ToString();
+            Instance.hundredIndicator();
+        }
         debugOKValue += 1;
          if (health >= 200) {
             health = 200;
@@ -201,5 +211,12 @@ public class ScoreManager : MonoBehaviour
 
     public int getCombo() {
         return comboScore;
-    }   
+    }
+
+    public void hundredIndicator() {
+        if (hundredTextPrefab) {
+            GameObject prefab = Instantiate(hundredTextPrefab);
+            prefab.GetComponentInChildren<TextMesh>().text = hundredToText;
+        }
+    }
 }

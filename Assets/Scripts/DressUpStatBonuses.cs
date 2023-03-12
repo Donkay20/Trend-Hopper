@@ -13,4 +13,10 @@ public static class DressUpStatBonuses
     public static int punkShoe {get; set;} 
     public static int punkTop {get; set;}
     public static int punkBottom {get; set;}
+
+    public static int y2kHair {get; set;}
+    public static int y2kAccessory {get; set;}
+    public static int y2kShoe {get; set;}
+    public static int y2kTop {get; set;}
+    public static int y2kBottom {get; set;}
 }

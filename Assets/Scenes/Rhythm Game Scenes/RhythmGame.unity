@@ -2457,6 +2457,7 @@ MonoBehaviour:
   debugMissText: {fileID: 1704300907}
   healthRequirementText: {fileID: 905015991}
   thresholdIndicator: {fileID: 1454934784516147015, guid: 55a482a3b0ec9224c889436af1573df1, type: 3}
+  hundredTextPrefab: {fileID: 6629230690912323453, guid: eb5683523740e96478ec9a2e1c5bbd45, type: 3}
   maxCombo: 500
 --- !u!4 &633352010
 Transform:
