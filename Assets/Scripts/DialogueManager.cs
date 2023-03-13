@@ -198,8 +198,17 @@ public class DialogueManager : MonoBehaviour
         continuePrefab.SetActive(true);
     }
 
-    void EndDialogue() {
-        //todo, for scene transitions.
-        Debug.Log("End of conversation.");
+    void EndDialogue() {    //switches to different scenes depending on what dialogue is currently playing.
+        switch(SceneManager.GetActiveScene().name) {
+            case "Dialogue_Day1":
+                SceneManager.LoadScene("DressUp");
+                break;
+            case "Dialogue_Day1FailDressUp":
+                SceneManager.LoadScene("StageSelect");
+                break;
+            case "Dialogue_Day1PassDressUp":
+                SceneManager.LoadScene("RhythmGame");
+                break;
+        }
     }
 }

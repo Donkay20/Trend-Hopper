@@ -14,7 +14,7 @@ public static class DressUpStatBonuses
     public static int punkTop {get; set;}
     public static int punkBottom {get; set;}
 
-    public static int y2kHair {get; set;}
+    public static int y2kHair {get; set;}               //update: I am not finding a better way
     public static int y2kAccessory {get; set;}
     public static int y2kShoe {get; set;}
     public static int y2kTop {get; set;}

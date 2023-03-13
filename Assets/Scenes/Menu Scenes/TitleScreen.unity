@@ -749,7 +749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applicationID: 1076714513266647050
   details: On Title Screen
-  combo: 
   largeImage: th_logo
   largeText: Trend Hopper
 --- !u!4 &1340887264
@@ -859,7 +858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.65b
+  m_text: v0.7b
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
   m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
