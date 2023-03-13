@@ -14,12 +14,12 @@ public class ClothingSelectionV2 : MonoBehaviour
     public KeyCode inputSelect;     //inputs
     [Space]
     public Animator upTrigger;
-    public GameObject hairUI;
-    public GameObject topUI;
-    public GameObject bottomUI;
-    public GameObject shoeUI;
-    public GameObject accessoryUI; 
-    public GameObject checkmarkUI;
+    public Animator hairUI;
+    public Animator topUI;
+    public Animator bottomUI;
+    public Animator shoeUI;
+    public Animator accessoryUI; 
+    public Animator checkmarkUI;
     public Animator downTrigger;    //for the UI tab on the left-hand side
     [Space]
     public GameObject clothingSelector;
@@ -54,57 +54,107 @@ public class ClothingSelectionV2 : MonoBehaviour
 
     private string selectedCategory;                            //hair, top, bottom, shoe, accessory, confirm
 
-    private int selectedHair;
+    private int selectedHair;                                   //numbers to determine which outfit was chosen
     private int selectedTop;
     private int selectedBottom;
     private int selectedShoe;
     private int selectedAccessory;
 
+    private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool AccessoryOK; 
+    private bool allOK; //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
+
     void Start()
     {
         Instance = this;
         selectedCategory = "hair";
+        selectedHair = 1;
+        selectedTop = 2;
+        selectedBottom = 3;
+        selectedShoe = 2;
+        selectedAccessory = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(inputUp)) {
+            upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
                 case "hair":
+                    hairUI.SetBool("hairIsSelected", false);
+                    if (allOK) {
+                        selectedCategory = "check";
+                        checkmarkUI.SetBool("checkSelected", true);
+                    } else {
+                        selectedCategory = "accessory";
+                        accessoryUI.SetBool("accIsSelected", true);
+                    }
                     break;
                 case "top":
+                    selectedCategory = "hair";
+                    topUI.SetBool("topIsSelected", false); hairUI.SetBool("hairIsSelected", true);
                     break;
                 case "bottom":
+                    selectedCategory = "top";
+                    bottomUI.SetBool("bottomIsSelected", false); topUI.SetBool("topIsSelected", true);
                     break;
                 case "shoe":
+                    selectedCategory = "bottom";
+                    shoeUI.SetBool("shoeIsSelected", false); bottomUI.SetBool("bottomIsSelected", true);
+                    break;
+                case "accessory":
+                    selectedCategory = "shoe";
+                    accessoryUI.SetBool("accIsSelected", false); shoeUI.SetBool("shoeIsSelected", true);
                     break;
                 case "check":
+                    selectedCategory = "accessory";
+                    checkmarkUI.SetBool("checkSelected", false); accessoryUI.SetBool("accIsSelected", true);
                     break;
             }
         }
 
         if(Input.GetKeyDown(inputDown)) {
+            downTrigger.SetTrigger("downTrigger");
             switch(selectedCategory) {
                 case "hair":
+                    selectedCategory = "top";
+                    hairUI.SetBool("hairIsSelected", false); topUI.SetBool("topIsSelected", true);
                     break;
                 case "top":
+                    selectedCategory = "bottom";
+                    topUI.SetBool("topIsSelected", false); bottomUI.SetBool("bottomIsSelected", true);
                     break;
                 case "bottom":
+                    selectedCategory = "shoe";
+                    bottomUI.SetBool("bottomIsSelected", false); shoeUI.SetBool("shoeIsSelected", true);
                     break;
                 case "shoe":
+                    selectedCategory = "accessory";
+                    shoeUI.SetBool("shoeIsSelected", false); accessoryUI.SetBool("accIsSelected", true);
+                    break;
+                case "accessory":
+                    accessoryUI.SetBool("accIsSelected", false);
+                    if(allOK) {
+                        selectedCategory = "check";
+                        checkmarkUI.SetBool("checkSelected", true);
+                    } else {
+                        selectedCategory = "hair";
+                        hairUI.SetBool("hairIsSelected", true);
+                    }
                     break;
                 case "check":
+                    selectedCategory = "hair";
+                    checkmarkUI.SetBool("checkSelected", false); hairUI.SetBool("hairIsSelected", true);
                     break;
             }
         }
 
         if(Input.GetKeyDown(inputLeft)) {
-            
+            leftTrigger.SetTrigger("leftTrigger");
         }
 
         if(Input.GetKeyDown(inputRight)) {
-            
+            rightTrigger.SetTrigger("rightTrigger");
         }
 
         if(Input.GetKeyDown(inputSelect)) {
@@ -114,5 +164,9 @@ public class ClothingSelectionV2 : MonoBehaviour
                 //confirm the clothing and stuff
             }
         }
+    }
+
+    private void UpdateCategory (int x) {
+
     }
 }
