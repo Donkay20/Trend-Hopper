@@ -457,22 +457,24 @@ MonoBehaviour:
   dialogue:
     names:
     - Vicky
-    - Jassmea_WINKING
     - Rocky
     - Tyler
-    - Jassmea_SMUG
     - Vicky
-    - Vicky
-    - Jassmea_WINKING
+    - Jassmea_CRYING
+    - EMPTY
     sentences:
-    - "The newbie didn't chicken out. She\u2019s rocking the new look."
-    - I never run away from a fight I can't win.
-    - Oho! You better watch that big head of yours because you're about to get punked.
-    - You're about to be crushed!
-    - You guys talk big while watching on the sidelines.
-    - Alright, everyone chill out. Let's just let the dancing do all the talking.
-    - You ready?
-    - Bring it on!
+    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
+      an outfit like that? \r"
+    - Hahaha! Look at her hair! And her top!
+    - "She talked big earlier for a girl with no style!\r"
+    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
+    - Oh noooooo! What did I do wrong?
+    - 'Game over.
+
+      Returning to stage select.
+
+      Pay attention to the required
+      outfit!'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0

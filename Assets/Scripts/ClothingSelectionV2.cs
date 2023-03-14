@@ -330,10 +330,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         break;
                     case "dayTwoIntro":
                         if (selectedHair > 2 && selectedTop > 2 && selectedBottom > 2 && selectedShoe > 2 && selectedAccessory > 2) { //this clause will need to be changed when lv3 stuff is here!
-                            //load the day2 clear
+                            SceneManager.LoadScene("Dialogue_Day2PassDressUp");
                             calculateBonus(2);
                         } else {
-                            //load the day2 fail
+                            SceneManager.LoadScene("Dialogue_Day2FailDressUp");
                         }
                         break;
                     case "dayThreeIntro":

@@ -11,7 +11,7 @@ public static class Progress
     public static bool day1BeforeDialogueSeen {get; set;}
 
     public static bool levelOneCleared {get; set;}
-    public static bool levelTwoClared {get; set;}
+    public static bool levelTwoCleared {get; set;}
     public static bool levelThreeCleared {get; set;}
 
     public static int levelOneHighScore {get; set;}

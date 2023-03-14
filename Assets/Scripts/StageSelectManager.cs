@@ -22,17 +22,27 @@ public class StageSelectManager : MonoBehaviour
     public AudioSource preview1;
     public AudioSource preview2;
     //public AudioSource preview3;
+    
+    public GameObject levelOne;
+    public GameObject levelTwo;
+    public GameObject levelThree;
+
+    public GameObject levelTwoLock;
+    //public GameObject levelThreeLock;
+    
 
     void Start()
     {   
         Instance = this;
+        Progress.levelOneCleared = true;
         selector = Instantiate(selector);
-
         phase = 1;
         selectedLevel = 1;
         difficulty = "normal";
-
         updateSelectorPosition();
+        if(Progress.levelOneCleared) {
+            levelTwoLock.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -41,7 +51,17 @@ public class StageSelectManager : MonoBehaviour
         if (Input.GetKeyDown(inputUp)) {
             switch (phase) {
                 case 1:
-                    //todo
+                    switch(selectedLevel) {
+                        case 1:
+                            break;
+                        case 2:
+                            selectedLevel--;
+                            break;
+                        case 3:
+                            selectedLevel--;
+                            break;
+                    }
+                    updateLevelShown();
                     break;
                 case 2:
                     switch (difficulty) {
@@ -63,7 +83,17 @@ public class StageSelectManager : MonoBehaviour
         if (Input.GetKeyDown(inputDown)) {
             switch (phase) {
                 case 1:
-                    //todo
+                    switch(selectedLevel) {
+                        case 1:
+                            selectedLevel++;
+                            break;
+                        case 2:
+                            selectedLevel++;
+                            break;
+                        case 3:
+                            break;
+                    }
+                    updateLevelShown();
                     break;
                 case 2:
                     switch (difficulty) {
@@ -85,11 +115,35 @@ public class StageSelectManager : MonoBehaviour
         if (Input.GetKeyDown(inputRight)) {
             switch(phase) {
                 case 1:
-                    phase = 2;
+                    switch(selectedLevel) {
+                        case 1:
+                            phase = 2;
+                            break;
+                        case 2:
+                            if(Progress.levelOneCleared) {
+                                phase = 2;
+                            }
+                            break;
+                        case 3:
+                            if(Progress.levelTwoCleared) {
+                                phase = 2;
+                            }
+                            break;
+                    }
                     break;
                 case 2:
-                    if (difficulty == "normal") {
-                        SceneManager.LoadScene("Dialogue_Day1");
+                    switch(selectedLevel) {
+                        case 1:
+                            if (difficulty == "normal") {
+                                SceneManager.LoadScene("Dialogue_Day1");
+                            }
+                            break;
+                        case 2:
+                            if (difficulty == "normal") {
+                                SceneManager.LoadScene("Dialogue_Day2");
+                            }
+                            break;
+                        //case 3: todo
                     }
                     break;
             }
@@ -119,14 +173,22 @@ public class StageSelectManager : MonoBehaviour
                             //do nothing
                         } else {
                             preview1.Play();
+                            preview2.Stop();
                         }
                         break;
                     case 2:
+                        selector.transform.position = new Vector3(-0.75f, 0.4f, 0f);
                         if (preview2.isPlaying) {
                             //do nothing
                         } else {
                             preview2.Play();
+                            preview1.Stop();
                         }
+                        break;
+                    case 3:
+                        selector.transform.position = new Vector3(-0.75f, 0.4f, 0f);
+                        preview2.Stop();
+                        preview1.Stop();
                         break;
                 }
                 break;
@@ -142,6 +204,26 @@ public class StageSelectManager : MonoBehaviour
                         selector.transform.position = new Vector3(4f, -3.3f, 0f);
                         break;
                 }
+                break;
+        }
+    }
+
+    private void updateLevelShown() {
+        switch (selectedLevel) {
+            case 1:
+                levelOne.transform.position = new Vector3(0f, 0f, 0f);
+                levelTwo.transform.position = new Vector3(0f, 10f, 0f);
+                levelThree.transform.position = new Vector3(0f, 10f, 0f);
+                break;
+            case 2:
+                levelOne.transform.position = new Vector3(0f, 10f, 0f);
+                levelTwo.transform.position = new Vector3(0f, 0f, 0f);
+                levelThree.transform.position = new Vector3(0f, 10f, 0f);
+                break;
+            case 3:
+                levelOne.transform.position = new Vector3(0f, 10f, 0f);
+                levelTwo.transform.position = new Vector3(0f, 10f, 0f);
+                levelThree.transform.position = new Vector3(0f, 0f, 0f);
                 break;
         }
     }
