@@ -66,18 +66,17 @@ public class ClothingSelectionV2 : MonoBehaviour
     private static Random reroll = new Random();                    //this thing is to randomly assign clothing at the start of this godforsaken fucking game
 
     private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool AccessoryOK; 
-    private bool allOK; //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
+    private bool allOK;                                             //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
 
     void Start()
     {
         Instance = this;            //initialize the instance
         selectedCategory = "hair";  //set the default position to hair.
         selectedHair = reroll.Next(0, 5); selectedTop = reroll.Next(0, 5); selectedBottom = reroll.Next(0, 5); selectedShoe = reroll.Next(0, 5); selectedAccessory = reroll.Next(0, 5);
-        UpdateRow();                //initialize the row, dependent on the positions decided above.
         UpdateCategory(selectedCategory);
         UpdateOverlay();
         hoverHair = selectedHair; hoverTop = selectedTop; hoverBottom = selectedBottom; hoverShoe = selectedShoe; hoverAccessory = selectedAccessory;
-
+        UpdateRow();                //initialize the row, dependent on the positions decided above.
         hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
         topAnimation[hoverTop].SetBool("top"+hoverTop, true);
         bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
@@ -311,39 +310,48 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         if(Input.GetKeyDown(inputSelect)) {
             if(selectedCategory == "check") {
-                //load appropriate scene here.
+                switch(Progress.lastLevel) {
+                    //todo
+                    case "dayOneIntro":
+                        if (selectedHair < 3 && selectedTop < 3 && selectedBottom < 3 && selectedShoe < 3 && selectedAccessory < 3) {
+                            SceneManager.LoadScene("Dialogue_Day1PassDressUp");
+                        } else {
+                            SceneManager.LoadScene("Dialogue_Day1FailDressUp");
+                        }
+                        break;
+                    case "dayTwoIntro":
+                        break;
+                    case "dayThreeIntro":
+                        break;
+                }
             } else {
                 switch(selectedCategory) {
                     case "hair":
-                        //plan: to switch the old one to false, do setbool("hair"+selectedhair) to false, then do setbool("hair"+hoverHair) to true. then update selectedhair to hoverHair.
-                        //TODO
+                        selectedHair = hoverHair;
                         hairOK = true;
                         break;
 
                     case "top":
-                        //TODO
-
+                        selectedTop = hoverTop;
                         topOK = true;
                         break;
 
                     case "bottom":
-                        //TODO
-
+                        selectedBottom = hoverBottom;
                         bottomOK = true;
                         break;
 
                     case "shoe":
-                        //TODO
-
+                        selectedShoe = hoverShoe;
                         shoeOK = true;
                         break;
 
                     case "accessory":
-                        //TODO
-
+                        selectedAccessory = hoverAccessory;
                         AccessoryOK = true;
                         break;
                 }
+                UpdateOverlay();
             }
         }
     }

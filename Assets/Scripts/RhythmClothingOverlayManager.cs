@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class RhythmClothingOverlayManager : MonoBehaviour
 {
-    public GameObject[] hairOverlay = new GameObject[3];
-    public GameObject[] accessoryOverlay = new GameObject[3];
-    public GameObject[] shoeOverlay = new GameObject[3];
-    public GameObject[] topOverlay = new GameObject[3];
-    public GameObject[] bottomOverlay = new GameObject[3];  
+    public GameObject[] hairOverlay = new GameObject[6];
+    public GameObject[] accessoryOverlay = new GameObject[6];
+    public GameObject[] shoeOverlay = new GameObject[6];
+    public GameObject[] topOverlay = new GameObject[6];
+    public GameObject[] bottomOverlay = new GameObject[6];  
     //these are where the chibi overlays are held
 
-    public GameObject[] hairVSOverlay = new GameObject[3];
-    public GameObject[] accessoryVSOverlay = new GameObject[3];
-    public GameObject[] topVSOverlay = new GameObject[3];
-    public GameObject[] bottomVSOverlay = new GameObject[3];  
+    public GameObject[] hairVSOverlay = new GameObject[6];
+    public GameObject[] accessoryVSOverlay = new GameObject[6];
+    public GameObject[] topVSOverlay = new GameObject[6];
+    public GameObject[] bottomVSOverlay = new GameObject[6];  
     //these are where the vs overlays are held
 
     void Start()
