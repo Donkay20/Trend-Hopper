@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class ClothingSelectionV2 : MonoBehaviour
 {
@@ -23,60 +24,75 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Animator downTrigger;    //for the UI tab on the left-hand side
     [Space]
     public GameObject clothingSelector;
-    public GameObject leftArrow;
-    public GameObject rightArrow;
     public Animator leftTrigger;
     public Animator rightTrigger;   //for the moving selector
     [Space]
-    public GameObject[] hairOnDisplay = new GameObject[3];
-    public GameObject[] topOnDisplay = new GameObject[3];
-    public GameObject[] bottomOnDisplay = new GameObject[3];
-    public GameObject[] shoeOnDisplay = new GameObject[3];
-    public GameObject[] accessoryOnDisplay = new GameObject[3]; //these are the ones that'll be on-screen in the closet
+    public Animator[] hairAnimation = new Animator[6];
+    public Animator[] topAnimation = new Animator[6];
+    public Animator[] bottomAnimation = new Animator[6];
+    public Animator[] shoeAnimation = new Animator[6];
+    public Animator[] accessoryAnimation = new Animator[6];         //these will control the animations that go in and out
     [Space]
-    public Sprite[] hairCatalog = new Sprite[6];
-    public Sprite[] topCatalog = new Sprite[6];
-    public Sprite[] bottomCatalog = new Sprite[6];
-    public Sprite[] shoeCatalog = new Sprite[6];
-    public Sprite[] accessoryCatalog = new Sprite[6];           //these are the in-closet things that are stored in these arrays
+    public GameObject[] hairRows = new GameObject[2];
+    public GameObject[] topRows = new GameObject[2];
+    public GameObject[] bottomRows = new GameObject[2];
+    public GameObject[] shoeRows = new GameObject[2];
+    public GameObject[] accessoryRows = new GameObject[2];          //these should hold the rows of closet displays (right now 2, max 3 on completion.)
     [Space]
-    public Sprite appliedHair;
-    public Sprite appliedTop;
-    public Sprite appliedBottom;
-    public Sprite appliedShoe;
-    public Sprite appliedAccessory;                             //these are the clothes that will show on the character.
+    public GameObject assignedHair;
+    public GameObject assignedTop;
+    public GameObject assignedBottom;
+    public GameObject assignedShoe;
+    public GameObject assignedAccessory;                             //these are the clothes that will show on the character.
     [Space]
     public Sprite[] appliedHairCatalog = new Sprite[6];
     public Sprite[] appliedTopCatalog = new Sprite[6];
     public Sprite[] appliedBottomCatalog = new Sprite[6];
     public Sprite[] appliedShoeCatalog = new Sprite[6];
-    public Sprite[] appliedAccessoryCatalog = new Sprite[6];    //these are the clothes in storage that can be applied to the character.
+    public Sprite[] appliedAccessoryCatalog = new Sprite[6];        //these are the clothes in storage that can be applied to the character. max is 6, end goal should be 9.
 
-    private string selectedCategory;                            //hair, top, bottom, shoe, accessory, confirm
+    private int hairRow;        private int hoverHair;              //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
+    private int topRow;         private int hoverTop;               //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
+    private int bottomRow;      private int hoverBottom;
+    private int shoeRow;        private int hoverShoe;
+    private int accessoryRow;   private int hoverAccessory;
 
-    private int selectedHair;                                   //numbers to determine which outfit was chosen
-    private int selectedTop;
+    private string selectedCategory;                                //hair, top, bottom, shoe, accessory, check
+    private int selectedHair;                                       //numbers to determine which outfit was chosen. plan is for 0-2 to be punk, 3-5 to be y2k, and 6-8 to be disco
+    private int selectedTop;                                        //only goes from 0-5 for now, as disco isn't in yet.
     private int selectedBottom;
     private int selectedShoe;
     private int selectedAccessory;
+    private static Random reroll = new Random();                    //this thing is to randomly assign clothing at the start of this godforsaken fucking game
 
     private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool AccessoryOK; 
     private bool allOK; //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
 
     void Start()
     {
-        Instance = this;
-        selectedCategory = "hair";
-        selectedHair = 1;
-        selectedTop = 2;
-        selectedBottom = 3;
-        selectedShoe = 2;
-        selectedAccessory = 1;
+        Instance = this;            //initialize the instance
+        selectedCategory = "hair";  //set the default position to hair.
+        selectedHair = reroll.Next(0, 5); selectedTop = reroll.Next(0, 5); selectedBottom = reroll.Next(0, 5); selectedShoe = reroll.Next(0, 5); selectedAccessory = reroll.Next(0, 5);
+        UpdateRow();                //initialize the row, dependent on the positions decided above.
+        UpdateCategory(selectedCategory);
+        UpdateOverlay();
+        hoverHair = selectedHair; hoverTop = selectedTop; hoverBottom = selectedBottom; hoverShoe = selectedShoe; hoverAccessory = selectedAccessory;
+
+        hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
+        topAnimation[hoverTop].SetBool("top"+hoverTop, true);
+        bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
+        shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
+        accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(hairOK && topOK && bottomOK && shoeOK && AccessoryOK) {
+            allOK = true;
+            checkmarkUI.SetBool("checkUnlocked", true);
+        }
+
         if(Input.GetKeyDown(inputUp)) {
             upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
@@ -111,6 +127,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                     checkmarkUI.SetBool("checkSelected", false); accessoryUI.SetBool("accIsSelected", true);
                     break;
             }
+            UpdateCategory(selectedCategory);
         }
 
         if(Input.GetKeyDown(inputDown)) {
@@ -147,26 +164,290 @@ public class ClothingSelectionV2 : MonoBehaviour
                     checkmarkUI.SetBool("checkSelected", false); hairUI.SetBool("hairIsSelected", true);
                     break;
             }
+            UpdateCategory(selectedCategory);
         }
 
         if(Input.GetKeyDown(inputLeft)) {
             leftTrigger.SetTrigger("leftTrigger");
+            switch(selectedCategory) {
+                case "hair":
+                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, false);
+                    switch(hoverHair) {
+                        case 0:
+                            hoverHair = 5;
+                            break;
+                        case >0:
+                            hoverHair--;
+                            break;
+                    }
+                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
+                    break;
+
+                case "top":
+                    topAnimation[hoverTop].SetBool("top"+hoverTop, false);
+                    switch(hoverTop) {
+                        case 0:
+                            hoverTop = 5;
+                            break;
+                        case >0:
+                            hoverTop--;
+                            break;
+                    }
+                    topAnimation[hoverTop].SetBool("top"+hoverTop, true);
+                    break;
+
+                case "bottom":
+                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, false);
+                    switch(hoverBottom) {
+                        case 0:
+                            hoverBottom = 5;
+                            break;
+                        case >0:
+                            hoverBottom--;
+                            break;
+                    }
+                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
+                    break;
+
+                case "shoe":
+                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, false);
+                    switch(hoverShoe) {
+                        case 0:
+                            hoverShoe = 5;
+                            break;
+                        case >0:
+                            hoverShoe--;
+                            break;
+                    }
+                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
+                    break;
+
+                case "accessory":
+                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, false);
+                    switch(hoverAccessory) {
+                        case 0:
+                            hoverAccessory = 5;
+                            break;
+                        case >0:
+                            hoverAccessory--;
+                            break;
+                    }
+                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
+                    break;
+            }
+            UpdateRow();
         }
 
         if(Input.GetKeyDown(inputRight)) {
             rightTrigger.SetTrigger("rightTrigger");
+            switch(selectedCategory) {
+                case "hair":
+                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, false);
+                    switch(hoverHair) {
+                        case 5:
+                            hoverHair = 0;
+                            break;
+                        case <5:
+                            hoverHair++;
+                            break;
+                    }
+                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
+                    break;
+
+                case "top":
+                    topAnimation[hoverTop].SetBool("top"+hoverTop, false);
+                    switch(hoverTop) {
+                        case 5:
+                            hoverTop = 0;
+                            break;
+                        case <5:
+                            hoverTop++;
+                            break;
+                    }
+                    topAnimation[hoverTop].SetBool("top"+hoverTop, true);
+                    break;
+
+                case "bottom":
+                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, false);
+                    switch(hoverBottom) {
+                        case 5:
+                            hoverBottom = 0;
+                            break;
+                        case <5:
+                            hoverBottom++;
+                            break;
+                    }
+                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
+                    break;
+
+                case "shoe":
+                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, false);
+                    switch(hoverShoe) {
+                        case 5:
+                            hoverShoe = 0;
+                            break;
+                        case <5:
+                            hoverShoe++;
+                            break;
+                    }
+                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
+                    break;
+
+                case "accessory":
+                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, false);
+                    switch(hoverAccessory) {
+                        case 5:
+                            hoverAccessory = 0;
+                            break;
+                        case <5:
+                            hoverAccessory++;
+                            break;
+                    }
+                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
+                    break;
+            }
+            UpdateRow();
         }
 
         if(Input.GetKeyDown(inputSelect)) {
             if(selectedCategory == "check") {
                 //load appropriate scene here.
             } else {
-                //confirm the clothing and stuff
+                switch(selectedCategory) {
+                    case "hair":
+                        //plan: to switch the old one to false, do setbool("hair"+selectedhair) to false, then do setbool("hair"+hoverHair) to true. then update selectedhair to hoverHair.
+                        //TODO
+                        hairOK = true;
+                        break;
+
+                    case "top":
+                        //TODO
+
+                        topOK = true;
+                        break;
+
+                    case "bottom":
+                        //TODO
+
+                        bottomOK = true;
+                        break;
+
+                    case "shoe":
+                        //TODO
+
+                        shoeOK = true;
+                        break;
+
+                    case "accessory":
+                        //TODO
+
+                        AccessoryOK = true;
+                        break;
+                }
             }
         }
     }
 
-    private void UpdateCategory (int x) {
+    private void UpdateCategory (string category) {
+        switch (category) {
+            case "hair":
+            clothingSelector.transform.position = new Vector3(-0.5f, 3.4f, 0f);
+            break;
+            case "top":
+            clothingSelector.transform.position = new Vector3(5.1f, 3f, 0f);
+            break;
+            case "bottom":
+            clothingSelector.transform.position = new Vector3(5.1f, -1f, 0f);
+            break;
+            case "shoe":
+            clothingSelector.transform.position = new Vector3(-0.5f, 1.1f, 0f);
+            break;
+            case "accessory":
+            clothingSelector.transform.position = new Vector3(-0.5f, -1.6f, 0f);
+            break;
+            case "check":
+            clothingSelector.transform.position = new Vector3(10f, 10f, 0f);
+            break;
+        }
+    }
 
+    private void UpdateOverlay() {
+        assignedHair.GetComponent<SpriteRenderer>().sprite = appliedHairCatalog[selectedHair];
+        assignedTop.GetComponent<SpriteRenderer>().sprite = appliedTopCatalog[selectedTop];
+        assignedBottom.GetComponent<SpriteRenderer>().sprite = appliedBottomCatalog[selectedBottom];
+        assignedShoe.GetComponent<SpriteRenderer>().sprite = appliedShoeCatalog[selectedShoe];
+        assignedAccessory.GetComponent<SpriteRenderer>().sprite = appliedAccessoryCatalog[selectedAccessory];
+    }
+
+    private void UpdateRow() {
+        /*  The modulo of the hover value will determine what row we're in. As there's only two rows, test against a modulo of 2 (essentially the same parity as odd/even).
+            When the third row is added, we will test against a modulo of 3 instead. 
+            The reason this needs to be done is 'cause the clothes alternate between styles. 0 is punk, 1 is y2k, 2 is punk, etc.
+            When the disco style is added, 0 will be punk, 1 will be y2k, 2 will be disco, 3 will be punk, and so on and so forth. 
+            Then, reveal the appropriate rows and hide the rest. The for-loop handles that below. It checks for two rows; it'll check for 3 once updated w/ disco.
+
+            never mind fuck that, ignore whatever's above me cause that's impossible af
+        */
+        if (hoverHair > 2) {
+            hairRow = 1;
+        } else {
+            hairRow = 0;
+        }
+
+        if (hoverTop > 2) {
+            topRow = 1;
+        } else {
+            topRow = 0;
+        }
+
+        if (hoverBottom > 2) {
+            bottomRow = 1;
+        } else {
+            bottomRow = 0;
+        }
+
+        if (hoverShoe > 2) {
+            shoeRow = 1;
+        } else {
+            shoeRow = 0;
+        }
+
+        if (hoverAccessory > 2) {
+            accessoryRow = 1;
+        } else {
+            accessoryRow = 0;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            if (i != hairRow) {
+                hairRows[i].transform.position = new Vector3(10f, 10f, 0f);
+            } else {
+                hairRows[i].transform.position = new Vector3(-0.5f, 3.4f, 0f);
+            }
+
+            if (i != topRow) {
+                topRows[i].transform.position = new Vector3(10f, 10f, 0f);
+            } else {
+                topRows[i].transform.position = new Vector3(5.1f, 3f, 0f);
+            }
+
+            if (i != bottomRow) {
+                bottomRows[i].transform.position = new Vector3(10f, 10f, 0f);
+            } else {
+                bottomRows[i].transform.position = new Vector3(5.1f, -1f, 0f);
+            }
+
+            if (i != shoeRow) {
+                shoeRows[i].transform.position = new Vector3(10f, 10f, 0f);
+            } else {
+                shoeRows[i].transform.position = new Vector3(-0.5f, 1.1f, 0f);
+            }
+
+            if (i != accessoryRow) {
+                accessoryRows[i].transform.position = new Vector3(10f, 10f, 0f);
+            } else {
+                accessoryRows[i].transform.position = new Vector3(-0.5f, -1.6f, 0f);
+            }
+        }
     }
 }
