@@ -17,8 +17,19 @@ public class DialogueManager : MonoBehaviour
 
     private string status;              //main character(left side)'s emotional status
 
-    public KeyCode nextButton;          //key for navigating through the dialogue
+    private bool messaging;
+    private string savedSentence;
 
+    public string identity;             //determinant of what scene this is, saved to the global lastLevel variable
+    [Space]
+    public bool dressedUp;              //bool to determine if she needs to wear a custom outfit in this scene
+    public GameObject appliedHair;
+    public GameObject appliedTop;
+    public GameObject appliedBottom;
+    public GameObject appliedAccessory;
+    [Space]
+    public KeyCode nextButton;          //key for navigating through the dialogue
+    [Space]
     public GameObject characterOnLeft;
     public GameObject characterOnRight; //the gameobjects control the images
     public GameObject background;
@@ -31,33 +42,58 @@ public class DialogueManager : MonoBehaviour
     public Sprite home_bg;
     [Space]
     public Sprite EMPTY;
-    public Sprite Vicky;
-    public Sprite Rocky;
-    public Sprite Tyler;
+    public Sprite Vicky; public Sprite Rocky; public Sprite Tyler;          //punk NPCs
+    public Sprite Mackaylah; public Sprite Milgo; public Sprite meiLing;    //Y2K NPCs
+    [Space]
+    public Sprite mcDressedUpTemplate;              //I don't think I really need this tbh
+    public Sprite[] hairCatalog = new Sprite[6];    //expand to 9 upon third set of clothing
+    public Sprite[] topCatalog = new Sprite[6];
+    public Sprite[] bottomCatalog = new Sprite[6];
+    public Sprite[] accessoryCatalog = new Sprite[6];
 
     void Start()
     {   
+        Progress.lastLevel = identity;
         continuePrefab = Instantiate(continuePrefab);
         continuePrefab.SetActive(false);
-        //Time.timeScale = 0.3f;
         status = "neutral";
         sentences = new Queue<string>();
         namesList = new Queue<string>();                        //initializes the queues. queues are FIFO
         animateLeft.SetBool("mainCharIsSpeaking", false);
         animateRight.SetBool("rightCharIsSpeaking", false);     //initializes both characters to not be speaking
         nameTag.SetBool("MCisSpeaking", true);
+
+        if (dressedUp) {
+            animateLeft.SetBool("mcIsDressed", true);
+            status = "smug";
+            characterOnLeft.GetComponent<Image>().sprite = mcDressedUpTemplate;
+            appliedHair.GetComponent<Image>().sprite = hairCatalog[Progress.chosenHair];
+            appliedTop.GetComponent<Image>().sprite = topCatalog[Progress.chosenTop];
+            appliedBottom.GetComponent<Image>().sprite = bottomCatalog[Progress.chosenBottom];
+            appliedAccessory.GetComponent<Image>().sprite = accessoryCatalog[Progress.chosenAccessory];
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(nextButton)) { //if conversation started, cycle through the sentences. if not, begin the dialogue.
-            switch (conversationStarted) {
-                case false:
-                    DialogueTrigger.Instance.TriggerDialogue();
-                    conversationStarted = true;
-                    break;
+            switch(messaging) {
                 case true:
-                    DisplayNextSentence();
+                    dialogueText.text = savedSentence;
+                    continuePrefab.SetActive(true);
+                    StopAllCoroutines();
+                    messaging = false;
+                    break;
+                case false:
+                    switch (conversationStarted) {
+                        case false:
+                            DialogueTrigger.Instance.TriggerDialogue();
+                            conversationStarted = true;
+                            break;
+                        case true:
+                            DisplayNextSentence();
+                            break;
+                }
                     break;
             }
         }
@@ -77,7 +113,6 @@ public class DialogueManager : MonoBehaviour
         {
             namesList.Enqueue(name);
         }
-
         DisplayNextSentence();  //it only does this once. gets out of the startdialogue by initializing the dialogue stream.
     }
 
@@ -89,13 +124,102 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();  //offload the next sentences and name in the queue
-        string name = namesList.Dequeue();      
+        savedSentence = sentence;
+        string name = namesList.Dequeue();  
 
         if (name.Contains("Jassmea")) {                //this logic is under the assumption that the main character is always on the left.
             nameTag.SetBool("MCisSpeaking", true);
             animateLeft.SetBool("mainCharIsSpeaking", true);    
             animateRight.SetBool("rightCharIsSpeaking", false);
-            switch(name) {              //tldr: checks the mc for an emotion, if so, parses it out and applies the correct facial expression via animation. then updates the status.
+            if (dressedUp) {
+                switch(name) {              //SMUG / CRYING / SURPRISED / WINKING
+                    case "Jassmea_SMUG":
+                        switch(status) {
+                            case "smug": break;
+                            case "crying":
+                                animateLeft.SetBool("CryingToSmug", true);
+                                animateLeft.SetBool("SmugToCrying", false); animateLeft.SetBool("SurprisedToCrying", false); animateLeft.SetBool("WinkingToCrying", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "surprised":
+                                animateLeft.SetBool("SurprisedToSmug", true); 
+                                animateLeft.SetBool("SmugToSurprised", false); animateLeft.SetBool("CryingToSurprised", false); animateLeft.SetBool("WinkingToSurprised", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "winking":
+                                animateLeft.SetBool("WinkingToSmug", true);
+                                animateLeft.SetBool("SmugToWinking", false); animateLeft.SetBool("CryingToWinking", false); animateLeft.SetBool("SurprisedToWinking", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                        }
+                        status = "smug";
+                        break;
+                    case "Jassmea_CRYING":
+                        switch(status) {
+                            case "crying": break;
+                            case "smug":
+                                animateLeft.SetBool("SmugToCrying", true);
+                                animateLeft.SetBool("CryingToSmug", false); animateLeft.SetBool("SurprisedToSmug", false); animateLeft.SetBool("WinkingToSmug", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "surprised":
+                                animateLeft.SetBool("SurprisedToCrying", true);
+                                animateLeft.SetBool("CryingToSurprised", false); animateLeft.SetBool("SmugToSurprised", false); animateLeft.SetBool("WinkingToSurprised", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "winking":
+                                animateLeft.SetBool("WinkingToCrying", true);
+                                animateLeft.SetBool("CryingToWinking", false); animateLeft.SetBool("SmugToWinking", false); animateLeft.SetBool("SurprisedToWinking", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                        }
+                        status = "crying";
+                        break;
+                    case "Jassmea_SURPRISED":
+                        switch(status) {
+                            case "surprised": break;
+                            case "smug":
+                                animateLeft.SetBool("SmugToSurprised", true);
+                                animateLeft.SetBool("SurprisedToSmug", false); animateLeft.SetBool("CryingToSmug", false); animateLeft.SetBool("WinkingToSmug", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "crying":
+                                animateLeft.SetBool("CryingToSurprised", true);
+                                animateLeft.SetBool("SurprisedToCrying", false); animateLeft.SetBool("SmugToCrying", false); animateLeft.SetBool("WinkingToCrying", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "winking":
+                                animateLeft.SetBool("WinkingToSurprised", true);
+                                animateLeft.SetBool("SurprisedToWinking", false); animateLeft.SetBool("SmugToWinking", false); animateLeft.SetBool("CryingToWinking", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                        }
+                        status = "surprised";
+                        break;
+                    case "Jassmea_WINKING":
+                        switch(status) {
+                            case "winking": break;
+                            case "smug":
+                                animateLeft.SetBool("SmugToWinking", true);
+                                animateLeft.SetBool("WinkingToSmug", false); animateLeft.SetBool("CryingToSmug", false); animateLeft.SetBool("SurprisedToSmug", false);
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "crying":
+                                animateLeft.SetBool("CryingToWinking", true);
+                                animateLeft.SetBool("WinkingToCrying", false); animateLeft.SetBool("SmugToCrying", false); animateLeft.SetBool("SurprisedToCrying", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                            case "surprised":
+                                animateLeft.SetBool("SurprisedToWinking", true);
+                                animateLeft.SetBool("WinkingToSurprised", false); animateLeft.SetBool("SmugToSurprised", false); animateLeft.SetBool("CryingToSurprised", false); 
+                                nameText.text = "Jassmea"; changedPrior = true;
+                                break;
+                        }
+                        status = "winking";
+                        break;
+                }
+            } else {
+                switch(name) {              //tldr: checks the mc for an emotion, if so, parses it out and applies the correct facial expression via animation. then updates the status.
                 case "Jassmea_MAD":
                     switch(status) {
                         case "mad": break;
@@ -147,7 +271,9 @@ public class DialogueManager : MonoBehaviour
                         break;
                     }
                     break;
+                }
             }
+            
         } else if (name.Contains("TRANSITION")){                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
             switch(name) {
                 case "TRANSITION_SCHOOL":
@@ -174,6 +300,15 @@ public class DialogueManager : MonoBehaviour
                 case "Tyler":
                 characterOnRight.GetComponent<Image>().sprite = Tyler;
                 break;
+                case "Mackaylah":
+                characterOnRight.GetComponent<Image>().sprite = Mackaylah;
+                break;
+                case "Milgo":
+                characterOnRight.GetComponent<Image>().sprite = Milgo;
+                break;
+                case "Mei Ling":
+                characterOnRight.GetComponent<Image>().sprite = meiLing;
+                break;
             }
             animateLeft.SetBool("mainCharIsSpeaking", false);   
             animateRight.SetBool("rightCharIsSpeaking", true);
@@ -189,6 +324,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
+        messaging = true;
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -196,12 +332,14 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.04f);
         }
         continuePrefab.SetActive(true);
+        messaging = false;
     }
 
     void EndDialogue() {    //switches to different scenes depending on what dialogue is currently playing.
         switch(SceneManager.GetActiveScene().name) {
+            //Day 1
             case "Dialogue_Day1":
-                SceneManager.LoadScene("DressUp");
+                SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day1FailDressUp":
                 SceneManager.LoadScene("StageSelect");
@@ -209,6 +347,17 @@ public class DialogueManager : MonoBehaviour
             case "Dialogue_Day1PassDressUp":
                 SceneManager.LoadScene("RhythmGame");
                 break;
+            //Day 2
+            case "Dialogue_Day2":
+                SceneManager.LoadScene("DressUpV2");
+                break;
+            case "Dialogue_Day2FailDressUp":
+                SceneManager.LoadScene("StageSelect");
+                break;
+            case "Dialogue_Day2PassDressUp":
+                //load level 2;
+                break;
+            //Day 3
         }
     }
 }

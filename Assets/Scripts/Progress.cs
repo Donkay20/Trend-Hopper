@@ -17,4 +17,10 @@ public static class Progress
     public static int levelOneHighScore {get; set;}
     public static int levelTwoHighScore {get; set;}
     public static int levelThreeHighScore {get; set;}
+
+    public static int chosenHair {get; set;}
+    public static int chosenTop {get; set;}
+    public static int chosenBottom {get; set;}
+    public static int chosenShoe {get; set;}
+    public static int chosenAccessory{get; set;}
 }

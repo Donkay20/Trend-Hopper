@@ -310,6 +310,14 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         if(Input.GetKeyDown(inputSelect)) {
             if(selectedCategory == "check") {
+                //apply the selected clothing to the universal checker
+                Progress.chosenHair = selectedHair;
+                Progress.chosenTop = selectedTop;
+                Progress.chosenBottom = selectedBottom;
+                Progress.chosenShoe = selectedShoe;
+                Progress.chosenAccessory = selectedAccessory;
+
+                //now figure out what level we're going to
                 switch(Progress.lastLevel) {
                     //todo
                     case "dayOneIntro":
@@ -320,6 +328,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                         }
                         break;
                     case "dayTwoIntro":
+                        if (selectedHair > 2 && selectedTop > 2 && selectedBottom > 2 && selectedShoe > 2 && selectedAccessory > 2) { //this clause will need to be changed when lv3 stuff is here!
+                            //load the day2 clear
+                        } else {
+                            //load the day2 fail
+                        }
                         break;
                     case "dayThreeIntro":
                         break;
