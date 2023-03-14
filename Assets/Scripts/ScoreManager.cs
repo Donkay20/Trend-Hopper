@@ -13,10 +13,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     public Image healthFill;
-
+    [Space]
     public AudioSource hitSFX;
     public AudioSource missSFX;
-
+    [Space]
     public TMPro.TextMeshPro comboScoreText;
     public TMPro.TextMeshPro comboSplash;
     public TMPro.TextMeshPro scoreText;
@@ -25,10 +25,12 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro debugOKText;
     public TMPro.TextMeshPro debugMissText;
     public TMPro.TextMeshPro healthRequirementText;
-
+    [Space]
     public GameObject thresholdIndicator;
     public GameObject hundredTextPrefab;
-    //public GameObject bonusBox;
+    [Space]
+    public GameObject dangerNotifier;
+    public GameObject peakNotifier;
 
     static int comboScore;
     static int score;
@@ -129,6 +131,18 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         health = Mathf.Clamp(health,0,200);
+
+        if (health < maxHealth/4) {
+            dangerNotifier.SetActive(true);
+        } else {
+            dangerNotifier.SetActive(false);
+        }
+
+        if (health == maxHealth) {
+            peakNotifier.SetActive(true);
+        } else {
+            peakNotifier.SetActive(false);
+        }
 
         if (comboScore >= 2 && comboScore <= 9) {   //ngl I was kinda bored, might remove this later
             if (comboScore == 2) {

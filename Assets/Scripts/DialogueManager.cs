@@ -345,7 +345,7 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("StageSelect");
                 break;
             case "Dialogue_Day1PassDressUp":
-                SceneManager.LoadScene("RhythmGame");
+                SceneManager.LoadScene("Level1_Normal");
                 break;
             //Day 2
             case "Dialogue_Day2":
@@ -355,7 +355,7 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("StageSelect");
                 break;
             case "Dialogue_Day2PassDressUp":
-                //load level 2;
+                SceneManager.LoadScene("Level2_Normal");
                 break;
             //Day 3
         }

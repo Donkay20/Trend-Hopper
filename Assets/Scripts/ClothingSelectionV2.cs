@@ -317,12 +317,13 @@ public class ClothingSelectionV2 : MonoBehaviour
                 Progress.chosenShoe = selectedShoe;
                 Progress.chosenAccessory = selectedAccessory;
 
-                //now figure out what level we're going to
+                //now figure out what level we're going to. this is determined by the identity set in the dialogue sessions.
                 switch(Progress.lastLevel) {
                     //todo
                     case "dayOneIntro":
                         if (selectedHair < 3 && selectedTop < 3 && selectedBottom < 3 && selectedShoe < 3 && selectedAccessory < 3) {
                             SceneManager.LoadScene("Dialogue_Day1PassDressUp");
+                            calculateBonus(1);
                         } else {
                             SceneManager.LoadScene("Dialogue_Day1FailDressUp");
                         }
@@ -330,6 +331,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                     case "dayTwoIntro":
                         if (selectedHair > 2 && selectedTop > 2 && selectedBottom > 2 && selectedShoe > 2 && selectedAccessory > 2) { //this clause will need to be changed when lv3 stuff is here!
                             //load the day2 clear
+                            calculateBonus(2);
                         } else {
                             //load the day2 fail
                         }
@@ -470,5 +472,50 @@ public class ClothingSelectionV2 : MonoBehaviour
                 accessoryRows[i].transform.position = new Vector3(-0.5f, -1.6f, 0f);
             }
         }
+    }
+
+    private void calculateBonus(int day) {
+        double allocateScore = 0.0; int allocateLeniency = 0; int allocateCoolness = 0;
+        int[] clothingChecks = {selectedHair, selectedTop, selectedBottom, selectedShoe, selectedAccessory};
+
+        switch(day) {
+            case 1:
+                for (int i = 0; i < 5; i++) {
+                    switch(clothingChecks[i]) {
+                        case 0:
+                            allocateScore += 0.2; allocateLeniency += 10; allocateCoolness -= 5;
+                            break;
+                        case 1:
+                            allocateScore += 0.1; allocateLeniency += 7; allocateCoolness -= 0;
+                            break;
+                        case 2:
+                            allocateScore += 0.05; allocateLeniency += 5; allocateCoolness -= 0;
+                            break;
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 5; i++) {
+                    switch(clothingChecks[i]) {
+                        case 3:
+                            allocateScore += 0.2; allocateLeniency += 10; allocateCoolness -= 5;
+                            break;
+                        case 4:
+                            allocateScore += 0.1; allocateLeniency += 7; allocateCoolness -= 0;
+                            break;
+                        case 5:
+                            allocateScore += 0.05; allocateLeniency += 5; allocateCoolness -= 0;
+                            break;
+                    }
+                }
+                break;
+            case 3:
+                //todo
+                break;
+        }
+
+        DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
+        DressUpStatBonuses.leniency = (0.001*allocateLeniency);
+        DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
     }
 }
