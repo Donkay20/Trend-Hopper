@@ -344,7 +344,11 @@ public class DialogueManager : MonoBehaviour
         switch(SceneManager.GetActiveScene().name) {
             //Day 1
             case "Dialogue_Day1":
-                SceneManager.LoadScene("DressUpV2");
+                if (Progress.dressUpTutorialSeen) {
+                    SceneManager.LoadScene("DressUpV2");
+                } else {
+                    SceneManager.LoadScene("Tutorial");
+                }
                 break;
             case "Dialogue_Day1FailDressUp":
                 SceneManager.LoadScene("StageSelect");
@@ -358,6 +362,10 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "Dialogue_Day1FailStage":
                 SceneManager.LoadScene("StageSelect");
+                break;
+            case "Tutorial":
+                Progress.dressUpTutorialSeen = true;
+                SceneManager.LoadScene("DressUpV2");
                 break;
             //Day 2
             case "Dialogue_Day2":
