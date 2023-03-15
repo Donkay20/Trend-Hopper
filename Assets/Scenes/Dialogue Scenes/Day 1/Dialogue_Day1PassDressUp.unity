@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOneDressUpClear
+  identity: dayOne
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -798,6 +798,8 @@ MonoBehaviour:
   nameTag: {fileID: 33314871}
   school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
+  cafe_bg: {fileID: 0}
+  detention_bg: {fileID: 0}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}

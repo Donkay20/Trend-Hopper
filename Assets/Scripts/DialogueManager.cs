@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
     [Space]
     public Sprite school_bg;
     public Sprite home_bg;
+    public Sprite cafe_bg;
+    public Sprite detention_bg;
     [Space]
     public Sprite EMPTY;
     public Sprite Vicky; public Sprite Rocky; public Sprite Tyler;          //punk NPCs
@@ -277,38 +279,41 @@ public class DialogueManager : MonoBehaviour
         } else if (name.Contains("TRANSITION")){                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
             switch(name) {
                 case "TRANSITION_SCHOOL":
-                background.GetComponent<SpriteRenderer>().sprite = school_bg;
-                nameText.text = "-"; changedPrior = true;
-                break;
+                    background.GetComponent<SpriteRenderer>().sprite = school_bg;
+                    nameText.text = "-"; changedPrior = true;
+                    break;
                 case "TRANSITION_HOME":
-                background.GetComponent<SpriteRenderer>().sprite = home_bg;
-                nameText.text = "-"; changedPrior = true;
-                break;
+                    background.GetComponent<SpriteRenderer>().sprite = home_bg;
+                    nameText.text = "-"; changedPrior = true;
+                    break;
+                case "TRANSITION_CAFE":
+                    nameText.text = "-"; changedPrior = true;
+                    break;
             }
         } else {
             switch(name) {
                 case "EMPTY":
-                characterOnRight.GetComponent<Image>().sprite = EMPTY;
-                nameText.text = "-"; changedPrior = true;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = EMPTY;
+                    nameText.text = "-"; changedPrior = true;
+                    break;
                 case "Vicky":
-                characterOnRight.GetComponent<Image>().sprite = Vicky;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = Vicky;
+                    break;
                 case "Rocky":
-                characterOnRight.GetComponent<Image>().sprite = Rocky;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = Rocky;
+                    break;
                 case "Tyler":
-                characterOnRight.GetComponent<Image>().sprite = Tyler;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = Tyler;
+                    break;
                 case "Mackaylah":
-                characterOnRight.GetComponent<Image>().sprite = Mackaylah;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = Mackaylah;
+                    break;
                 case "Milgo":
-                characterOnRight.GetComponent<Image>().sprite = Milgo;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = Milgo;
+                    break;
                 case "Mei Ling":
-                characterOnRight.GetComponent<Image>().sprite = meiLing;
-                break;
+                    characterOnRight.GetComponent<Image>().sprite = meiLing;
+                    break;
             }
             animateLeft.SetBool("mainCharIsSpeaking", false);   
             animateRight.SetBool("rightCharIsSpeaking", true);
@@ -347,6 +352,13 @@ public class DialogueManager : MonoBehaviour
             case "Dialogue_Day1PassDressUp":
                 SceneManager.LoadScene("Level1_Normal");
                 break;
+            case "Dialogue_Day1PassStage":
+                Progress.levelOneCleared = true;
+                SceneManager.LoadScene("StageSelect");
+                break;
+            case "Dialogue_Day1FailStage":
+                SceneManager.LoadScene("StageSelect");
+                break;
             //Day 2
             case "Dialogue_Day2":
                 SceneManager.LoadScene("DressUpV2");
@@ -356,6 +368,13 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "Dialogue_Day2PassDressUp":
                 SceneManager.LoadScene("Level2_Normal");
+                break;
+            case "Dialogue_Day2PassStage":
+                Progress.levelTwoCleared = true;
+                SceneManager.LoadScene("StageSelect");
+                break;
+            case "Dialogue_Day2FailStage":
+                SceneManager.LoadScene("StageSelect");
                 break;
             //Day 3
         }

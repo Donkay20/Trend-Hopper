@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,25 +456,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Vicky
-    - Rocky
-    - Tyler
-    - Vicky
+    - Jassmea_SURPRISED
+    - Mackaylah
+    - Milgo
+    - Mei Ling
     - Jassmea_CRYING
+    - Mackaylah
+    - Jassmea_SMUG
+    - Mackaylah
+    - Jassmea_WINKING
+    - Jassmea
+    - Milgo
+    - Mei Ling
+    - Mackaylah
+    - Mackaylah
+    - Mackaylah
+    - Mackaylah
+    - Milgo
+    - Mei Ling
     - EMPTY
+    - Jassmea_SURPRISED
+    - Jassmea
+    - Jassmea
+    - Jassmea_SMUG
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
-
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+    - "That dance battle was so epic! I will remember this day until the day I \u2013
+      oof!\r"
+    - "Hey! Watch where you\u2019re going, twerp."
+    - You got eyes on that dumb face of yours, use them.
+    - Do you need to learn how to walk again?
+    - "That was totally my fault, I didn\u2019t watch where I was going, sorry about
+      that."
+    - Apology accepted. Now please keep your ugly face out of my sight from now on.
+    - "Hold on! I didn\u2019t mean to start on the wrong foot with you guys. It was
+      an accident, I actually think you guys are super cute."
+    - ...Yes, go on.
+    - Oh sure, you guys rock the colours blue and pink, your makeup is totes to die
+      for and your accessories are super trendy.
+    - I would LOVE to be able to hangout with you guys.
+    - "WHOA! Slow down there, dweeb. Looking like that, you won\u2019t even be allowed
+      ten feet near us."
+    - "You couldn\u2019t even walk properly 5 minutes ago, I highly doubt you know
+      how to dance properly too."
+    - "Wait a second girlies, her compliments got me feeling myself a bit so I\u2019ll
+      grant her a slim opportunity."
+    - Meet us at the Cafeteria at lunch time and we will see if you have moves cool
+      enough to at least match my beat.
+    - Remember to dress to impress and not embarrass yourself.
+    - Well I gotta go now, our ride is waiting for us, T-T-Y-L.
+    - Peace out dweeb.
+    - Hope you know how to use your legs by then, weirdo.
+    - '[The trio leave.]'
+    - ...
+    - DID I JUST LAND MYSELF ANOTHER DANCE OFF!?!?!?
+    - "Ooo! I am on a roll today. With today\u2019s win, I am sure I can break records
+      tomorrow."
+    - "I can\u2019t wait to show them what I've got!"
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayTwoIntro
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -1288,7 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Story - Day 2
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0

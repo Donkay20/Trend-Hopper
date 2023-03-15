@@ -12,30 +12,45 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu Scenes/StageSelect.unity
     guid: 7c211bcfb8831f94da12b9ce6024705d
   - enabled: 1
-    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1.unity
-    guid: 22516ee736a6508489eb72b39a95d369
-  - enabled: 1
-    path: Assets/Scenes/Menu Scenes/DressUp.unity
-    guid: d400f4e71ceb67345b881c240ce3cee7
-  - enabled: 1
     path: Assets/Scenes/Menu Scenes/DressUpV2.unity
     guid: 6fb2c60224a1adc47ba37c3510e43412
   - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1.unity
+    guid: 22516ee736a6508489eb72b39a95d369
+  - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1PassDressUp.unity
-    guid: 5b57061e3bd5ade4cb22a8c1cfa919c2
+    guid: 246ed0c519104024283b15c62104d387
   - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1FailDressUp.unity
-    guid: a09de4e19b26e6d499f5ef700c57fbc6
+    guid: cc5f2b83899448c4db184ca525ab2e2b
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1PassStage.unity
+    guid: 5b57061e3bd5ade4cb22a8c1cfa919c2
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1FailStage.unity
+    guid: 73223e8932822c54b959377098c4f819
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 2/Dialogue_Day2.unity
+    guid: 3f2a962343b094c4b96175e0ee44d875
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 2/Dialogue_Day2PassDressUp.unity
+    guid: 91ba7a4eca9fb9b40bd55aedbebaccc4
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 2/Dialogue_Day2FailDressUp.unity
+    guid: 37866dae2ff702b409002734fb32cbc2
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 2/Dialogue_Day2PassStage.unity
+    guid: 0a7a152647dc3fb4cbfed1748a6788ae
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 2/Dialogue_Day2FailStage.unity
+    guid: 2f6ca38c8f4e45945b9382207f6e9cd6
   - enabled: 1
     path: Assets/Scenes/Rhythm Game Scenes/Level1_Normal.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/Rhythm Game Scenes/Level2_Normal.unity
+    guid: 1a1aa8d4aece95441978e4e496fb5a90
+  - enabled: 1
     path: Assets/Scenes/Rhythm Game Scenes/Results.unity
     guid: c4e905b999c18b944839d6c18356a380
-  - enabled: 1
-    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1Clear.unity
-    guid: 7d0b19c62dc32eb4ca5117fc706e7660
-  - enabled: 1
-    path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1Fail.unity
-    guid: e079fb2c5df1dc5439640d01fbd496d0
   m_configObjects: {}

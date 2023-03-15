@@ -122,6 +122,7 @@ public class ScoreManager : MonoBehaviour
         Instance.UpdateHealthUI();
         if (health <= 0) {
             failCheck = 1;
+            Progress.failedOnce = true;
             SceneManager.LoadScene("Results");
             //Application.Quit();
         }

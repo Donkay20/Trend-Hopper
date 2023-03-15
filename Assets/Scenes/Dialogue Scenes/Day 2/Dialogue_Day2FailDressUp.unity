@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,25 +456,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Vicky
-    - Rocky
-    - Tyler
-    - Vicky
+    - Mackaylah
+    - Milgo
+    - Mei Ling
+    - Mackaylah
     - Jassmea_CRYING
     - EMPTY
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
+    - Oh hell no! You did NOT just walk up in here looking like a bootleg barbie
+      doll.
+    - El-oh-el. What a joke you are, even a clown can dress better than you.
+    - "I can\u2019t believe you are even near us right now, you\u2019re dwindling
+      our sparkle just by standing there."
+    - "Ha! I can\u2019t believe I gave you a chance. Last time I will ever be nice 
+      to a dweeb like you, see you never, loser."
+    - Oh noooooo! What did I do wrong...
+    - 'Game Over.
 
-      Returning to stage select.
+      Returning to stage selection screen.
 
-      Pay attention to the required
-      outfit!'
+      Pay attention
+      to the required outfit!'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayTwo
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -800,8 +802,7 @@ MonoBehaviour:
   nameTag: {fileID: 33314871}
   school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
-  cafe_bg: {fileID: 0}
-  detention_bg: {fileID: 0}
+  cafe_bg: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}
@@ -1288,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Story - Day 2
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0

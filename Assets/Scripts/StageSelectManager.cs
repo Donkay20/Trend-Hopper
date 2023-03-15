@@ -34,7 +34,6 @@ public class StageSelectManager : MonoBehaviour
     void Start()
     {   
         Instance = this;
-        Progress.levelOneCleared = true;
         selector = Instantiate(selector);
         phase = 1;
         selectedLevel = 1;

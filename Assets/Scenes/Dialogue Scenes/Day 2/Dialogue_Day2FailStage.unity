@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,25 +456,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Vicky
-    - Rocky
-    - Tyler
-    - Vicky
+    - Mackaylah
+    - Jassmea_SURPRISED
+    - Milgo
+    - Mei Ling
+    - Mackaylah
     - Jassmea_CRYING
     - EMPTY
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
+    - That was lame. You might have nice shoes but you got no moves.
+    - No wait, that was a warm up!
+    - "Pfft, what a joke, your hips don\u2019t lie and they were screaming awful.
+      Just being pretty doesn\u2019t make the cut."
+    - Not only do you need lessons to walk but you also need lessons to dance. That
+      was a terrible try and it disgusted me.
+    - We are not impressed, take those dance lessons before coming to us. We're leaving,
+      bye twerp.
+    - "NO! I wasn\u2019t able to prove myself, ugh!"
+    - 'Game Over.
 
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+      Returning to stage selection screen.'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayTwo
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -1288,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Story - Day 2
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0

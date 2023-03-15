@@ -457,24 +457,27 @@ MonoBehaviour:
   dialogue:
     names:
     - Vicky
+    - Jassmea_WINKING
     - Rocky
     - Tyler
     - Vicky
-    - Jassmea_CRYING
+    - Jassmea_SURPRISED
+    - Vicky
+    - Jassmea_SMUG
     - EMPTY
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
+    - "Heh, you're not half bad.\r"
+    - "You ain\u2019t too shabby yourself.\r\n"
+    - "I'll admit, you pulled out some pretty sick dance moves. \r\n"
+    - "Maybe you aren't as lame as I thought. \r"
+    - Well that settles it, you can join our gang, hope you don't regret it.
+    - OH MY GOSH! Thank you, I totes won't regret a thing.
+    - "Let\u2019s start heading home now, I\u2019m so beat after that dance off.\r"
+    - "I\u2019m going to get my things from my locker first, you guys head home without
+      me.\r"
+    - 'Stage cleared!
 
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+      Returning to stage select screen.'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayOneClear
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}

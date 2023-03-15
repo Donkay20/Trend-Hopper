@@ -457,24 +457,23 @@ MonoBehaviour:
   dialogue:
     names:
     - Vicky
+    - Jassmea_CRYING
     - Rocky
     - Tyler
     - Vicky
-    - Jassmea_CRYING
+    - Jassmea
     - EMPTY
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
+    - "Heh, you look pretty cool, but you don\u2019t have the moves to prove it."
+    - "Oh nooooo!\r"
+    - "I'll admit, you impressed with the outfit, but I guess you\u2019re just a
+      poser!"
+    - "You can\u2019t fool us!"
+    - See you later newbie, prove your skills and you can join our group.
+    - Waaaaaah! I guess I need to sharpen up if I want to fit in...
+    - 'Game Over.
 
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+      Returning to stage select.'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0

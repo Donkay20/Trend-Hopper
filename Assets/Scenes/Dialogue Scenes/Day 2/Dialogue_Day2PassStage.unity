@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,25 +456,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Vicky
-    - Rocky
-    - Tyler
-    - Vicky
+    - Mackaylah
+    - Jassmea_WINKING
+    - Milgo
+    - Mei Ling
+    - Mackaylah
+    - Milgo
+    - Mei Ling
+    - Mackaylah
+    - Jassmea_SMUG
     - Jassmea_CRYING
-    - EMPTY
+    - Mackaylah
+    - Jassmea_WINKING
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
+    - I am pleasantly surprised, you really showcased some killer moves.
+    - Thanks, I try. You pulled out some fire moves too.
+    - "That was sooo epic, I wish I recorded that! Maybe I was too quick to judge
+      you.\r"
+    - 'Girrrrrrl, you gotta teach me how you did that turn, it was so sick.
 
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+'
+    - "I guess I wasn\u2019t the only one you surprised today. Seems like we are
+      in agreement on keeping you around."
+    - No complaints here.
+    - That turn already won me over.
+    - Welcome to the clique girlie. Now time for some food, I am starving after dancing.
+    - Yay! Thank you for letting me join you guys, made my day!
+    - "But\u2026 I didn\u2019t do my homework last night, I need to spend the rest
+      of lunch finishing it off. Sorry, but I won\u2019t be joining you guys for
+      lunch."
+    - "Don\u2019t sweat it, good luck with your work. See you around."
+    - Byee!! Thanks again!
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayTwo
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -1288,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Story - Day 2
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0

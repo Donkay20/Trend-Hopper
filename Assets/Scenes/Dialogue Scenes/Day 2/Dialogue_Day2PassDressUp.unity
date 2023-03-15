@@ -384,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,25 +456,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Vicky
-    - Rocky
-    - Tyler
-    - Vicky
-    - Jassmea_CRYING
-    - EMPTY
+    - Mackaylah
+    - Jassmea_SMUG
+    - Mackaylah
+    - Milgo
+    - Mei Ling
+    - Jassmea_WINKING
+    - Mackaylah
+    - Jassmea
     sentences:
-    - "OH. MY. GOD. Look at this poser! Does she think she could ever look punk in
-      an outfit like that? \r"
-    - Hahaha! Look at her hair! And her top!
-    - "She talked big earlier for a girl with no style!\r"
-    - "Whatever. Guess you can\u2019t hang with us after all! See you poser."
-    - Oh noooooo! What did I do wrong?
-    - 'Game over.
-
-      Returning to stage select.
-
-      Pay attention to the required
-      outfit!'
+    - "Look who\u2019s here. At least we know you were competent enough to not let
+      a rare opportunity slip."
+    - "I don\u2019t think anyone would ever want to miss a chance to wipe that smug
+      off your face.\r"
+    - "Just \u2018cause you wore a nice top and did your hair today doesn\u2019t
+      mean you\u2019re capable of that just yet.\r"
+    - "Forget a smug face, we\u2019re about to send you home crying."
+    - Word. You're about to get owned with your two left feet.
+    - All you two do is run your mouth, try using your arms and legs for a change
+      and have a dance off with me.
+    - Not today girly, your opponent is me today. Are you ready to show me what you
+      got?
+    - You bet I am!
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOne
+  identity: dayTwo
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
@@ -800,8 +803,6 @@ MonoBehaviour:
   nameTag: {fileID: 33314871}
   school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
-  cafe_bg: {fileID: 0}
-  detention_bg: {fileID: 0}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}
@@ -1288,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Story - Day 2
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0
