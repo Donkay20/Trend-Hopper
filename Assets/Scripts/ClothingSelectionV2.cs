@@ -50,6 +50,10 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Sprite[] appliedBottomCatalog = new Sprite[6];
     public Sprite[] appliedShoeCatalog = new Sprite[6];
     public Sprite[] appliedAccessoryCatalog = new Sprite[6];        //these are the clothes in storage that can be applied to the character. max is 6, end goal should be 9.
+    [Space]
+    public AudioSource shiftLeft;
+    public AudioSource shiftRight;
+    public AudioSource select;
 
     private int hairRow;        private int hoverHair;              //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
     private int topRow;         private int hoverTop;               //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)

@@ -826,7 +826,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2428,37 +2428,37 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cf8df8cc9f9bf814e9374ddbc5675d98, type: 3}
   - {fileID: 21300000, guid: 78988b76fda273241b09ca9014c826de, type: 3}
   - {fileID: 21300000, guid: e1f31d1e168d5cc4ebff72a2b4332623, type: 3}
-  - {fileID: 21300000, guid: cf8df8cc9f9bf814e9374ddbc5675d98, type: 3}
-  - {fileID: 21300000, guid: 78988b76fda273241b09ca9014c826de, type: 3}
-  - {fileID: 21300000, guid: e1f31d1e168d5cc4ebff72a2b4332623, type: 3}
+  - {fileID: 21300000, guid: f6a8786cbc8cc80488fc8cd79179610e, type: 3}
+  - {fileID: 21300000, guid: 84cda098f0f04304e97b93a08fb276c6, type: 3}
+  - {fileID: 21300000, guid: 2adb6b3a49df4f640aa58e569b74bccb, type: 3}
   chibiTop:
   - {fileID: 21300000, guid: facc96f3db54ee144ae3b14a7816e8b1, type: 3}
   - {fileID: 21300000, guid: d6395e8dd1954994186da7b2ecbe0c59, type: 3}
   - {fileID: 21300000, guid: d96c6f4bdda52d14f80cccd4c65acc31, type: 3}
-  - {fileID: 21300000, guid: facc96f3db54ee144ae3b14a7816e8b1, type: 3}
-  - {fileID: 21300000, guid: d6395e8dd1954994186da7b2ecbe0c59, type: 3}
-  - {fileID: 21300000, guid: d96c6f4bdda52d14f80cccd4c65acc31, type: 3}
+  - {fileID: 21300000, guid: 75659c26a685be043b8e1d2cec684783, type: 3}
+  - {fileID: 21300000, guid: 37f61269c0396e2499c7c3cd71d820e9, type: 3}
+  - {fileID: 21300000, guid: 1d85951a02183bc4d9e26bf2d86377dc, type: 3}
   chibiBottom:
   - {fileID: 21300000, guid: 62cd91023767d4148ad6dc1ad561465d, type: 3}
   - {fileID: 21300000, guid: f091c3526bac3954ba038a597af639ef, type: 3}
   - {fileID: 21300000, guid: cba1a9adbcb314740ba2f26bb54da071, type: 3}
-  - {fileID: 21300000, guid: 62cd91023767d4148ad6dc1ad561465d, type: 3}
-  - {fileID: 21300000, guid: f091c3526bac3954ba038a597af639ef, type: 3}
-  - {fileID: 21300000, guid: cba1a9adbcb314740ba2f26bb54da071, type: 3}
+  - {fileID: 21300000, guid: 9ca479b2b478cff42891f3af603b05bf, type: 3}
+  - {fileID: 21300000, guid: a4ac077ebf21f75429e37f77b2bd3af6, type: 3}
+  - {fileID: 21300000, guid: e63b73d33e35c0642b87c6bc752de2bd, type: 3}
   chibiShoe:
   - {fileID: 21300000, guid: ad78a862ac3ba2d488119132fc188203, type: 3}
   - {fileID: 21300000, guid: a0a76052eabb1364d92c2633df51b061, type: 3}
   - {fileID: 21300000, guid: 4af7f47dca439ab4896c6e79c599f1cb, type: 3}
-  - {fileID: 21300000, guid: ad78a862ac3ba2d488119132fc188203, type: 3}
-  - {fileID: 21300000, guid: a0a76052eabb1364d92c2633df51b061, type: 3}
-  - {fileID: 21300000, guid: 4af7f47dca439ab4896c6e79c599f1cb, type: 3}
+  - {fileID: 21300000, guid: f7fd17b2f4b51ef4595e03ca17685835, type: 3}
+  - {fileID: 21300000, guid: 6f5b97cf90f82a84ea0440d4190d1c11, type: 3}
+  - {fileID: 21300000, guid: 1f0a7f2bcf0c2224e9e24f459397c797, type: 3}
   chibiAccessory:
   - {fileID: 21300000, guid: 0395bb2bc6a21784f92c2ba2d08831e7, type: 3}
   - {fileID: 21300000, guid: c40a0d5345ee4654a86c4d42253fe269, type: 3}
   - {fileID: 21300000, guid: ea75ce18c1f0bc24c954ad9312ed75d4, type: 3}
-  - {fileID: 21300000, guid: 0395bb2bc6a21784f92c2ba2d08831e7, type: 3}
-  - {fileID: 21300000, guid: c40a0d5345ee4654a86c4d42253fe269, type: 3}
-  - {fileID: 21300000, guid: ea75ce18c1f0bc24c954ad9312ed75d4, type: 3}
+  - {fileID: 21300000, guid: 650c96820cb7caf42bddfd538f335cc3, type: 3}
+  - {fileID: 21300000, guid: 24bdff760aa42374ea696d088973f8af, type: 3}
+  - {fileID: 21300000, guid: 28dff3f5e7068bc46864970371375944, type: 3}
   VSHair:
   - {fileID: 21300000, guid: 25ef2f090124bd04ab13e21afcffc48d, type: 3}
   - {fileID: 21300000, guid: c31c0a7803a4c33458720e869380aadd, type: 3}
@@ -4103,7 +4103,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4979,7 +4979,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6200,7 +6200,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7499,7 +7499,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

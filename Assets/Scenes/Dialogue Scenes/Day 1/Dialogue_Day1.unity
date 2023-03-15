@@ -733,7 +733,7 @@ MonoBehaviour:
   dressedUp: 0
   appliedHair: {fileID: 1105032524}
   appliedTop: {fileID: 1018978225}
-  appliedBottom: {fileID: 0}
+  appliedBottom: {fileID: 766051741}
   appliedAccessory: {fileID: 715657020}
   nextButton: 275
   characterOnLeft: {fileID: 740297272}
@@ -743,9 +743,10 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
-  school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
+  school_bg: {fileID: 21300000, guid: f43bb6964bd4a53428a6c995385b31f2, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
-  cafe_bg: {fileID: 0}
+  cafe_bg: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
+  detention_bg: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}

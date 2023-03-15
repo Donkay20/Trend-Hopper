@@ -17,6 +17,9 @@ public class ResultsManager : MonoBehaviour
     private int highestPossibleScore;
 
     public KeyCode input;
+    public GameObject background;
+    public Sprite punkBG;
+    public Sprite y2kBG;
     [Space]
     public AudioSource levelOneTune;
     public AudioSource levelTwoTune;
@@ -34,6 +37,17 @@ public class ResultsManager : MonoBehaviour
     
     void Start()
     {   
+        switch(Progress.lastLevel) {
+            case "dayOne":
+                background.GetComponent<SpriteRenderer>().sprite = punkBG;
+                levelOneTune.Play();
+                break;
+            case "dayTwo":
+                background.GetComponent<SpriteRenderer>().sprite = y2kBG;
+                levelTwoTune.Play();
+                break;
+        }
+
         results = ScoreManager.Instance.getScoreLog();
         perfectText.text = results[0].ToString();           //0 is for perfect
         okText.text = results[1].ToString();                //1 is for ok
