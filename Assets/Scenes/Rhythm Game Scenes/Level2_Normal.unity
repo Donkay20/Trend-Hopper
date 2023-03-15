@@ -6204,7 +6204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: vs Punk Stage
+  newDetails: vs Y2K Stage
 --- !u!4 &1764872439
 Transform:
   m_ObjectHideFlags: 0
