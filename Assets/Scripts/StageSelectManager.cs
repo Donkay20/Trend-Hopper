@@ -17,6 +17,7 @@ public class StageSelectManager : MonoBehaviour
     public KeyCode inputDown;
     public KeyCode inputRight;
     public KeyCode inputLeft;
+    public KeyCode cheatButton;
 
     public GameObject selector;
     public AudioSource preview1;
@@ -159,6 +160,11 @@ public class StageSelectManager : MonoBehaviour
                     break;
             }
             updateSelectorPosition();
+        }
+
+        if (Input.GetKeyDown(cheatButton)) {
+            Progress.levelOneCleared = true;
+            levelTwoLock.SetActive(false);
         }
     }
 

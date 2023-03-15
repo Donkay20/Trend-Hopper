@@ -3874,6 +3874,7 @@ MonoBehaviour:
   inputDown: 274
   inputRight: 275
   inputLeft: 276
+  cheatButton: 282
   selector: {fileID: 5890951617971533192, guid: e08707c45e5162d4eaa3668f13bf0fef, type: 3}
   preview1: {fileID: 372720541}
   preview2: {fileID: 960532367}
