@@ -23,10 +23,21 @@ public class Lane : MonoBehaviour
     public float spawnDelay = 0.0f; //make sure this is the same as the song delay
     int spawnIndex = 0;
     int inputIndex = 0;
+    public Note note;
+
+    public float noteTap;
+    public float noteSpawn;
+    public float noteDespawn
+    {
+        get
+        {
+            return noteTap - (noteSpawn - noteTap);
+        }
+    }
 
     void Start()
     {
-        
+        note.lane = this;
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)

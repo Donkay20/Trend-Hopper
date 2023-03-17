@@ -6,12 +6,12 @@ using UnityEngine;
 This class is responsible for each Note's behavior, such as when it should be destroyed (if not hit) and the movement down the screen.
 */
 
-public class Note : MonoBehaviour
+public class NoteX : MonoBehaviour
 {
     double timeInstantiated;
     public float assignedTime;
     public GameObject assignedLane;
-    public Lane lane;
+    Lane lane;
 
     void Start() //reference point to the song
     {
@@ -32,7 +32,7 @@ public class Note : MonoBehaviour
         }
         else    //move it along the line
         {
-            transform.localPosition = Vector3.Lerp(Vector3.up * lane.noteSpawn, Vector3.up * lane.noteDespawn, t);
+            transform.localPosition = Vector3.Lerp(Vector3.forward * lane.noteSpawn, Vector3.forward * lane.noteDespawn, t);
             GetComponent<SpriteRenderer>().enabled = true;
         }
     }
