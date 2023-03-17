@@ -11,7 +11,7 @@ public class NoteX : MonoBehaviour
     double timeInstantiated;
     public float assignedTime;
     public GameObject assignedLane;
-    Lane lane;
+    public Lane lane;
 
     void Start() //reference point to the song
     {
@@ -32,7 +32,7 @@ public class NoteX : MonoBehaviour
         }
         else    //move it along the line
         {
-            transform.localPosition = Vector3.Lerp(Vector3.forward * lane.noteSpawn, Vector3.forward * lane.noteDespawn, t);
+            transform.localPosition = Vector3.Lerp(Vector3.right * lane.noteSpawn, Vector3.right * lane.noteDespawn, t);
             GetComponent<SpriteRenderer>().enabled = true;
         }
     }

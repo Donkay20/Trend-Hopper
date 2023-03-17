@@ -19,11 +19,13 @@ public class Lane : MonoBehaviour
     public KeyCode input;
     public GameObject notePrefab; public GameObject statusTextPrefab;
     List<Note> notes = new List<Note>();
+    List<NoteX> notesX = new List<NoteX>();
     public List<double> timeStamps = new List<double>();
     public float spawnDelay = 0.0f; //make sure this is the same as the song delay
     int spawnIndex = 0;
     int inputIndex = 0;
-    public Note note;
+    public Note assignedNote; public NoteX assignedNoteX;
+    public bool isX;
 
     public float noteTap;
     public float noteSpawn;
@@ -37,7 +39,13 @@ public class Lane : MonoBehaviour
 
     void Start()
     {
-        note.lane = this;
+        if (isX) {
+            assignedNoteX.lane = this;
+        } else {
+            assignedNote.lane = this;
+        }
+        
+        
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -62,8 +70,16 @@ public class Lane : MonoBehaviour
             if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
             {
                 var note = Instantiate(notePrefab, transform);
-                notes.Add(note.GetComponent<Note>());
-                note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
+
+                if (isX) {
+                    notesX.Add(note.GetComponent<NoteX>());
+                    note.GetComponent<NoteX>().assignedTime = (float)timeStamps[spawnIndex];
+                } else {
+                    notes.Add(note.GetComponent<Note>());
+                    note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
+                }
+
+                
                 spawnIndex++;
             }
         }
@@ -81,7 +97,12 @@ public class Lane : MonoBehaviour
                     Hit();
                     RhythmFeedback.Instance.showResult("Based!");
                     print($"Hit on {inputIndex} note");
-                    Destroy(notes[inputIndex].gameObject);
+                    if (isX) {
+                        Destroy(notesX[inputIndex].gameObject);
+                    } else {
+                        Destroy(notes[inputIndex].gameObject);
+                    }
+                    
                     inputIndex++;
                     missedNote = false;
                 }
@@ -90,7 +111,11 @@ public class Lane : MonoBehaviour
                     OK();
                     RhythmFeedback.Instance.showResult("mid");
                     print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                    Destroy(notes[inputIndex].gameObject);
+                    if (isX) {
+                        Destroy(notesX[inputIndex].gameObject);
+                    } else {
+                        Destroy(notes[inputIndex].gameObject);
+                    }
                     inputIndex++;
                     missedNote = false;
                 }
