@@ -16,6 +16,8 @@ public class TitleScreenSelect : MonoBehaviour
     //public TMPro.TextMeshPro startText;
     //public TMPro.TextMeshPro exitText;
 
+    public Animator transition;
+
     public KeyCode inputUp;
     public KeyCode inputDown;
     public KeyCode inputRight;
@@ -66,7 +68,7 @@ public class TitleScreenSelect : MonoBehaviour
 
         if (Input.GetKeyDown(inputRight)) {
             if (selectedCategory == 1) {
-                SceneManager.LoadScene("StageSelect");
+                StartCoroutine(LoadLevel(1));
             }
         }
 
@@ -87,5 +89,17 @@ public class TitleScreenSelect : MonoBehaviour
             selector.transform.position = new Vector3(0.96f, -3.15f, 0f);
             toolTipExit.text = "Press ←";
         }
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetTrigger("trigger");
+        yield return new WaitForSeconds(1);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("StageSelect");
+                break; 
+                
+        }
+        
     }
 }
