@@ -8,6 +8,10 @@ public static class DressUpStatBonuses
     public static double leniency {get; set;}
     public static int scoreThreshold {get; set;}
 
+    public static bool peaking {get; set;}              //global variable to check if player is at max health
+    public static int peakBonus {get; set;}             //count for peak bonus
+    public static double peakMultiplier {get; set;}     //multiplier for peak bonuses
+
     //the variables below are obsolete, but getting rid of them causes a compile-time error as the old clothing system still uses 'em. Keeping them for now.
     public static int punkHair {get; set;}              
     public static int punkAccessory {get; set;}

@@ -2202,6 +2202,7 @@ MonoBehaviour:
   noteRestriction: 3
   input: 274
   notePrefab: {fileID: 5716935941375659658, guid: be0c705aaad17e143ae6018a6c135026, type: 3}
+  goldPrefab: {fileID: 2836817538733490508, guid: cf17bd33f2559624fab9acaba24544b7, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -3260,6 +3261,7 @@ MonoBehaviour:
   noteRestriction: 4
   input: 275
   notePrefab: {fileID: 2740143512765465761, guid: 1b81f75919b19234080aae7064be7915, type: 3}
+  goldPrefab: {fileID: 7478220253916180805, guid: a9a88a3014935ba43b584724a48c6ba0, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -4681,8 +4683,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Score
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
-  m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
+  m_sharedMaterial: {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4771,7 +4773,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  - {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5017,6 +5019,7 @@ MonoBehaviour:
   noteRestriction: 2
   input: 273
   notePrefab: {fileID: 7887794842317800135, guid: c1f087f4f43357a4bb3cb808390ea5c4, type: 3}
+  goldPrefab: {fileID: 8129768633872446626, guid: c15d88a6c0ebe0a42b47bf1d66f97ec2, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -6516,6 +6519,7 @@ MonoBehaviour:
   noteRestriction: 1
   input: 276
   notePrefab: {fileID: 1879312936565456690, guid: 0be139c410ec9914cb62f375a40f15a4, type: 3}
+  goldPrefab: {fileID: 1676945637414815792, guid: 4be0583ea0faf3d4486440dea46035fc, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5

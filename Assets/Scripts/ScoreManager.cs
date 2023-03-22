@@ -140,8 +140,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         if (health == maxHealth) {
+            DressUpStatBonuses.peaking = true;
             peakNotifier.SetActive(true);
         } else {
+            DressUpStatBonuses.peaking = false;
             peakNotifier.SetActive(false);
         }
 

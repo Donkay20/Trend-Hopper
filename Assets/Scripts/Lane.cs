@@ -17,7 +17,8 @@ public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
     public KeyCode input;
-    public GameObject notePrefab; public GameObject statusTextPrefab;
+    public GameObject notePrefab; public GameObject goldPrefab;
+    public GameObject statusTextPrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
     public float spawnDelay = 0.0f; //make sure this is the same as the song delay
@@ -26,7 +27,7 @@ public class Lane : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -48,9 +49,13 @@ public class Lane : MonoBehaviour
 
         if (spawnIndex < timeStamps.Count)
         {
-            if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
-            {
+            if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime && !DressUpStatBonuses.peaking) {
                 var note = Instantiate(notePrefab, transform);
+                notes.Add(note.GetComponent<Note>());
+                note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
+                spawnIndex++;
+            } else if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime && DressUpStatBonuses.peaking) {
+                var note = Instantiate(goldPrefab, transform);
                 notes.Add(note.GetComponent<Note>());
                 note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
@@ -70,6 +75,10 @@ public class Lane : MonoBehaviour
                     Hit();
                     RhythmFeedback.Instance.showResult("Based!");
                     print($"Hit on {inputIndex} note");
+                    if (notes[inputIndex].gameObject.tag == "Gold") {
+                        DressUpStatBonuses.peakBonus++;
+                        Debug.Log(DressUpStatBonuses.peakBonus);
+                    }
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
                     missedNote = false;
@@ -79,6 +88,10 @@ public class Lane : MonoBehaviour
                     OK();
                     RhythmFeedback.Instance.showResult("mid");
                     print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    if (notes[inputIndex].gameObject.tag == "Gold") {
+                        DressUpStatBonuses.peakBonus++;
+                        Debug.Log(DressUpStatBonuses.peakBonus);
+                    }
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
                     missedNote = false;
