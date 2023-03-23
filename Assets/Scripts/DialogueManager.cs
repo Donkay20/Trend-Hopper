@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private string status;              //main character(left side)'s emotional status
 
+    private bool fastForwarding;
     private bool messaging;
     private string savedSentence;
 
@@ -57,8 +58,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {   
         Progress.lastLevel = identity;
-        continuePrefab = Instantiate(continuePrefab);
-        continuePrefab.SetActive(false);
+        continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);
         status = "neutral";
         sentences = new Queue<string>();
         namesList = new Queue<string>();                        //initializes the queues. queues are FIFO
@@ -102,7 +102,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         if (Input.GetKey(skipButton)) {
-
+            fastForwarding = true;
+            StartCoroutine(fastForward());
+            Debug.Log("fastforwarding");
+        } else {
+            fastForwarding = false;
         }
     }
 
@@ -326,7 +330,13 @@ public class DialogueManager : MonoBehaviour
         }
 
         StopAllCoroutines();    //<- when the next sentence is loaded when the next one isn't finished yet.
-        StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
+
+        if (fastForwarding) {
+            dialogueText.text = sentence;
+        } else {
+            StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
+        }
+        
         if (!changedPrior) {
                 nameText.text = name;
         }
@@ -335,7 +345,7 @@ public class DialogueManager : MonoBehaviour
 
     
 
-    IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
+    IEnumerator TypeSentence(string sentence) { //this is the thingy that makes the letters come one by one
         messaging = true;
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
@@ -345,6 +355,15 @@ public class DialogueManager : MonoBehaviour
         }
         continuePrefab.SetActive(true);
         messaging = false;
+    }
+
+    IEnumerator fastForward() {
+        while (fastForwarding) {
+            if (sentences.Count > 0) {
+                DisplayNextSentence();
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     void EndDialogue() {    //switches to different scenes depending on what dialogue is currently playing.
