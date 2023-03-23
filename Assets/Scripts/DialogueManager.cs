@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject appliedAccessory;
     [Space]
     public KeyCode nextButton;          //key for navigating through the dialogue
+    public KeyCode skipButton;
     [Space]
     public GameObject characterOnLeft;
     public GameObject characterOnRight; //the gameobjects control the images
@@ -98,6 +99,10 @@ public class DialogueManager : MonoBehaviour
                 }
                     break;
             }
+        }
+
+        if (Input.GetKey(skipButton)) {
+
         }
     }
 
@@ -327,6 +332,8 @@ public class DialogueManager : MonoBehaviour
         }
         changedPrior = false;
     }
+
+    
 
     IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
         messaging = true;

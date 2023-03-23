@@ -17,6 +17,7 @@ public class TitleScreenSelect : MonoBehaviour
     //public TMPro.TextMeshPro exitText;
 
     public Animator transition;
+    public Animator startSplash;
 
     public KeyCode inputUp;
     public KeyCode inputDown;
@@ -93,6 +94,7 @@ public class TitleScreenSelect : MonoBehaviour
 
     IEnumerator LoadLevel(int id) {
         transition.SetTrigger("trigger");
+        startSplash.SetTrigger("trigger");
         yield return new WaitForSeconds(1);
         switch(id) {
             case 1:

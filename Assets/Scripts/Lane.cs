@@ -17,7 +17,7 @@ public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
     public KeyCode input;
-    public GameObject notePrefab; public GameObject goldPrefab;
+    public GameObject notePrefab; public GameObject goldPrefab; private GameObject selectedPrefab;
     public GameObject statusTextPrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
@@ -47,19 +47,20 @@ public class Lane : MonoBehaviour
     {
         bool missedNote = false;
 
+        if (DressUpStatBonuses.peaking) {
+            selectedPrefab = goldPrefab;
+        } else {
+            selectedPrefab = notePrefab;
+        }
+
         if (spawnIndex < timeStamps.Count)
         {
-            if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime && !DressUpStatBonuses.peaking) {
-                var note = Instantiate(notePrefab, transform);
+            if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime) {
+                var note = Instantiate(selectedPrefab, transform);
                 notes.Add(note.GetComponent<Note>());
                 note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
-            } else if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime && DressUpStatBonuses.peaking) {
-                var note = Instantiate(goldPrefab, transform);
-                notes.Add(note.GetComponent<Note>());
-                note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
-                spawnIndex++;
-            }
+            } 
         }
 
         if (inputIndex < timeStamps.Count)
@@ -75,9 +76,8 @@ public class Lane : MonoBehaviour
                     Hit();
                     RhythmFeedback.Instance.showResult("Based!");
                     print($"Hit on {inputIndex} note");
-                    if (notes[inputIndex].gameObject.tag == "Gold") {
+                    if (notes[inputIndex].gameObject.tag == "gold") {
                         DressUpStatBonuses.peakBonus++;
-                        Debug.Log(DressUpStatBonuses.peakBonus);
                     }
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -88,9 +88,8 @@ public class Lane : MonoBehaviour
                     OK();
                     RhythmFeedback.Instance.showResult("mid");
                     print($"OK on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                    if (notes[inputIndex].gameObject.tag == "Gold") {
+                    if (notes[inputIndex].gameObject.tag == "gold") {
                         DressUpStatBonuses.peakBonus++;
-                        Debug.Log(DressUpStatBonuses.peakBonus);
                     }
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -132,13 +131,5 @@ public class Lane : MonoBehaviour
     {
         SceneManager.LoadScene("Results");
     }
-
-    // void showResult(string text) {
-    //     if (statusTextPrefab) 
-    //     {
-    //         GameObject prefab = Instantiate(statusTextPrefab, transform.position, Quaternion.identity);
-    //         prefab.GetComponentInChildren<TextMesh>().text = text;
-    //     }
-    // }
 }
 
