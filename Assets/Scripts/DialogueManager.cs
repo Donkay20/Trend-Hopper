@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private string status;              //main character(left side)'s emotional status
 
+    private bool fastForwarding;
     private bool messaging;
     private bool skipping;
     private string savedSentence;
@@ -58,8 +59,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {   
         Progress.lastLevel = identity;
-        continuePrefab = Instantiate(continuePrefab);
-        continuePrefab.SetActive(false);
+        continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);
         status = "neutral";
         sentences = new Queue<string>();
         namesList = new Queue<string>();                        //initializes the queues. queues are FIFO

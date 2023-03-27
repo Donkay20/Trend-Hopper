@@ -98,3 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedTime: 0
+  goldArrow: {fileID: 21300000, guid: 73ae67acbfc822042a9dc337667d99cb, type: 3}
+  normalArrow: {fileID: 21300000, guid: 204eacb30a17f5846877a29de0da6b39, type: 3}

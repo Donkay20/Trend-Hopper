@@ -584,7 +584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: (Tap Right to advance through text.)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
@@ -736,6 +736,7 @@ MonoBehaviour:
   appliedBottom: {fileID: 766051741}
   appliedAccessory: {fileID: 715657020}
   nextButton: 275
+  skipButton: 274
   characterOnLeft: {fileID: 740297272}
   characterOnRight: {fileID: 1677480849}
   background: {fileID: 177196654}
@@ -1598,7 +1599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
+  m_text: 'Info
 
 '
   m_isRightToLeft: 0

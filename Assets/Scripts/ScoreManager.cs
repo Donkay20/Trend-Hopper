@@ -42,6 +42,7 @@ public class ScoreManager : MonoBehaviour
     static int failCheck;
     static int comboRecord;
     public int maxCombo = 500;
+    static int peakCount;
     private string hundredToText;        //juice to show each 100 in score.
 
     private int[] comboLog = new int[6]; //array for score & pass/fail value
@@ -67,8 +68,9 @@ public class ScoreManager : MonoBehaviour
         debugMissValue = 0;
         failCheck = 0;
         comboRecord = 0;
-        health = 75;
+        health = 190;
         maxHealth = 200;
+        peakCount = 0;
         Instance.UpdateHealthUI();
     }
 
@@ -77,38 +79,57 @@ public class ScoreManager : MonoBehaviour
     public static void Hit()
     {
         score += 100;
+
         comboScore += 1;
+
         if (comboScore % 100 == 0) {
             Instance.hundredToText = comboScore.ToString();
             Instance.hundredIndicator();
         }
+
         if (comboScore > comboRecord) {
             comboRecord = comboScore;
         }
+
         debugPerfectValue += 1;
         Instance.hitSFX.Play();
+
+        if (health == maxHealth) {
+            peakCount++;
+        }
+
         if (health >= 199) {
             health = 200;
         } else {
             health += 2;
         }
+
         Instance.UpdateHealthUI();
     }
 
     public static void OK()
     {
         score += 50;
+
         comboScore += 1;
+
         if (comboScore % 100 == 0) {
             Instance.hundredToText = comboScore.ToString();
             Instance.hundredIndicator();
         }
+
         debugOKValue += 1;
+
+        if (health == maxHealth) {
+            peakCount++;
+        }
+
          if (health >= 200) {
             health = 200;
         } else {
             health += 1;
         }
+
         Instance.UpdateHealthUI();
     }
 

@@ -10,6 +10,8 @@ public class Note : MonoBehaviour
 {
     double timeInstantiated;
     public float assignedTime;
+    public Sprite goldArrow;
+    public Sprite normalArrow;
 
     void Start() //reference point to the song
     {
@@ -20,6 +22,12 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update() //relies on the timing of the song to know when it should be destroyed
     {
+        if (DressUpStatBonuses.peaking) {
+            this.GetComponent<SpriteRenderer>().sprite = goldArrow;
+        } else {
+            this.GetComponent<SpriteRenderer>().sprite = normalArrow;
+        }
+
         double timeSinceInstantiated = SongManager.GetAudioSourceTime() - timeInstantiated;
         float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
