@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     private string status;              //main character(left side)'s emotional status
 
     private bool messaging;
+    private bool skipping;
     private string savedSentence;
 
     public string identity;             //determinant of what scene this is, saved to the global lastLevel variable
@@ -102,7 +103,18 @@ public class DialogueManager : MonoBehaviour
         }
 
         if (Input.GetKey(skipButton)) {
+            if (skipping) {
+                //do nothing
+            } else {
+                StopAllCoroutines();
+                skipping = true;
+                StartCoroutine(FastForward());
+            }
+        }
 
+        if (Input.GetKeyUp(skipButton)) {
+            skipping = false;
+            dialogueText.text = savedSentence;
         }
     }
 
@@ -324,16 +336,20 @@ public class DialogueManager : MonoBehaviour
             animateRight.SetBool("rightCharIsSpeaking", true);
             nameTag.SetBool("MCisSpeaking", false);
         }
-
-        StopAllCoroutines();    //<- when the next sentence is loaded when the next one isn't finished yet.
-        StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
+        if (skipping) {
+            dialogueText.text = sentence;
+        } else {
+            if (messaging) {
+                StopAllCoroutines();    //<- when the next sentence is loaded when the next one isn't finished yet.
+            }
+            StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
+        }
+        
         if (!changedPrior) {
                 nameText.text = name;
         }
         changedPrior = false;
     }
-
-    
 
     IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
         messaging = true;
@@ -345,6 +361,13 @@ public class DialogueManager : MonoBehaviour
         }
         continuePrefab.SetActive(true);
         messaging = false;
+    }
+
+    IEnumerator FastForward () {
+        while (skipping) {
+            DisplayNextSentence();
+            yield return new WaitForSeconds(.1f);
+        }
     }
 
     void EndDialogue() {    //switches to different scenes depending on what dialogue is currently playing.
