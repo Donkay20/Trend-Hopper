@@ -17,10 +17,9 @@ public class DialogueManager : MonoBehaviour
 
     private string status;              //main character(left side)'s emotional status
 
-    private bool fastForwarding;
-    private bool messaging;
-    private bool skipping;
-    private string savedSentence;
+    private bool messaging;             //variable to check if sentence is typing
+    private bool skipping;              //variable to check if user is fast-forwarding
+    private string savedSentence;       //idk why I need this tbh
 
     public string identity;             //determinant of what scene this is, saved to the global lastLevel variable
     [Space]
@@ -44,7 +43,7 @@ public class DialogueManager : MonoBehaviour
     public Sprite school_bg;
     public Sprite home_bg;
     public Sprite cafe_bg;
-    public Sprite detention_bg;
+    public Sprite detention_bg;         //backgrounds
     [Space]
     public Sprite EMPTY;
     public Sprite Vicky; public Sprite Rocky; public Sprite Tyler;          //punk NPCs
@@ -58,30 +57,35 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {   
-        Progress.lastLevel = identity;
-        continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);
-        status = "neutral";
-        sentences = new Queue<string>();
-        namesList = new Queue<string>();                        //initializes the queues. queues are FIFO
+
+        Progress.lastLevel = identity;                          //saves this scene's identity to determine stuff for future scenes/levels
+        continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);  //little indicator to show when to tap right
+        status = "neutral";                                     //default emotion to neutral for when the main character isn't in their default outfit
+        sentences = new Queue<string>();                        
+        namesList = new Queue<string>();                        //initializes the queues. queues are FIFO (haha data structures)
         animateLeft.SetBool("mainCharIsSpeaking", false);
         animateRight.SetBool("rightCharIsSpeaking", false);     //initializes both characters to not be speaking
-        nameTag.SetBool("MCisSpeaking", true);
+        nameTag.SetBool("MCisSpeaking", true);                  //initializes the nametag to the left
 
-        if (dressedUp) {
-            animateLeft.SetBool("mcIsDressed", true);
-            status = "smug";
+        if (dressedUp) {                                        //if she's got DRIP
+            animateLeft.SetBool("mcIsDressed", true);           //this is the determinant variable to swap the animation to the 'drip' tree.
+            status = "smug";                                    //defaults emotion to smug instead of neutral.
+            //loads sprites according to what was chosen in previous dress-up scenes.
             characterOnLeft.GetComponent<Image>().sprite = mcDressedUpTemplate;
             appliedHair.GetComponent<Image>().sprite = hairCatalog[Progress.chosenHair];
             appliedTop.GetComponent<Image>().sprite = topCatalog[Progress.chosenTop];
             appliedBottom.GetComponent<Image>().sprite = bottomCatalog[Progress.chosenBottom];
-            appliedAccessory.GetComponent<Image>().sprite = accessoryCatalog[Progress.chosenAccessory];
+            appliedAccessory.GetComponent<Image>().sprite = accessoryCatalog[Progress.chosenAccessory]; 
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(nextButton)) { //if conversation started, cycle through the sentences. if not, begin the dialogue.
-            switch(messaging) {
+        //logic for advancing through text normally
+        if (Input.GetKeyDown(nextButton)) { 
+            //check if the message is currently being typed
+            switch(messaging) {             
+                //if the sentence is in the middle of autotyping and you hit the button to advance, it'll autocomplete.
                 case true:
                     dialogueText.text = savedSentence;
                     continuePrefab.SetActive(true);
@@ -89,6 +93,8 @@ public class DialogueManager : MonoBehaviour
                     messaging = false;
                     break;
                 case false:
+                    //if the message isn't currently being typed,
+                    //if the conversation hasn't started, trigger it, or else just show the next sentence
                     switch (conversationStarted) {
                         case false:
                             DialogueTrigger.Instance.TriggerDialogue();
@@ -102,18 +108,28 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        //logic for skipping quickly through text (holding down the button)
         if (Input.GetKey(skipButton)) {
             if (skipping) {
-                //do nothing
+                //do nothing, otherwise it'll shoot through instantly
             } else {
+                //check if the conversation hasn't been started before
+                if (!conversationStarted) {
+                    DialogueTrigger.Instance.TriggerDialogue();
+                    conversationStarted = true;
+                }
+                //stops the autocomplete from 'messaging' if it's currently running.
                 StopAllCoroutines();
+                messaging = false;
                 skipping = true;
                 StartCoroutine(FastForward());
             }
         }
 
+        //logic for releasing the skip button
         if (Input.GetKeyUp(skipButton)) {
-            skipping = false;
+            skipping = false;   //disables skipping
+            //autocompletes the sentence just in case, not sure if I need this.
             dialogueText.text = savedSentence;
         }
     }
@@ -132,7 +148,7 @@ public class DialogueManager : MonoBehaviour
         {
             namesList.Enqueue(name);
         }
-        DisplayNextSentence();  //it only does this once. gets out of the startdialogue by initializing the dialogue stream.
+        DisplayNextSentence();  //it only does this once. gets out of the StartDialogue by initializing the dialogue stream.
     }
 
     public void DisplayNextSentence() {
@@ -146,6 +162,7 @@ public class DialogueManager : MonoBehaviour
         savedSentence = sentence;
         string name = namesList.Dequeue();  
 
+        //tldr: checks the mc for an emotion, if so, parses it out and applies the correct facial expression via animation. then updates the status.
         if (name.Contains("Jassmea")) {                //this logic is under the assumption that the main character is always on the left.
             nameTag.SetBool("MCisSpeaking", true);
             animateLeft.SetBool("mainCharIsSpeaking", true);    
@@ -295,6 +312,7 @@ public class DialogueManager : MonoBehaviour
             
         } else if (name.Contains("TRANSITION")){                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
             switch(name) {
+                //logic for transitioning to new backgrounds.
                 case "TRANSITION_SCHOOL":
                     background.GetComponent<SpriteRenderer>().sprite = school_bg;
                     nameText.text = "-"; changedPrior = true;
@@ -309,6 +327,7 @@ public class DialogueManager : MonoBehaviour
             }
         } else {
             switch(name) {
+                //logic for NPCs and empty field.
                 case "EMPTY":
                     characterOnRight.GetComponent<Image>().sprite = EMPTY;
                     nameText.text = "-"; changedPrior = true;
@@ -337,6 +356,7 @@ public class DialogueManager : MonoBehaviour
             nameTag.SetBool("MCisSpeaking", false);
         }
         if (skipping) {
+            //added logic. it'll skip the autotype and just paste the whole sentence instead.
             dialogueText.text = sentence;
         } else {
             if (messaging) {
@@ -345,15 +365,15 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(TypeSentence(sentence)); //to gradually load in the next sentence, letter by letter, check the TypeSentence IEnumerator.
         }
         
-        if (!changedPrior) {
+        if (!changedPrior) {            //changedPrior is a determinant; if true then we need to change the name to something custom. If not just use the name provided.
                 nameText.text = name;
         }
         changedPrior = false;
     }
 
-    IEnumerator TypeSentence (string sentence) { //this is the thingy that makes the letters come one by one
-        messaging = true;
-        dialogueText.text = "";
+    IEnumerator TypeSentence (string sentence) {    //this is the thingy that makes the letters come one by one
+        messaging = true;                           //the messaging variable is a global determinant to tell other methods if the autotype is going on. turns off when the autotype is done.
+        dialogueText.text = "";                     //starts the sentence empty. then autofills when the variable
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -363,8 +383,9 @@ public class DialogueManager : MonoBehaviour
         messaging = false;
     }
 
-    IEnumerator FastForward () {
+    IEnumerator FastForward () {    //this is the thingy that makes it skip through text fast
         while (skipping) {
+            //as long as you're holding down the skip button, it'll run through the text quickly with a delay
             DisplayNextSentence();
             yield return new WaitForSeconds(.1f);
         }
@@ -415,6 +436,7 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("StageSelect");
                 break;
             //Day 3
+            //TODO
         }
     }
 }

@@ -471,19 +471,23 @@ MonoBehaviour:
     - '[Jassmea wakes up.]'
     - Today is the big day! I barely got any sleep last night!
     - I am so ready to blow their minds with my sick dance moves, but first, I gotta
-      make sure my outfit matches their vibe.
+      make sure my outfit <color=blue>matches their vibe</color=blue>.
     - '[Dress Up Tutorial]'
     - Dress to impress! Use the wardrobe to dress yourself appropriately to fit the
       theme of the stage.
-    - This stage's theme is Punk. Look out for those types of clothing!
-    - 'Use Up and Down to swap between clothing categories.
+    - This stage's theme is <color=blue>Punk</color=blue>. Look out for those types
+      of clothing!
+    - 'Use <color=blue>Up</color=blue> and <color=blue>Down</color=blue> to swap
+      between clothing categories.
 
-      Use Left and Right
+      Use <color=blue>Left</color=blue> and <color=blue>Right</color=blue>
       to swap between clothing within a category.'
-    - Note that there's more than one row of clothing per category!
-    - Once you've chosen something you like, hit Space to apply it to your character.
+    - Note that there's <color=blue>more than one row</color=blue> of clothing per
+      category!
+    - Once you've chosen something you like, hit <color=blue>Space</color=blue> to
+      apply it to your character.
     - You'll be able to advance to the next scene once you've chosen from every category
-      at least once.
+      <color=blue>at least once</color=blue>.
     - Good luck!
 --- !u!1 &326053767
 GameObject:
@@ -801,6 +805,7 @@ MonoBehaviour:
   appliedBottom: {fileID: 857287152}
   appliedAccessory: {fileID: 101506980}
   nextButton: 275
+  skipButton: 274
   characterOnLeft: {fileID: 740297272}
   characterOnRight: {fileID: 1677480849}
   background: {fileID: 177196654}

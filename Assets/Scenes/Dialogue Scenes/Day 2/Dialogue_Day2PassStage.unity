@@ -803,6 +803,7 @@ MonoBehaviour:
   appliedBottom: {fileID: 857287152}
   appliedAccessory: {fileID: 101506980}
   nextButton: 275
+  skipButton: 274
   characterOnLeft: {fileID: 740297272}
   characterOnRight: {fileID: 1677480849}
   background: {fileID: 177196654}
