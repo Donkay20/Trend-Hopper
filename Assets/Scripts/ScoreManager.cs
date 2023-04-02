@@ -68,7 +68,7 @@ public class ScoreManager : MonoBehaviour
         debugMissValue = 0;
         failCheck = 0;
         comboRecord = 0;
-        health = 190;
+        health = 75;
         maxHealth = 200;
         peakCount = 0;
         Instance.UpdateHealthUI();

@@ -22,7 +22,7 @@ public class SongManager : MonoBehaviour
     public int inputDelayInMilliseconds;
     public int maxIndex;
 
-    public string fileLocation;
+    public string fileLocation_hard; public string fileLocation_normal; public string fileLocation_easy;
     public float noteTime;
     public float noteSpawnY;
     public float noteTapY;
@@ -39,12 +39,25 @@ public class SongManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        if(Progress.difficulty == null) {
+            Progress.difficulty = "hard";
+        }
         ReadFromFile();
     }
 
     private void ReadFromFile() 
     {
-        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
+        switch(Progress.difficulty) {
+            case "hard":
+                midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation_hard);
+                break;
+            case "normal":
+                midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation_normal);
+                break;
+            case "easy":
+                midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation_easy);
+                break;
+        }
         GetDataFromMidi();
     }
     public void GetDataFromMidi()   //grabs notes & timings from the midi and copies them to an array, then puts them in their lanes

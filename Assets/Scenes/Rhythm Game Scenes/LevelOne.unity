@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -826,7 +826,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 279738223}
   - component: {fileID: 279738222}
   m_Layer: 0
-  m_Name: Enemy Chibi 1
+  m_Name: Goth_A_Chibi_Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,7 +890,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d610de4e55194004589cf4524a3f491c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18e1072fd3475ca49aecdc1fc57a8005, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 328411820}
   - component: {fileID: 328411819}
   m_Layer: 0
-  m_Name: Enemy Chibi 3
+  m_Name: Goth_C_Chibi_Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1218,7 +1218,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c398a6c6eeffeb42984c36ea354daf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce8c27951fd0c8d48a76d714db54984f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1686,8 +1686,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1842,7 +1842,7 @@ Transform:
   - {fileID: 56519615}
   - {fileID: 877574733}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &435568362
 GameObject:
@@ -1877,7 +1877,7 @@ Transform:
   - {fileID: 328411820}
   - {fileID: 1308627540}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459933708
 GameObject:
@@ -1946,8 +1946,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2076,7 +2076,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464494670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: 0.35, z: 0}
+  m_LocalPosition: {x: -2.31, y: 0.35, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2124,7 +2124,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: 21300000, guid: 56a363975f9788c41a1c05d508fd5b14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2199,10 +2199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 0
+  noteRestriction: 3
   input: 274
   notePrefab: {fileID: 5716935941375659658, guid: be0c705aaad17e143ae6018a6c135026, type: 3}
-  goldPrefab: {fileID: 2836817538733490508, guid: cf17bd33f2559624fab9acaba24544b7, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -2402,7 +2401,7 @@ Transform:
   - {fileID: 1460427421}
   - {fileID: 2128067331}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &700062679
 MonoBehaviour:
@@ -2555,6 +2554,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2055530674}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &830456814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830456815}
+  m_Layer: 0
+  m_Name: 'DRIVE: F/G/A/B'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830456815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830456814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841579553
 GameObject:
@@ -3227,10 +3257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 9
+  noteRestriction: 4
   input: 275
   notePrefab: {fileID: 2740143512765465761, guid: 1b81f75919b19234080aae7064be7915, type: 3}
-  goldPrefab: {fileID: 7478220253916180805, guid: a9a88a3014935ba43b584724a48c6ba0, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -3644,7 +3673,7 @@ Transform:
   - {fileID: 1097491491}
   - {fileID: 1790358988}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129782815
 GameObject:
@@ -3692,7 +3721,7 @@ GameObject:
   - component: {fileID: 1166911244}
   - component: {fileID: 1166911243}
   m_Layer: 0
-  m_Name: Enemy Chibi 2
+  m_Name: Goth_B_Chibi_Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3739,7 +3768,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1493f4c249dbb154491c03f37caf3b6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af947f9e0d41b3a48aad7514bc1b7364, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3859,7 +3888,7 @@ RectTransform:
   m_Children:
   - {fileID: 1208122303}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4074,7 +4103,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4091,7 +4120,7 @@ GameObject:
   - component: {fileID: 1308627540}
   - component: {fileID: 1308627539}
   m_Layer: 0
-  m_Name: MC Chibi
+  m_Name: MC_DressUp_Base_Bald_Coloured
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4533,7 +4562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350613585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.33, y: -0.3, z: 0}
+  m_LocalPosition: {x: 3.9, y: -0.3, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4581,7 +4610,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: b9dd8ff553a2956448ba372274edf76c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4652,8 +4681,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Score
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
-  m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
+  m_sharedMaterial: {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4742,7 +4771,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  - {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4950,7 +4979,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4985,10 +5014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 11
+  noteRestriction: 2
   input: 273
   notePrefab: {fileID: 7887794842317800135, guid: c1f087f4f43357a4bb3cb808390ea5c4, type: 3}
-  goldPrefab: {fileID: 8129768633872446626, guid: c15d88a6c0ebe0a42b47bf1d66f97ec2, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -5118,7 +5146,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 07f8d38ec02c313429c11d3f472de29b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 528bf74877665f8429dfa73840cae104, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5432,7 +5460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644569813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: -0.29, z: 0}
+  m_LocalPosition: {x: 2.68, y: -0.29, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5480,7 +5508,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: 4ba83c37042a9de489b436c8fbba3121, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eda54d182f32b864ca99905a06e0f0ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5501,7 +5529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1646453611}
   m_Layer: 0
-  m_Name: 'sayHello: G/B/C/A'
+  m_Name: 'Psych: C#/D/D#/E'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5520,7 +5548,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704300906
 GameObject:
@@ -5735,7 +5763,9 @@ MonoBehaviour:
   marginOfError: 0.1
   inputDelayInMilliseconds: 0
   maxIndex: 0
-  fileLocation: sayHello129BPMfixed.mid
+  fileLocation_hard: Psychedelicacy_Normal03.mid
+  fileLocation_normal: Psychedelcacy_Map_Normal.mid
+  fileLocation_easy: Psychedelicacy_Map_Easy.mid
   noteTime: 1
   noteSpawnY: -7
   noteTapY: 3
@@ -5911,7 +5941,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6172,7 +6202,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6207,7 +6237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: vs Y2K Stage
+  newDetails: vs Punk Stage
 --- !u!4 &1764872439
 Transform:
   m_ObjectHideFlags: 0
@@ -6485,10 +6515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c29276978e20c49bd85d2164fa7c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 7
+  noteRestriction: 1
   input: 276
   notePrefab: {fileID: 1879312936565456690, guid: 0be139c410ec9914cb62f375a40f15a4, type: 3}
-  goldPrefab: {fileID: 1676945637414815792, guid: 4be0583ea0faf3d4486440dea46035fc, type: 3}
   statusTextPrefab: {fileID: 43035835671888633, guid: 53fce7db3a10e9444bd66d86a343413b, type: 3}
   timeStamps: []
   spawnDelay: 5
@@ -7256,7 +7285,7 @@ RectTransform:
   - {fileID: 937974055}
   - {fileID: 282595747}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7472,7 +7501,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.68, y: 22.24}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

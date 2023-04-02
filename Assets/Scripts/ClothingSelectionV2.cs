@@ -55,11 +55,11 @@ public class ClothingSelectionV2 : MonoBehaviour
     public AudioSource shiftRight;
     public AudioSource select;
 
-    private int hairRow;        private int hoverHair;              //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
-    private int topRow;         private int hoverTop;               //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
-    private int bottomRow;      private int hoverBottom;
-    private int shoeRow;        private int hoverShoe;
-    private int accessoryRow;   private int hoverAccessory;
+    private int hairRow;                      //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
+    private int topRow;                       //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
+    private int bottomRow;      
+    private int shoeRow;        
+    private int accessoryRow;   
 
     private string selectedCategory;                                //hair, top, bottom, shoe, accessory, check
     private int selectedHair;                                       //numbers to determine which outfit was chosen. plan is for 0-2 to be punk, 3-5 to be y2k, and 6-8 to be disco
@@ -67,31 +67,23 @@ public class ClothingSelectionV2 : MonoBehaviour
     private int selectedBottom;
     private int selectedShoe;
     private int selectedAccessory;
-    private static Random reroll = new Random();                    //this thing is to randomly assign clothing at the start of this godforsaken fucking game
 
-    private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool AccessoryOK; 
     private bool allOK;                                             //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
 
     void Start()
     {
         Instance = this;            //initialize the instance
         selectedCategory = "hair";  //set the default position to hair.
-        selectedHair = reroll.Next(0, 5); selectedTop = reroll.Next(0, 5); selectedBottom = reroll.Next(0, 5); selectedShoe = reroll.Next(0, 5); selectedAccessory = reroll.Next(0, 5);
         UpdateCategory(selectedCategory);
-        UpdateOverlay();
-        hoverHair = selectedHair; hoverTop = selectedTop; hoverBottom = selectedBottom; hoverShoe = selectedShoe; hoverAccessory = selectedAccessory;
+        selectedHair = 1; selectedTop = 1; selectedBottom = 1; selectedShoe = 1; selectedAccessory = 1;
         UpdateRow();                //initialize the row, dependent on the positions decided above.
-        hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
-        topAnimation[hoverTop].SetBool("top"+hoverTop, true);
-        bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
-        shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
-        accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
+        selectedHair = -1; selectedTop = -1; selectedBottom = -1; selectedShoe = -1; selectedAccessory = -1; //set them to -1 to initialize so nothing is "chosen"
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hairOK && topOK && bottomOK && shoeOK && AccessoryOK) {
+        if(selectedHair != -1 && selectedTop != -1 && selectedBottom != -1 && selectedShoe != -1 && selectedAccessory != -1) {
             allOK = true;
             checkmarkUI.SetBool("checkUnlocked", true);
         }
@@ -174,142 +166,218 @@ public class ClothingSelectionV2 : MonoBehaviour
             leftTrigger.SetTrigger("leftTrigger");
             switch(selectedCategory) {
                 case "hair":
-                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, false);
-                    switch(hoverHair) {
+                    if (selectedHair != -1) {
+                        hairAnimation[selectedHair].SetBool("hair"+selectedHair, false);
+                    }
+                    switch(selectedHair) {
+                        case -1:
+                            selectedHair = 0;
+                            break;
                         case 0:
-                            hoverHair = 5;
+                            selectedHair = 5;
                             break;
                         case >0:
-                            hoverHair--;
+                            selectedHair--;
                             break;
                     }
-                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
+                    if (selectedHair != -1) {
+                        hairAnimation[selectedHair].SetBool("hair"+selectedHair, true);
+                    }
                     break;
 
                 case "top":
-                    topAnimation[hoverTop].SetBool("top"+hoverTop, false);
-                    switch(hoverTop) {
+                    if (selectedTop != -1) {
+                        topAnimation[selectedTop].SetBool("top"+selectedTop, false);
+                    }
+                    
+                    switch(selectedTop) {
+                        case -1:
+                            selectedTop = 0;
+                            break;
                         case 0:
-                            hoverTop = 5;
+                            selectedTop = 5;
                             break;
                         case >0:
-                            hoverTop--;
+                            selectedTop--;
                             break;
                     }
-                    topAnimation[hoverTop].SetBool("top"+hoverTop, true);
+                    if (selectedTop != -1) {
+                        topAnimation[selectedTop].SetBool("top"+selectedTop, true);
+                    }
                     break;
 
                 case "bottom":
-                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, false);
-                    switch(hoverBottom) {
+                    if (selectedBottom != -1) {
+                        bottomAnimation[selectedBottom].SetBool("bottom"+selectedBottom, false);
+                    }
+                    
+                    switch(selectedBottom) {
+                        case -1:
+                            selectedBottom = 0;
+                            break;
                         case 0:
-                            hoverBottom = 5;
+                            selectedBottom = 5;
                             break;
                         case >0:
-                            hoverBottom--;
+                            selectedBottom--;
                             break;
                     }
-                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
+                    if (selectedBottom != -1) {
+                        bottomAnimation[selectedBottom].SetBool("bottom"+selectedBottom, true);
+                    }
                     break;
 
                 case "shoe":
-                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, false);
-                    switch(hoverShoe) {
+                    if (selectedShoe != -1) {
+                        shoeAnimation[selectedShoe].SetBool("shoe"+selectedShoe, false);
+                    }
+                    
+                    switch(selectedShoe) {
+                        case -1:
+                            selectedShoe = 0;
+                            break;
                         case 0:
-                            hoverShoe = 5;
+                            selectedShoe = 5;
                             break;
                         case >0:
-                            hoverShoe--;
+                            selectedShoe--;
                             break;
                     }
-                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
+                    if (selectedShoe != -1) {
+                        shoeAnimation[selectedShoe].SetBool("shoe"+selectedShoe, true);
+                    }
                     break;
 
                 case "accessory":
-                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, false);
-                    switch(hoverAccessory) {
+                    if (selectedAccessory != -1) {
+                        accessoryAnimation[selectedAccessory].SetBool("accessory"+selectedAccessory, false);
+                    }
+                    
+                    switch(selectedAccessory) {
+                        case -1:
+                            selectedAccessory = 0;
+                            break;
                         case 0:
-                            hoverAccessory = 5;
+                            selectedAccessory = 5;
                             break;
                         case >0:
-                            hoverAccessory--;
+                            selectedAccessory--;
                             break;
                     }
-                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
+                    if (selectedAccessory != -1) {
+                        accessoryAnimation[selectedAccessory].SetBool("accessory"+selectedAccessory, true);
+                    }
                     break;
             }
             UpdateRow();
+            UpdateOverlay();
         }
 
         if(Input.GetKeyDown(inputRight)) {
             rightTrigger.SetTrigger("rightTrigger");
             switch(selectedCategory) {
                 case "hair":
-                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, false);
-                    switch(hoverHair) {
+                    if (selectedHair != -1) {
+                        hairAnimation[selectedHair].SetBool("hair"+selectedHair, false);
+                    }
+                    switch(selectedHair) {
+                        case -1:
+                            selectedHair = 0;
+                            break;
                         case 5:
-                            hoverHair = 0;
+                            selectedHair = 0;
                             break;
                         case <5:
-                            hoverHair++;
+                            selectedHair++;
                             break;
                     }
-                    hairAnimation[hoverHair].SetBool("hair"+hoverHair, true);
+                    if (selectedHair != -1) {
+                        hairAnimation[selectedHair].SetBool("hair"+selectedHair, true);
+                    }
                     break;
 
                 case "top":
-                    topAnimation[hoverTop].SetBool("top"+hoverTop, false);
-                    switch(hoverTop) {
+                    if (selectedTop != -1) {
+                        topAnimation[selectedTop].SetBool("top"+selectedTop, false);
+                    }
+                    switch(selectedTop) {
+                        case -1:
+                            selectedTop = 0;
+                            break;
                         case 5:
-                            hoverTop = 0;
+                            selectedTop = 0;
                             break;
                         case <5:
-                            hoverTop++;
+                            selectedTop++;
                             break;
                     }
-                    topAnimation[hoverTop].SetBool("top"+hoverTop, true);
+                    if (selectedTop != -1) {
+                        topAnimation[selectedTop].SetBool("top"+selectedTop, true);
+                    }
                     break;
 
                 case "bottom":
-                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, false);
-                    switch(hoverBottom) {
+                    if (selectedBottom != -1) {
+                        bottomAnimation[selectedBottom].SetBool("bottom"+selectedBottom, false);
+                    }
+                    switch(selectedBottom) {
+                        case -1:
+                            selectedBottom = 0;
+                            break;
                         case 5:
-                            hoverBottom = 0;
+                            selectedBottom = 0;
                             break;
                         case <5:
-                            hoverBottom++;
+                            selectedBottom++;
                             break;
                     }
-                    bottomAnimation[hoverBottom].SetBool("bottom"+hoverBottom, true);
+                    if (selectedBottom != -1) {
+                        bottomAnimation[selectedBottom].SetBool("bottom"+selectedBottom, true);
+                    }
                     break;
 
                 case "shoe":
-                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, false);
-                    switch(hoverShoe) {
+                    if (selectedShoe != -1) {
+                        shoeAnimation[selectedShoe].SetBool("shoe"+selectedShoe, false);
+                    }
+                    switch(selectedShoe) {
+                        case -1:
+                            selectedShoe = 0;
+                            break;
                         case 5:
-                            hoverShoe = 0;
+                            selectedShoe = 0;
                             break;
                         case <5:
-                            hoverShoe++;
+                            selectedShoe++;
                             break;
                     }
-                    shoeAnimation[hoverShoe].SetBool("shoe"+hoverShoe, true);
+                    if (selectedShoe != -1) {
+                        shoeAnimation[selectedShoe].SetBool("shoe"+selectedShoe, true);
+                    }
                     break;
 
                 case "accessory":
-                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, false);
-                    switch(hoverAccessory) {
+                    if (selectedAccessory != -1) {
+                        accessoryAnimation[selectedAccessory].SetBool("accessory"+selectedAccessory, false);
+                    }
+                    switch(selectedAccessory) {
+                        case -1:
+                            selectedAccessory = 0;
+                            break;
                         case 5:
-                            hoverAccessory = 0;
+                            selectedAccessory = 0;
                             break;
                         case <5:
-                            hoverAccessory++;
+                            selectedAccessory++;
                             break;
                     }
-                    accessoryAnimation[hoverAccessory].SetBool("accessory"+hoverAccessory, true);
+                    if (selectedAccessory != -1) {
+                        accessoryAnimation[selectedAccessory].SetBool("accessory"+selectedAccessory, true);
+                    }
                     break;
             }
             UpdateRow();
+            UpdateOverlay();
         }
 
         if(Input.GetKeyDown(inputSelect)) {
@@ -341,36 +409,9 @@ public class ClothingSelectionV2 : MonoBehaviour
                         }
                         break;
                     case "dayThreeIntro":
+                        //todo
                         break;
                 }
-            } else {
-                switch(selectedCategory) {
-                    case "hair":
-                        selectedHair = hoverHair;
-                        hairOK = true;
-                        break;
-
-                    case "top":
-                        selectedTop = hoverTop;
-                        topOK = true;
-                        break;
-
-                    case "bottom":
-                        selectedBottom = hoverBottom;
-                        bottomOK = true;
-                        break;
-
-                    case "shoe":
-                        selectedShoe = hoverShoe;
-                        shoeOK = true;
-                        break;
-
-                    case "accessory":
-                        selectedAccessory = hoverAccessory;
-                        AccessoryOK = true;
-                        break;
-                }
-                UpdateOverlay();
             }
         }
     }
@@ -399,11 +440,25 @@ public class ClothingSelectionV2 : MonoBehaviour
     }
 
     private void UpdateOverlay() {
-        assignedHair.GetComponent<SpriteRenderer>().sprite = appliedHairCatalog[selectedHair];
-        assignedTop.GetComponent<SpriteRenderer>().sprite = appliedTopCatalog[selectedTop];
-        assignedBottom.GetComponent<SpriteRenderer>().sprite = appliedBottomCatalog[selectedBottom];
-        assignedShoe.GetComponent<SpriteRenderer>().sprite = appliedShoeCatalog[selectedShoe];
-        assignedAccessory.GetComponent<SpriteRenderer>().sprite = appliedAccessoryCatalog[selectedAccessory];
+        if(selectedHair != -1) {
+            assignedHair.GetComponent<SpriteRenderer>().sprite = appliedHairCatalog[selectedHair];
+        }
+
+        if(selectedTop != -1) {
+            assignedTop.GetComponent<SpriteRenderer>().sprite = appliedTopCatalog[selectedTop];
+        }
+
+        if(selectedBottom != -1) {
+            assignedBottom.GetComponent<SpriteRenderer>().sprite = appliedBottomCatalog[selectedBottom];
+        }
+
+        if(selectedShoe != -1) {
+            assignedShoe.GetComponent<SpriteRenderer>().sprite = appliedShoeCatalog[selectedShoe];
+        }
+
+        if(selectedAccessory != -1) {
+            assignedAccessory.GetComponent<SpriteRenderer>().sprite = appliedAccessoryCatalog[selectedAccessory];
+        }
     }
 
     private void UpdateRow() {
@@ -415,31 +470,33 @@ public class ClothingSelectionV2 : MonoBehaviour
 
             never mind fuck that, ignore whatever's above me cause that's impossible af
         */
-        if (hoverHair > 2) {
+        if (selectedHair == -1) {} if (selectedTop == -1) {} if (selectedBottom == -1) {} if (selectedShoe == -1) {} if (selectedAccessory == -1) {}
+
+        if (selectedHair > 2) {
             hairRow = 1;
         } else {
             hairRow = 0;
         }
 
-        if (hoverTop > 2) {
+        if (selectedTop > 2) {
             topRow = 1;
         } else {
             topRow = 0;
         }
 
-        if (hoverBottom > 2) {
+        if (selectedBottom > 2) {
             bottomRow = 1;
         } else {
             bottomRow = 0;
         }
 
-        if (hoverShoe > 2) {
+        if (selectedShoe > 2) {
             shoeRow = 1;
         } else {
             shoeRow = 0;
         }
 
-        if (hoverAccessory > 2) {
+        if (selectedAccessory > 2) {
             accessoryRow = 1;
         } else {
             accessoryRow = 0;
@@ -487,13 +544,13 @@ public class ClothingSelectionV2 : MonoBehaviour
                 for (int i = 0; i < 5; i++) {
                     switch(clothingChecks[i]) {
                         case 0:
-                            allocateScore += 0.2; allocateLeniency += 10; allocateCoolness -= 5;
+                            allocateScore += 0.2;  
                             break;
                         case 1:
-                            allocateScore += 0.1; allocateLeniency += 7; allocateCoolness -= 0;
+                            allocateLeniency += 10;
                             break;
                         case 2:
-                            allocateScore += 0.05; allocateLeniency += 5; allocateCoolness -= 0;
+                            allocateCoolness -= 5;
                             break;
                     }
                 }
@@ -502,13 +559,13 @@ public class ClothingSelectionV2 : MonoBehaviour
                 for (int i = 0; i < 5; i++) {
                     switch(clothingChecks[i]) {
                         case 3:
-                            allocateScore += 0.2; allocateLeniency += 10; allocateCoolness -= 5;
+                            allocateScore += 0.2;  
                             break;
                         case 4:
-                            allocateScore += 0.1; allocateLeniency += 7; allocateCoolness -= 0;
+                            allocateLeniency += 10;
                             break;
                         case 5:
-                            allocateScore += 0.05; allocateLeniency += 5; allocateCoolness -= 0;
+                            allocateCoolness -= 5;
                             break;
                     }
                 }

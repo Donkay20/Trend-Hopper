@@ -395,6 +395,7 @@ public class DialogueManager : MonoBehaviour
         switch(SceneManager.GetActiveScene().name) {
             //Day 1
             case "Dialogue_Day1":
+                Progress.day1IntroSeen = true;
                 if (Progress.dressUpTutorialSeen) {
                     SceneManager.LoadScene("DressUpV2");
                 } else {
@@ -405,7 +406,7 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("StageSelect");
                 break;
             case "Dialogue_Day1PassDressUp":
-                SceneManager.LoadScene("Level1_Normal");
+                SceneManager.LoadScene("LevelOne");
                 break;
             case "Dialogue_Day1PassStage":
                 Progress.levelOneCleared = true;
@@ -420,13 +421,14 @@ public class DialogueManager : MonoBehaviour
                 break;
             //Day 2
             case "Dialogue_Day2":
+                Progress.day2IntroSeen = true;
                 SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day2FailDressUp":
                 SceneManager.LoadScene("StageSelect");
                 break;
             case "Dialogue_Day2PassDressUp":
-                SceneManager.LoadScene("Level2_Normal");
+                SceneManager.LoadScene("LevelTwo");
                 break;
             case "Dialogue_Day2PassStage":
                 Progress.levelTwoCleared = true;
