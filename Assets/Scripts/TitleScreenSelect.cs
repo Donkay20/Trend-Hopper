@@ -98,7 +98,7 @@ public class TitleScreenSelect : MonoBehaviour
         yield return new WaitForSeconds(1);
         switch(id) {
             case 1:
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break; 
                 
         }

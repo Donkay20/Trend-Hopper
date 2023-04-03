@@ -320,7 +320,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                 phoneDay1.SetActive(false); phoneDay3.SetActive(false); phoneDay2.SetActive(true);
                 day3.SetBool("day3Focus", false); day2.SetBool("day2Focus", true);
                 upArrow.SetBool("upIsActive", true); downArrow.SetBool("downIsActive", true);
-                preview2.Play(); preview1.Stop(); preview3.Stop();
+                if (Progress.levelOneCleared) { preview2.Play(); }
+                preview1.Stop(); preview3.Stop();
                 break;
             case 3:
                 backgrounds.SetBool("2", false); backgrounds.SetBool("3", true);
@@ -330,7 +331,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                 phoneDay2.SetActive(false); phoneDay3.SetActive(true);
                 day2.SetBool("day2Focus", false); day3.SetBool("day3Focus", true);
                 downArrow.SetBool("downIsActive", false);
-                preview3.Play(); preview2.Stop();
+                if (Progress.levelTwoCleared) { preview3.Play(); }
+                preview2.Stop();
                 break;
         }
     }
