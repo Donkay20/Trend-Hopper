@@ -451,7 +451,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         switch (category) {
             case "hair":
             clothingSelector.transform.position = new Vector3(-0.5f, 3.4f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -461,7 +461,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "top":
             clothingSelector.transform.position = new Vector3(5.1f, 3f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -471,7 +471,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "bottom":
             clothingSelector.transform.position = new Vector3(5.1f, -1f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
@@ -481,7 +481,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "shoe":
             clothingSelector.transform.position = new Vector3(-0.5f, 1.1f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -491,7 +491,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "accessory":
             clothingSelector.transform.position = new Vector3(-0.5f, -1.6f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -501,7 +501,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "check":
             clothingSelector.transform.position = new Vector3(10f, 10f, 0f);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;

@@ -42,7 +42,6 @@ public class ScoreManager : MonoBehaviour
     static int failCheck;
     static int comboRecord;
     public int maxCombo = 500;
-    static int peakCount;
     private string hundredToText;        //juice to show each 100 in score.
 
     private int[] comboLog = new int[6]; //array for score & pass/fail value
@@ -57,10 +56,13 @@ public class ScoreManager : MonoBehaviour
     {
         healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
         thresholdIndicator = Instantiate(thresholdIndicator); positionThresholdIndicator();
+
         comboScoreText.faceColor = new Color32(255, 255, 255, 70); //last value is opacity
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
-        //bonusBox.renderer.material.color.a = 0.5f;
+
         Instance = this;
+
+        Progress.peakNotes = 0;
         comboScore = 0;
         score = 0;
         debugPerfectValue = 0;
@@ -68,9 +70,19 @@ public class ScoreManager : MonoBehaviour
         debugMissValue = 0;
         failCheck = 0;
         comboRecord = 0;
-        health = 75;
+        Progress.peakNotes = 0;
         maxHealth = 200;
-        peakCount = 0;
+        switch (Progress.difficulty) {
+            case "easy":
+                health = 100;
+                break;
+            case "normal":
+                health = 80;
+                break;
+            case "hard":
+                health = 60;
+                break;
+        }
         Instance.UpdateHealthUI();
     }
 
@@ -79,7 +91,6 @@ public class ScoreManager : MonoBehaviour
     public static void Hit()
     {
         score += 100;
-
         comboScore += 1;
 
         if (comboScore % 100 == 0) {
@@ -95,22 +106,29 @@ public class ScoreManager : MonoBehaviour
         Instance.hitSFX.Play();
 
         if (health == maxHealth) {
-            peakCount++;
+            Progress.peakNotes++;
         }
-
         if (health >= 199) {
             health = 200;
         } else {
-            health += 2;
+            switch (Progress.difficulty) {
+            case "easy":
+                health += 4;
+                break;
+            case "normal":
+                health += 3;
+                break;
+            case "hard":
+                health += 2;
+                break;
+            }
         }
-
         Instance.UpdateHealthUI();
     }
 
     public static void OK()
     {
         score += 50;
-
         comboScore += 1;
 
         if (comboScore % 100 == 0) {
@@ -121,13 +139,23 @@ public class ScoreManager : MonoBehaviour
         debugOKValue += 1;
 
         if (health == maxHealth) {
-            peakCount++;
+            Progress.peakNotes++;
         }
 
          if (health >= 200) {
             health = 200;
         } else {
-            health += 1;
+            switch (Progress.difficulty) {
+            case "easy":
+                health += 3;
+                break;
+            case "normal":
+                health += 2;
+                break;
+            case "hard":
+                health += 1;
+                break;
+        }
         }
 
         Instance.UpdateHealthUI();
@@ -139,7 +167,17 @@ public class ScoreManager : MonoBehaviour
         comboScore = 0;
         debugMissValue += 1;
         Instance.missSFX.Play();
-        health -= 5;
+        switch (Progress.difficulty) {
+            case "easy":
+                health -= 3;
+                break;
+            case "normal":
+                health -= 4;
+                break;
+            case "hard":
+                health -= 5;
+                break;
+        }
         Instance.UpdateHealthUI();
         if (health <= 0) {
             failCheck = 1;

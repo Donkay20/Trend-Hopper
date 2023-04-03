@@ -18,11 +18,11 @@ public class ResultsManager : MonoBehaviour
 
     public KeyCode input;
     public GameObject background;
-    public Sprite punkBG;
-    public Sprite y2kBG;
+    public Sprite punkBG; public Sprite y2kBG; public Sprite discoBG;
     [Space]
     public AudioSource levelOneTune;
     public AudioSource levelTwoTune;
+    public AudioSource levelThreeTune;
     [Space]
     public TMPro.TextMeshPro perfectText;   //text fields
     public TMPro.TextMeshPro okText;
@@ -46,24 +46,34 @@ public class ResultsManager : MonoBehaviour
                 background.GetComponent<SpriteRenderer>().sprite = y2kBG;
                 levelTwoTune.Play();
                 break;
+            case "dayThree":
+                background.GetComponent<SpriteRenderer>().sprite = discoBG;
+                levelThreeTune.Play();
+                break;
         }
 
         results = ScoreManager.Instance.getScoreLog();
+
         perfectText.text = results[0].ToString();           //0 is for perfect
         okText.text = results[1].ToString();                //1 is for ok
         missText.text = results[2].ToString();              //2 is for miss
         finalScoreText.text = results[4].ToString();        //4 is for score
         totalNotes = results[0] + results[1] + results[2];  totalNotesText.text = totalNotes.ToString();
         highestComboText.text = results[5].ToString();      //5 is for the score record
+
         multiplierText.text = DressUpStatBonuses.scoreMultiplier.ToString();
         finalScoreAfterMultiplierText.text = ((int)results[4]*DressUpStatBonuses.scoreMultiplier).ToString();
         finalScoreAfterMultiplier = ((int)results[4]*DressUpStatBonuses.scoreMultiplier);
+
         if (totalNotes == (results[0] + results[1])) {      //if only perfect and ok notes are hit
             status.text = "Full Combo!";
-        } else if (totalNotes == results[0]) {              //if only perfect notes are hit
+        } 
+        
+        if (totalNotes == results[0]) {                     //if only perfect notes are hit
             status.text = "Pitch Perfect!!";
         }
-        highestPossibleScore = (totalNotes*100) * 2;        //highest possible score from the song
+
+        highestPossibleScore = (totalNotes*100) * 2;        //highest possible score from the song, this can be alleviated with gold notes.
         letterGrade();                                      //invoke the letter grade class, dependent on the values above (may change)
     }
 
@@ -73,7 +83,6 @@ public class ResultsManager : MonoBehaviour
         if(Input.GetKeyDown(input)) {
             switch(Progress.lastLevel) {
                 case "dayOne":
-                    Progress.levelOneHighScore = (int)finalScoreAfterMultiplier;
                     if (gradeText.text == "F") {
                         SceneManager.LoadScene("Dialogue_Day1FailStage");
                     } else {
@@ -81,7 +90,6 @@ public class ResultsManager : MonoBehaviour
                     }
                     break;
                 case "dayTwo":
-                    Progress.levelTwoHighScore = (int)finalScoreAfterMultiplier;
                     if (gradeText.text == "F") {
                         SceneManager.LoadScene("Dialogue_Day2FailStage");
                     } else {

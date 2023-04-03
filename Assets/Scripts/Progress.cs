@@ -11,6 +11,7 @@ public static class Progress
     public static bool day1BeforeDialogueSeen {get; set;}
 
     public static string difficulty {get; set;}
+    public static int peakNotes {get; set;}
 
     public static bool day1IntroSeen {get; set;}
     public static bool day2IntroSeen {get; set;}
@@ -19,10 +20,6 @@ public static class Progress
     public static bool levelOneCleared {get; set;}
     public static bool levelTwoCleared {get; set;}
     public static bool levelThreeCleared {get; set;}
-
-    public static int levelOneHighScore {get; set;}
-    public static int levelTwoHighScore {get; set;}
-    public static int levelThreeHighScore {get; set;}
 
     public static int chosenHair {get; set;}
     public static int chosenTop {get; set;}
