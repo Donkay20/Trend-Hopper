@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu Scenes/TitleScreen.unity
     guid: f8094033fd0813d4f9f23f790d2d1c9b
   - enabled: 1
-    path: Assets/Scenes/Menu Scenes/StageSelect.unity
-    guid: 7c211bcfb8831f94da12b9ce6024705d
+    path: Assets/Scenes/Menu Scenes/StageSelectV2.unity
+    guid: d6ff8a9c1e208f340b4cf6501c4eb921
   - enabled: 1
     path: Assets/Scenes/Menu Scenes/DressUpV2.unity
     guid: 6fb2c60224a1adc47ba37c3510e43412
