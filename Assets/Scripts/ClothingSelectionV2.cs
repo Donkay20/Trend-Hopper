@@ -7,6 +7,8 @@ using Random = System.Random;
 public class ClothingSelectionV2 : MonoBehaviour
 {
     public static ClothingSelectionV2 Instance;
+    private Color unfocus = Color.grey;
+    private Color focus = Color.white;
 
     public KeyCode inputUp;
     public KeyCode inputDown;
@@ -22,6 +24,10 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Animator accessoryUI; 
     public Animator checkmarkUI;
     public Animator downTrigger;    //for the UI tab on the left-hand side
+    [Space]
+    public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco;
+    public GameObject meterDesc;
+    public Animator meter;
     [Space]
     public GameObject clothingSelector;
     public Animator leftTrigger;
@@ -39,6 +45,12 @@ public class ClothingSelectionV2 : MonoBehaviour
     public GameObject[] shoeRows = new GameObject[2];
     public GameObject[] accessoryRows = new GameObject[2];          //these should hold the rows of closet displays (right now 2, max 3 on completion.)
     [Space]
+    public GameObject[] hairRowsInner = new GameObject[6];
+    public GameObject[] topRowsInner = new GameObject[6];
+    public GameObject[] bottomRowsInner = new GameObject[6];
+    public GameObject[] shoeRowsInner = new GameObject[6];
+    public GameObject[] accessoryRowsInner = new GameObject[6];
+    [Space]
     public GameObject assignedHair;
     public GameObject assignedTop;
     public GameObject assignedBottom;
@@ -53,7 +65,6 @@ public class ClothingSelectionV2 : MonoBehaviour
     [Space]
     public AudioSource shiftLeft;
     public AudioSource shiftRight;
-    public AudioSource select;
 
     private int hairRow;                      //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
     private int topRow;                       //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
@@ -70,10 +81,29 @@ public class ClothingSelectionV2 : MonoBehaviour
 
     private bool allOK;                                             //bools to check to see if each clothing category has been selected at least once; all OK if all of the have been checked once
 
+    private int meterCounter;                                       //(range: 0-5) check to see if the clothing is matching the theme of the level
+    private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool accessoryOK;   //+1 to matching clothing, +0 if not.
+
     void Start()
     {
+        if (Progress.lastLevel == null) {
+            Progress.lastLevel = "dayOneIntro";
+        }
+
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                meterDesc.GetComponent<SpriteRenderer>().sprite = meterTitlePunk;
+                break;
+            case "dayTwoIntro":
+                meterDesc.GetComponent<SpriteRenderer>().sprite = meterTitleY2K;
+                break;
+            case "dayThreeIntro":
+                meterDesc.GetComponent<SpriteRenderer>().sprite = meterTitleDisco;
+                break;
+        }
         Instance = this;            //initialize the instance
         selectedCategory = "hair";  //set the default position to hair.
+        meterCounter = 0;           //initialize the meter to 0, unsure if needed, probably not
         UpdateCategory(selectedCategory);
         selectedHair = 1; selectedTop = 1; selectedBottom = 1; selectedShoe = 1; selectedAccessory = 1;
         UpdateRow();                //initialize the row, dependent on the positions decided above.
@@ -83,7 +113,7 @@ public class ClothingSelectionV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(selectedHair != -1 && selectedTop != -1 && selectedBottom != -1 && selectedShoe != -1 && selectedAccessory != -1) {
+        if(selectedHair != -1 && selectedTop != -1 && selectedBottom != -1 && selectedShoe != -1 && selectedAccessory != -1) { //if all clothing has been chosen at least once
             allOK = true;
             checkmarkUI.SetBool("checkUnlocked", true);
         }
@@ -189,7 +219,6 @@ public class ClothingSelectionV2 : MonoBehaviour
                     if (selectedTop != -1) {
                         topAnimation[selectedTop].SetBool("top"+selectedTop, false);
                     }
-                    
                     switch(selectedTop) {
                         case -1:
                             selectedTop = 0;
@@ -271,6 +300,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             }
             UpdateRow();
             UpdateOverlay();
+            checkIfOK();
         }
 
         if(Input.GetKeyDown(inputRight)) {
@@ -378,6 +408,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             }
             UpdateRow();
             UpdateOverlay();
+            checkIfOK();
         }
 
         if(Input.GetKeyDown(inputSelect)) {
@@ -420,21 +451,63 @@ public class ClothingSelectionV2 : MonoBehaviour
         switch (category) {
             case "hair":
             clothingSelector.transform.position = new Vector3(-0.5f, 3.4f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+            }
             break;
             case "top":
             clothingSelector.transform.position = new Vector3(5.1f, 3f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+            }
             break;
             case "bottom":
             clothingSelector.transform.position = new Vector3(5.1f, -1f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+            }
             break;
             case "shoe":
             clothingSelector.transform.position = new Vector3(-0.5f, 1.1f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+            }
             break;
             case "accessory":
             clothingSelector.transform.position = new Vector3(-0.5f, -1.6f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+            }
             break;
             case "check":
             clothingSelector.transform.position = new Vector3(10f, 10f, 0f);
+            for (int i = 0; i < 5; i++) {
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+            }
             break;
         }
     }
@@ -578,5 +651,144 @@ public class ClothingSelectionV2 : MonoBehaviour
         DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
         DressUpStatBonuses.leniency = (0.001*allocateLeniency);
         DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
+    }
+
+    private void checkIfOK() {
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                if(selectedHair == 0 || selectedHair == 1 || selectedHair == 2) {
+                    hairOK = true;
+                } else {
+                    hairOK = false;
+                }
+                break;
+            case "dayTwoIntro":
+                if(selectedHair == 3 || selectedHair == 4 || selectedHair == 5) {
+                    hairOK = true;
+                } else {
+                    hairOK = false;
+                }
+                break;
+            case "dayThreeIntro":
+                if(selectedHair == 6 || selectedHair == 7 || selectedHair == 8) {
+                    hairOK = true;
+                } else {
+                    hairOK = false;
+                }
+                break;
+        }
+
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                if(selectedTop == 0 || selectedTop == 1 || selectedTop == 2) {
+                    topOK = true;
+                } else {
+                    topOK = false;
+                }
+                break;
+            case "dayTwoIntro":
+                if(selectedTop == 3 || selectedTop == 4 || selectedTop == 5) {
+                    topOK = true;
+                } else {
+                    topOK = false;
+                }
+                break;
+             case "dayThreeIntro":
+                if(selectedTop == 6 || selectedTop == 7 || selectedTop == 8) {
+                     topOK = true;
+                } else {
+                     topOK = false;
+                }
+                break;
+        }
+
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                if(selectedBottom == 0 || selectedBottom == 1 || selectedBottom == 2) {
+                    bottomOK = true;
+                } else {
+                    bottomOK = false;
+                }
+                break;
+            case "dayTwoIntro":
+                if(selectedBottom == 3 || selectedBottom == 4 || selectedBottom == 5) {
+                    bottomOK = true;
+                } else {
+                    bottomOK = false;
+                }
+                break;
+             case "dayThreeIntro":
+                if(selectedBottom == 6 || selectedBottom == 7 || selectedBottom == 8) {
+                     bottomOK = true;
+                } else {
+                     bottomOK = false;
+                }
+                break;
+        }
+
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                if(selectedShoe == 0 || selectedShoe == 1 || selectedShoe == 2) {
+                    shoeOK = true;
+                } else {
+                    shoeOK = false;
+                }
+                break;
+            case "dayTwoIntro":
+                if(selectedShoe == 3 || selectedShoe == 4 || selectedShoe == 5) {
+                    shoeOK = true;
+                } else {
+                    shoeOK = false;
+                }
+                break;
+             case "dayThreeIntro":
+                if(selectedShoe == 6 || selectedShoe == 7 || selectedShoe == 8) {
+                     shoeOK = true;
+                } else {
+                     shoeOK = false;
+                }
+                break;
+        }
+
+        switch(Progress.lastLevel) {
+            case "dayOneIntro":
+                if(selectedAccessory == 0 || selectedAccessory == 1 || selectedAccessory == 2) {
+                    accessoryOK = true;
+                } else {
+                    accessoryOK = false;
+                }
+                break;
+            case "dayTwoIntro":
+                if(selectedAccessory == 3 || selectedAccessory == 4 || selectedAccessory == 5) {
+                    accessoryOK = true;
+                } else {
+                    accessoryOK = false;
+                }
+                break;
+             case "dayThreeIntro":
+                if(selectedAccessory == 6 || selectedAccessory == 7 || selectedAccessory == 8) {
+                     accessoryOK = true;
+                } else {
+                     accessoryOK = false;
+                }
+                break;
+        }
+
+        meterCounter = 0;
+        if (hairOK) {meterCounter++;}
+        if (topOK) {meterCounter++;}
+        if (bottomOK) {meterCounter++;}
+        if (shoeOK) {meterCounter++;}
+        if (accessoryOK) {meterCounter++;}
+
+        if(meterCounter > 0) {
+            meter.SetBool("to"+(meterCounter-1), false);
+        }
+
+        meter.SetBool("to"+meterCounter, true);
+
+        if(meterCounter < 5) {
+            meter.SetBool("to"+(meterCounter+1), false);
+        }
     }
 }
