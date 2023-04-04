@@ -650,6 +650,7 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
         DressUpStatBonuses.leniency = (0.001*allocateLeniency);
+        DressUpStatBonuses.leniencyValue = allocateLeniency;
         DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
     }
 

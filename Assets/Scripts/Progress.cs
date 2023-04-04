@@ -5,13 +5,20 @@ using UnityEngine;
 public static class Progress
 {
     public static string lastLevel {get; set;}
-    public static bool failedOnce {get; set;}
     public static bool dressUpTutorialSeen {get; set;}
 
     public static bool day1BeforeDialogueSeen {get; set;}
 
     public static string difficulty {get; set;}
+
     public static int peakNotes {get; set;}
+    public static int hitCount {get; set;}
+    public static int okCount {get; set;}
+    public static int missCount {get; set;}
+    public static bool failed {get; set;}
+    public static bool notEnoughHealth {get; set;}
+    public static int score {get; set;}
+    public static int highestCombo {get; set;}
 
     public static bool day1IntroSeen {get; set;}
     public static bool day2IntroSeen {get; set;}

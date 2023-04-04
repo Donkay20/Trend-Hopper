@@ -21,9 +21,6 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro comboSplash;
     public TMPro.TextMeshPro scoreText;
     public TMPro.TextMeshPro healthText;
-    public TMPro.TextMeshPro debugPerfectText;
-    public TMPro.TextMeshPro debugOKText;
-    public TMPro.TextMeshPro debugMissText;
     public TMPro.TextMeshPro healthRequirementText;
     [Space]
     public GameObject thresholdIndicator;
@@ -32,25 +29,12 @@ public class ScoreManager : MonoBehaviour
     public GameObject dangerNotifier;
     public GameObject peakNotifier;
 
-    static int comboScore;
-    static int score;
-    static float health;
-    static float maxHealth;
-    static int debugPerfectValue;
-    static int debugOKValue;
-    static int debugMissValue;
-    static int failCheck;
-    static int comboRecord;
+    static int comboScore; //can stay
+    static float health;    //can stay
+    static float maxHealth = 200; //can stay
+
     public int maxCombo = 500;
     private string hundredToText;        //juice to show each 100 in score.
-
-    private int[] comboLog = new int[6]; //array for score & pass/fail value
-    // 0 = perfect
-    // 1 = ok
-    // 2 = bad
-    // 3 = pass/fail check; 0 is pass, 1 is fail
-    // 4 = score total
-    // 5 = highest combo
 
     void Start()
     {
@@ -62,16 +46,16 @@ public class ScoreManager : MonoBehaviour
 
         Instance = this;
 
-        Progress.peakNotes = 0;
         comboScore = 0;
-        score = 0;
-        debugPerfectValue = 0;
-        debugOKValue = 0;
-        debugMissValue = 0;
-        failCheck = 0;
-        comboRecord = 0;
+
         Progress.peakNotes = 0;
-        maxHealth = 200;
+        Progress.score = 0;
+        Progress.hitCount = 0;
+        Progress.okCount = 0;
+        Progress.missCount = 0;
+        Progress.failed = false;
+        Progress.highestCombo = 0;
+
         switch (Progress.difficulty) {
             case "easy":
                 health = 100;
@@ -90,24 +74,22 @@ public class ScoreManager : MonoBehaviour
 
     public static void Hit()
     {
-        score += 100;
-        comboScore += 1;
+        Progress.score += 100; comboScore++; Progress.hitCount++;
+        Instance.hitSFX.Play();
 
         if (comboScore % 100 == 0) {
             Instance.hundredToText = comboScore.ToString();
             Instance.hundredIndicator();
         }
 
-        if (comboScore > comboRecord) {
-            comboRecord = comboScore;
+        if (comboScore > Progress.highestCombo) {
+            Progress.highestCombo = comboScore;
         }
-
-        debugPerfectValue += 1;
-        Instance.hitSFX.Play();
 
         if (health == maxHealth) {
             Progress.peakNotes++;
         }
+
         if (health >= 199) {
             health = 200;
         } else {
@@ -128,15 +110,16 @@ public class ScoreManager : MonoBehaviour
 
     public static void OK()
     {
-        score += 50;
-        comboScore += 1;
+        Progress.score += 50; comboScore++; Progress.okCount++;
 
         if (comboScore % 100 == 0) {
             Instance.hundredToText = comboScore.ToString();
             Instance.hundredIndicator();
         }
 
-        debugOKValue += 1;
+        if (comboScore > Progress.highestCombo) {
+            Progress.highestCombo = comboScore;
+        }
 
         if (health == maxHealth) {
             Progress.peakNotes++;
@@ -164,9 +147,8 @@ public class ScoreManager : MonoBehaviour
     public static void Miss()   //missing a note that would cause you to drop to 0 health or below triggers the fail trigger and loads the results cutscene.
                                 //this code will be edited to include a delay to display a "failure" graphic before a transition happens.
     {
-        comboScore = 0;
-        debugMissValue += 1;
-        Instance.missSFX.Play();
+        comboScore = 0; Progress.missCount++; Instance.missSFX.Play();
+
         switch (Progress.difficulty) {
             case "easy":
                 health -= 3;
@@ -178,12 +160,12 @@ public class ScoreManager : MonoBehaviour
                 health -= 5;
                 break;
         }
+
         Instance.UpdateHealthUI();
+
         if (health <= 0) {
-            failCheck = 1;
-            Progress.failedOnce = true;
+            Progress.failed = true;
             SceneManager.LoadScene("Results");
-            //Application.Quit();
         }
     }
 
@@ -235,26 +217,14 @@ public class ScoreManager : MonoBehaviour
             comboScoreText.text = comboScore.ToString();
         }
         if (health < DressUpStatBonuses.scoreThreshold) {
-            failCheck = 1;
+            Progress.notEnoughHealth = true;
         }
         if (health >= DressUpStatBonuses.scoreThreshold) {
-            failCheck = 0;
+            Progress.notEnoughHealth = false;
         }
-        scoreText.text = score.ToString();
-        healthText.text = health.ToString();
-        debugPerfectText.text = debugPerfectValue.ToString();
-        debugOKText.text = debugOKValue.ToString();
-        debugMissText.text = debugMissValue.ToString();
-    }
 
-    public int[] getScoreLog() {        //builds the info needed to send to the results screen. may or may not need to reset its values for multiple levels but we'll see idk
-        comboLog[0] = debugPerfectValue;
-        comboLog[1] = debugOKValue;
-        comboLog[2] = debugMissValue;
-        comboLog[3] = failCheck;
-        comboLog[4] = score;
-        comboLog[5] = comboRecord;
-        return comboLog;
+        scoreText.text = Progress.score.ToString();
+        healthText.text = health.ToString();
     }
 
     public void UpdateHealthUI() {
@@ -283,10 +253,6 @@ public class ScoreManager : MonoBehaviour
                 thresholdIndicator.transform.position = new Vector3(0.627f, 4.58f, 0f);
                 break;  
         }
-    }
-
-    public int getCombo() {
-        return comboScore;
     }
 
     public void hundredIndicator() {

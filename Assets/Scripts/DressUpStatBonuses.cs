@@ -6,6 +6,7 @@ public static class DressUpStatBonuses
 {
     public static double scoreMultiplier {get; set;}    //Carry-over variables to the results screen and rhythm game.
     public static double leniency {get; set;}
+    public static int leniencyValue {get; set;}      //value to display
     public static int scoreThreshold {get; set;}
 
     public static bool peaking {get; set;}              //global variable to check if player is at max health
