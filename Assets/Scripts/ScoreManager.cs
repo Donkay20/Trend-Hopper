@@ -36,6 +36,11 @@ public class ScoreManager : MonoBehaviour
     public int maxCombo = 500;
     private string hundredToText;        //juice to show each 100 in score.
 
+    public ParticleSystem leftHit; //sfx note hit
+    public ParticleSystem rightHit;
+    public ParticleSystem upHit;
+    public ParticleSystem downHit;
+
     void Start()
     {
         healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
@@ -47,6 +52,12 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
 
         comboScore = 0;
+
+        leftHit = GameObject.Find("LeftArrowSFX").GetComponent<ParticleSystem>();
+        rightHit = GameObject.Find("RightArrowSFX").GetComponent<ParticleSystem>();
+        upHit = GameObject.Find("UpArrowSFX").GetComponent<ParticleSystem>();
+        downHit = GameObject.Find("DownArrowSFX").GetComponent<ParticleSystem>();
+       
 
         Progress.peakNotes = 0;
         Progress.score = 0;
@@ -76,6 +87,23 @@ public class ScoreManager : MonoBehaviour
     {
         Progress.score += 100; comboScore++; Progress.hitCount++;
         Instance.hitSFX.Play();
+
+        //SFX Arrow hits
+        if (Input.GetKey(KeyCode.LeftArrow)){
+            Instance.leftHit.Play();
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow)){
+            Instance.rightHit.Play();
+        }
+         
+        if (Input.GetKey(KeyCode.UpArrow)){
+            Instance.upHit.Play();
+        }
+        
+        if (Input.GetKey(KeyCode.DownArrow)){
+            Instance.downHit.Play();
+        }
 
         if (comboScore % 100 == 0) {
             Instance.hundredToText = comboScore.ToString();
