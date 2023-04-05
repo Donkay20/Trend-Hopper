@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
 
         Instance = this;
-        comboScore = 90;
+        comboScore = 0;
 
         leftHit = GameObject.Find("LeftArrowSFX").GetComponent<ParticleSystem>();
         rightHit = GameObject.Find("RightArrowSFX").GetComponent<ParticleSystem>();
