@@ -15,6 +15,7 @@ public class ResultsManager : MonoBehaviour
     private double finalScoreAfterMultiplier;
     private int highestPossibleScore;
     private string grade;
+    private bool high;
 
     public KeyCode input;
     [Space]
@@ -42,6 +43,28 @@ public class ResultsManager : MonoBehaviour
     public GameObject levelIcon;
     public Sprite gradeF; public Sprite gradeD; public Sprite gradeC; public Sprite gradeB; public Sprite gradeA; public Sprite gradeS;
     public GameObject gradeIcon;
+    [Space]
+    public GameObject mcDisplay;
+    public Sprite successSprite;
+    public Sprite failSprite;
+    [Space]
+    public GameObject appliedHair; 
+    public GameObject appliedTop; 
+    public GameObject appliedBottom; 
+    public GameObject appliedShoe; 
+    public GameObject appliedAccessory;
+    [Space]
+    public Sprite[] hairStorageSuccess = new Sprite[9];
+    public Sprite[] topStorageSuccess = new Sprite[9];
+    public Sprite[] bottomStorageSuccess = new Sprite[9];
+    public Sprite[] shoeStorageSuccess = new Sprite[9];
+    public Sprite[] accessoryStorageSuccess = new Sprite[9];
+    [Space]
+    public Sprite[] hairStorageFailure = new Sprite[9];
+    public Sprite[] topStorageFailure = new Sprite[9];
+    public Sprite[] bottomStorageFailure = new Sprite[9];
+    public Sprite[] shoeStorageFailure = new Sprite[9];
+    public Sprite[] accessoryStorageFailure = new Sprite[9];
     
     void Start()
     {   
@@ -104,6 +127,34 @@ public class ResultsManager : MonoBehaviour
 
         highestPossibleScore = (totalNotes*100) * 2;        //highest possible score from the song, this can be alleviated with gold notes.
         letterGrade();                                      //invoke the letter grade class, dependent on the values above (may change)
+
+        switch (grade) {
+            case "S":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = successSprite;
+                high = true;
+                break;
+            case "A":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = successSprite;
+                high = true;
+                break;
+            case "B":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = successSprite;
+                high = true;
+                break;
+            case "C":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = failSprite;
+                high = false;
+                break;
+            case "D":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = failSprite;
+                high = false;
+                break;
+            case "F":
+                mcDisplay.GetComponent<SpriteRenderer>().sprite = failSprite;
+                high = false;
+                break;
+        }
+
     }
 
     // Update is called once per frame
@@ -125,7 +176,13 @@ public class ResultsManager : MonoBehaviour
                         SceneManager.LoadScene("Dialogue_Day2PassStage");
                     }
                     break;
-                //case "dayThree":
+                case "dayThree":
+                    if (grade == "F") {
+                        SceneManager.LoadScene("Dialogue_Day3FailStage");
+                    } else {
+                        SceneManager.LoadScene("Dialogue_Day3PassStage");
+                    }
+                    break;
             }
         }
     }
@@ -154,6 +211,25 @@ public class ResultsManager : MonoBehaviour
                 grade = "D";
                 gradeIcon.GetComponent<SpriteRenderer>().sprite = gradeD;
             }
+        }
+    }
+
+    private void appliedClothing() {
+        switch(high) {
+            case true:
+                appliedHair.GetComponent<SpriteRenderer>().sprite = hairStorageSuccess[Progress.chosenHair];
+                appliedTop.GetComponent<SpriteRenderer>().sprite = topStorageSuccess[Progress.chosenTop];
+                appliedBottom.GetComponent<SpriteRenderer>().sprite = bottomStorageSuccess[Progress.chosenBottom];
+                appliedShoe.GetComponent<SpriteRenderer>().sprite = shoeStorageSuccess[Progress.chosenShoe];
+                appliedAccessory.GetComponent<SpriteRenderer>().sprite = accessoryStorageSuccess[Progress.chosenAccessory];
+                break;
+            case false:
+                appliedHair.GetComponent<SpriteRenderer>().sprite = hairStorageFailure[Progress.chosenHair];
+                appliedTop.GetComponent<SpriteRenderer>().sprite = topStorageFailure[Progress.chosenTop];
+                appliedBottom.GetComponent<SpriteRenderer>().sprite = bottomStorageFailure[Progress.chosenBottom];
+                appliedShoe.GetComponent<SpriteRenderer>().sprite = shoeStorageFailure[Progress.chosenShoe];
+                appliedAccessory.GetComponent<SpriteRenderer>().sprite = accessoryStorageFailure[Progress.chosenAccessory];
+                break;
         }
     }
 }

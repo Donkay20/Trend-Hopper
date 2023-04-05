@@ -215,7 +215,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                             selectedHair = 0;
                             break;
                         case 0:
-                            selectedHair = 5;
+                            selectedHair = 8;
                             break;
                         case >0:
                             selectedHair--;
@@ -235,7 +235,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                             selectedTop = 0;
                             break;
                         case 0:
-                            selectedTop = 5;
+                            selectedTop = 8;
                             break;
                         case >0:
                             selectedTop--;
@@ -256,7 +256,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                             selectedBottom = 0;
                             break;
                         case 0:
-                            selectedBottom = 5;
+                            selectedBottom = 8;
                             break;
                         case >0:
                             selectedBottom--;
@@ -277,7 +277,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                             selectedShoe = 0;
                             break;
                         case 0:
-                            selectedShoe = 5;
+                            selectedShoe = 8;
                             break;
                         case >0:
                             selectedShoe--;
@@ -298,7 +298,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                             selectedAccessory = 0;
                             break;
                         case 0:
-                            selectedAccessory = 5;
+                            selectedAccessory = 8;
                             break;
                         case >0:
                             selectedAccessory--;
@@ -325,10 +325,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case -1:
                             selectedHair = 0;
                             break;
-                        case 5:
+                        case 8:
                             selectedHair = 0;
                             break;
-                        case <5:
+                        case <8:
                             selectedHair++;
                             break;
                     }
@@ -345,10 +345,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case -1:
                             selectedTop = 0;
                             break;
-                        case 5:
+                        case 8:
                             selectedTop = 0;
                             break;
-                        case <5:
+                        case <8:
                             selectedTop++;
                             break;
                     }
@@ -365,10 +365,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case -1:
                             selectedBottom = 0;
                             break;
-                        case 5:
+                        case 8:
                             selectedBottom = 0;
                             break;
-                        case <5:
+                        case <8:
                             selectedBottom++;
                             break;
                     }
@@ -385,10 +385,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case -1:
                             selectedShoe = 0;
                             break;
-                        case 5:
+                        case 8:
                             selectedShoe = 0;
                             break;
-                        case <5:
+                        case <8:
                             selectedShoe++;
                             break;
                     }
@@ -405,10 +405,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case -1:
                             selectedAccessory = 0;
                             break;
-                        case 5:
+                        case 8:
                             selectedAccessory = 0;
                             break;
-                        case <5:
+                        case <8:
                             selectedAccessory++;
                             break;
                     }
@@ -443,7 +443,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                         }
                         break;
                     case "dayTwoIntro":
-                        if (selectedHair > 2 && selectedTop > 2 && selectedBottom > 2 && selectedShoe > 2 && selectedAccessory > 2) { //this clause will need to be changed when lv3 stuff is here!
+                        if (selectedHair > 2 && selectedHair < 6 && selectedTop > 2 && selectedTop < 6 && selectedBottom > 2 && selectedBottom < 6 && selectedShoe > 2 && selectedShoe < 6 && selectedAccessory > 2 && selectedAccessory < 6) { //this clause will need to be changed when lv3 stuff is here!
                             SceneManager.LoadScene("Dialogue_Day2PassDressUp");
                             calculateBonus(2);
                         } else {
@@ -451,7 +451,12 @@ public class ClothingSelectionV2 : MonoBehaviour
                         }
                         break;
                     case "dayThreeIntro":
-                        //todo
+                        if (selectedHair > 5 && selectedTop > 5 && selectedBottom > 5 && selectedShoe > 5 && selectedAccessory > 5) {
+                            SceneManager.LoadScene("Dialogue_Day3PassDressUp");
+                            calculateBonus(3);
+                        } else {
+                            SceneManager.LoadScene("Dialogue_Day3FailDressUp");
+                        }
                         break;
                 }
             }
@@ -462,7 +467,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         switch (category) {
             case "hair":
             clothingSelector.transform.position = new Vector3(-0.5f, 3.4f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -472,7 +477,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "top":
             clothingSelector.transform.position = new Vector3(5.1f, 3f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -482,7 +487,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "bottom":
             clothingSelector.transform.position = new Vector3(5.1f, -1f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
@@ -492,7 +497,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "shoe":
             clothingSelector.transform.position = new Vector3(-0.5f, 1.1f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -502,7 +507,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "accessory":
             clothingSelector.transform.position = new Vector3(-0.5f, -1.6f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -512,7 +517,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             break;
             case "check":
             clothingSelector.transform.position = new Vector3(10f, 10f, 0f);
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 9; i++) {
                 hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
                 bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
@@ -561,37 +566,47 @@ public class ClothingSelectionV2 : MonoBehaviour
         */
         if (selectedHair == -1) {} if (selectedTop == -1) {} if (selectedBottom == -1) {} if (selectedShoe == -1) {} if (selectedAccessory == -1) {}
 
-        if (selectedHair > 2) {
-            hairRow = 1;
-        } else {
+        if (selectedHair < 3) {
             hairRow = 0;
+        } else if (selectedHair > 2 && selectedHair < 6){
+            hairRow = 1;
+        } else if (selectedHair > 5) {
+            hairRow = 2;
         }
 
-        if (selectedTop > 2) {
-            topRow = 1;
-        } else {
+        if (selectedTop < 3) {
             topRow = 0;
+        } else if (selectedTop > 2 && selectedTop < 6){
+            topRow = 1;
+        } else if (selectedTop > 5) {
+            topRow = 2;
         }
 
-        if (selectedBottom > 2) {
-            bottomRow = 1;
-        } else {
+        if (selectedBottom < 3) {
             bottomRow = 0;
+        } else if (selectedBottom > 2 && selectedBottom < 6){
+            bottomRow = 1;
+        } else if (selectedBottom > 5) {
+            bottomRow = 2;
         }
 
-        if (selectedShoe > 2) {
-            shoeRow = 1;
-        } else {
+        if (selectedShoe < 3) {
             shoeRow = 0;
+        } else if (selectedShoe > 2 && selectedShoe < 6){
+            shoeRow = 1;
+        } else if (selectedShoe > 5) {
+            shoeRow = 2;
         }
 
-        if (selectedAccessory > 2) {
-            accessoryRow = 1;
-        } else {
+        if (selectedAccessory < 3) {
             accessoryRow = 0;
+        } else if (selectedAccessory > 2 && selectedAccessory < 6){
+            accessoryRow = 1;
+        } else if (selectedAccessory > 5) {
+            accessoryRow = 2;
         }
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             if (i != hairRow) {
                 hairRows[i].transform.position = new Vector3(10f, 10f, 0f);
             } else {
@@ -630,7 +645,7 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         switch(day) {
             case 1:
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 8; i++) {
                     switch(clothingChecks[i]) {
                         case 0:
                             allocateScore += 0.2;  
@@ -645,7 +660,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                 }
                 break;
             case 2:
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 8; i++) {
                     switch(clothingChecks[i]) {
                         case 3:
                             allocateScore += 0.2;  
@@ -660,7 +675,19 @@ public class ClothingSelectionV2 : MonoBehaviour
                 }
                 break;
             case 3:
-                //todo
+                for (int i = 0; i < 8; i++) {
+                    switch(clothingChecks[i]) {
+                        case 6:
+                            allocateScore += 0.2;  
+                            break;
+                        case 7:
+                            allocateLeniency += 10;
+                            break;
+                        case 8:
+                            allocateCoolness -= 5;
+                            break;
+                    }
+                }
                 break;
         }
         DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
@@ -831,6 +858,15 @@ public class ClothingSelectionV2 : MonoBehaviour
                         case 5:
                             allocateCoolness -= 5;
                             break;
+                        case 6:
+                            allocateScore += 0.2;  
+                            break;
+                        case 7:
+                            allocateLeniency += 10;
+                            break;
+                        case 8:
+                            allocateCoolness -= 5;
+                            break;    
                     }
                 }
 

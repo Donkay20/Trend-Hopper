@@ -449,7 +449,23 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("StageSelectV2");
                 break;
             //Day 3
-            //TODO
+            case "Dialogue_Day3":
+                Progress.day2IntroSeen = true;
+                SceneManager.LoadScene("DressUpV2");
+                break;
+            case "Dialogue_Day3FailDressUp":
+                SceneManager.LoadScene("StageSelectV2");
+                break;
+            case "Dialogue_Day3PassDressUp":
+                SceneManager.LoadScene("LevelThree");
+                break;
+            case "Dialogue_Day3PassStage":
+                Progress.levelThreeCleared = true;
+                SceneManager.LoadScene("StageSelectV2");
+                break;
+            case "Dialogue_Day3FailStage":
+                SceneManager.LoadScene("StageSelectV2");
+                break;
         }
     }
 }

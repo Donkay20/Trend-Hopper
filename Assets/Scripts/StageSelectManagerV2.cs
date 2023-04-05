@@ -208,7 +208,14 @@ public class StageSelectManagerV2 : MonoBehaviour
                             }
                             
                             break;
-                        //case 3: todo
+                        case 3:
+                            if (Progress.day2IntroSeen) {
+                                continueController.SetBool("appear", true);
+                                phase = 3;
+                            } else {
+                                SceneManager.LoadScene("Dialogue_Day3");
+                            }
+                            break;
                     }
                     break;
 
@@ -236,7 +243,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 Progress.lastLevel = "dayThreeIntro";
                                 SceneManager.LoadScene("DressUpV2");
                             } else {
-                                //SceneManager.LoadScene("Dialogue_Day3");
+                                SceneManager.LoadScene("Dialogue_Day3");
                             }
                             break;
                     }
