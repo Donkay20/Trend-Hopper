@@ -13,6 +13,11 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     public Image healthFill;
+    public Image healthFillGold;
+    public Sprite heartGold; 
+    public Sprite heartNormal;
+    public GameObject heart;
+    public GameObject sparkle100;
     [Space]
     public AudioSource hitSFX;
     public AudioSource missSFX;
@@ -33,6 +38,10 @@ public class ScoreManager : MonoBehaviour
     public Animator downPress;
     public Animator leftPress;
     public Animator rightPress;
+    public Animator MC;
+    public Animator NPC;
+    [Space]
+
 
     static int comboScore; 
     static float health;    
@@ -46,6 +55,8 @@ public class ScoreManager : MonoBehaviour
     private ParticleSystem upHit;
     private ParticleSystem downHit;
 
+    private bool flipped;
+
     void Start()
     {
         healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
@@ -55,7 +66,7 @@ public class ScoreManager : MonoBehaviour
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
 
         Instance = this;
-        comboScore = 0;
+        comboScore = 90;
 
         leftHit = GameObject.Find("LeftArrowSFX").GetComponent<ParticleSystem>();
         rightHit = GameObject.Find("RightArrowSFX").GetComponent<ParticleSystem>();
@@ -92,6 +103,7 @@ public class ScoreManager : MonoBehaviour
 
     public static void Hit()
     {
+        Instance.flipMC();
         Progress.score += 100; comboScore++; Progress.hitCount++;
         Instance.hitSFX.Play();
 
@@ -145,6 +157,7 @@ public class ScoreManager : MonoBehaviour
 
     public static void OK()
     {
+        Instance.flipMC();
         Progress.score += 50; comboScore++; Progress.okCount++;
 
         if (comboScore % 100 == 0) {
@@ -207,6 +220,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (comboScore >= 100) {
+            sparkle100.SetActive(true);
+        } else {
+            sparkle100.SetActive(false);
+        }
         if (Input.GetKey(KeyCode.LeftArrow)){
             leftPress.SetTrigger("trigger");
         }
@@ -232,9 +250,13 @@ public class ScoreManager : MonoBehaviour
         }
 
         if (health == maxHealth) {
+            heart.GetComponent<SpriteRenderer>().sprite = heartGold;
+            healthFillGold.fillAmount = healthFill.fillAmount;
             DressUpStatBonuses.peaking = true;
             peakNotifier.SetActive(true);
         } else {
+            heart.GetComponent<SpriteRenderer>().sprite = heartNormal;
+            healthFillGold.fillAmount = 0;
             DressUpStatBonuses.peaking = false;
             peakNotifier.SetActive(false);
         }
@@ -310,6 +332,20 @@ public class ScoreManager : MonoBehaviour
         if (hundredTextPrefab) {
             GameObject prefab = Instantiate(hundredTextPrefab);
             prefab.GetComponentInChildren<TextMesh>().text = hundredToText;
+        }
+    }
+
+    public void flipMC() {
+        NPC.SetTrigger("trigger");
+        switch (flipped) {
+            case true:
+                MC.SetBool("flip", false);
+                flipped = false;
+                break;
+            case false:
+                MC.SetBool("flip", true);
+                flipped = true;
+                break;
         }
     }
 }

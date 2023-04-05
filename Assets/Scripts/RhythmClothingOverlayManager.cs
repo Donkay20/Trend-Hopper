@@ -16,16 +16,16 @@ public class RhythmClothingOverlayManager : MonoBehaviour
     public GameObject appliedVSBottom;
     public GameObject appliedVSAccessory;
     [Space]
-    public Sprite[] chibiHair = new Sprite[6];
-    public Sprite[] chibiTop = new Sprite[6];
-    public Sprite[] chibiBottom = new Sprite[6];
-    public Sprite[] chibiShoe = new Sprite[6];
-    public Sprite[] chibiAccessory = new Sprite[6];
+    public Sprite[] chibiHair = new Sprite[9];
+    public Sprite[] chibiTop = new Sprite[9];
+    public Sprite[] chibiBottom = new Sprite[9];
+    public Sprite[] chibiShoe = new Sprite[9];
+    public Sprite[] chibiAccessory = new Sprite[9];
     [Space]
-    public Sprite[] VSHair = new Sprite[6];
-    public Sprite[] VSTop = new Sprite[6];
-    public Sprite[] VSBottom = new Sprite[6];
-    public Sprite[] VSAccessory = new Sprite[6];
+    public Sprite[] VSHair = new Sprite[9];
+    public Sprite[] VSTop = new Sprite[9];
+    public Sprite[] VSBottom = new Sprite[9];
+    public Sprite[] VSAccessory = new Sprite[9];
 
     void Start()
     {
