@@ -43,17 +43,19 @@ public class DialogueManager : MonoBehaviour
     public Sprite school_bg;
     public Sprite home_bg;
     public Sprite cafe_bg;
-    public Sprite detention_bg;         //backgrounds
+    public Sprite detention_bg;         
+    public Sprite disco_bg;             //backgrounds
     [Space]
     public Sprite EMPTY;
     public Sprite Vicky; public Sprite Rocky; public Sprite Tyler;          //punk NPCs
     public Sprite Mackaylah; public Sprite Milgo; public Sprite meiLing;    //Y2K NPCs
+    public Sprite Molly; public Sprite Dennis; public Sprite Sequoia;       //disco NPCs
     [Space]
     public Sprite mcDressedUpTemplate;              //I don't think I really need this tbh
-    public Sprite[] hairCatalog = new Sprite[6];    //expand to 9 upon third set of clothing
-    public Sprite[] topCatalog = new Sprite[6];
-    public Sprite[] bottomCatalog = new Sprite[6];
-    public Sprite[] accessoryCatalog = new Sprite[6];
+    public Sprite[] hairCatalog = new Sprite[9];    //expand to 9 upon third set of clothing
+    public Sprite[] topCatalog = new Sprite[9];
+    public Sprite[] bottomCatalog = new Sprite[9];
+    public Sprite[] accessoryCatalog = new Sprite[9];
 
     void Start()
     {   
@@ -216,7 +218,7 @@ public class DialogueManager : MonoBehaviour
                             case "surprised": break;
                             case "smug":
                                 animateLeft.SetBool("SmugToSurprised", true);
-                                animateLeft.SetBool("SurprisedToSmug", false); animateLeft.SetBool("CryingToSmug", false); animateLeft.SetBool("WinkingToSmug", false); 
+                                animateLeft.SetBool("SurprisedToSmug", false); animateLeft.SetBool("CryingToSmug", false); animateLeft.SetBool("WinkingToSmug", false);
                                 nameText.text = "Jassmea"; changedPrior = true;
                                 break;
                             case "crying":
@@ -349,6 +351,15 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case "Mei Ling":
                     characterOnRight.GetComponent<Image>().sprite = meiLing;
+                    break;
+                case "Molly":
+                    characterOnRight.GetComponent<Image>().sprite = Molly;
+                    break;
+                case "Dennis":
+                    characterOnRight.GetComponent<Image>().sprite = Dennis;
+                    break;
+                case "Sequoia":
+                    characterOnRight.GetComponent<Image>().sprite = Sequoia;
                     break;
             }
             animateLeft.SetBool("mainCharIsSpeaking", false);   

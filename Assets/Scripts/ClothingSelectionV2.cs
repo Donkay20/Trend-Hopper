@@ -33,23 +33,23 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Animator leftTrigger;
     public Animator rightTrigger;   //for the moving selector
     [Space]
-    public Animator[] hairAnimation = new Animator[6];
-    public Animator[] topAnimation = new Animator[6];
-    public Animator[] bottomAnimation = new Animator[6];
-    public Animator[] shoeAnimation = new Animator[6];
-    public Animator[] accessoryAnimation = new Animator[6];         //these will control the animations that go in and out
+    public Animator[] hairAnimation = new Animator[9];
+    public Animator[] topAnimation = new Animator[9];
+    public Animator[] bottomAnimation = new Animator[9];
+    public Animator[] shoeAnimation = new Animator[9];
+    public Animator[] accessoryAnimation = new Animator[9];         //these will control the animations that go in and out
     [Space]
-    public GameObject[] hairRows = new GameObject[2];
-    public GameObject[] topRows = new GameObject[2];
-    public GameObject[] bottomRows = new GameObject[2];
-    public GameObject[] shoeRows = new GameObject[2];
-    public GameObject[] accessoryRows = new GameObject[2];          //these should hold the rows of closet displays (right now 2, max 3 on completion.)
+    public GameObject[] hairRows = new GameObject[3];
+    public GameObject[] topRows = new GameObject[3];
+    public GameObject[] bottomRows = new GameObject[3];
+    public GameObject[] shoeRows = new GameObject[3];
+    public GameObject[] accessoryRows = new GameObject[3];          //these should hold the rows of closet displays (right now 2, max 3 on completion.)
     [Space]
-    public GameObject[] hairRowsInner = new GameObject[6];
-    public GameObject[] topRowsInner = new GameObject[6];
-    public GameObject[] bottomRowsInner = new GameObject[6];
-    public GameObject[] shoeRowsInner = new GameObject[6];
-    public GameObject[] accessoryRowsInner = new GameObject[6];
+    public GameObject[] hairRowsInner = new GameObject[9];
+    public GameObject[] topRowsInner = new GameObject[9];
+    public GameObject[] bottomRowsInner = new GameObject[9];
+    public GameObject[] shoeRowsInner = new GameObject[9];
+    public GameObject[] accessoryRowsInner = new GameObject[9];     //this is for the clothing stuff when it gets darker when you move off of it or focus it
     [Space]
     public GameObject assignedHair;
     public GameObject assignedTop;
@@ -57,17 +57,22 @@ public class ClothingSelectionV2 : MonoBehaviour
     public GameObject assignedShoe;
     public GameObject assignedAccessory;                             //these are the clothes that will show on the character.
     [Space]
-    public Sprite[] appliedHairCatalog = new Sprite[6];
-    public Sprite[] appliedTopCatalog = new Sprite[6];
-    public Sprite[] appliedBottomCatalog = new Sprite[6];
-    public Sprite[] appliedShoeCatalog = new Sprite[6];
-    public Sprite[] appliedAccessoryCatalog = new Sprite[6];        //these are the clothes in storage that can be applied to the character. max is 6, end goal should be 9.
+    public Sprite[] appliedHairCatalog = new Sprite[9];
+    public Sprite[] appliedTopCatalog = new Sprite[9];
+    public Sprite[] appliedBottomCatalog = new Sprite[9];
+    public Sprite[] appliedShoeCatalog = new Sprite[9];
+    public Sprite[] appliedAccessoryCatalog = new Sprite[9];        //these are the clothes in storage that can be applied to the character. max is 6, end goal should be 9.
+    [Space]
+    public Animator bonusBox;
+    public TMPro.TextMeshPro multiplier;
+    public TMPro.TextMeshPro leniencyP;
+    public TMPro.TextMeshPro coolness;
     [Space]
     public AudioSource shiftLeft;
     public AudioSource shiftRight;
 
-    private int hairRow;                      //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
-    private int topRow;                       //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
+    private int hairRow;                                            //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
+    private int topRow;                                             //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
     private int bottomRow;      
     private int shoeRow;        
     private int accessoryRow;   
@@ -125,6 +130,8 @@ public class ClothingSelectionV2 : MonoBehaviour
                     hairUI.SetBool("hairIsSelected", false);
                     if (allOK) {
                         selectedCategory = "check";
+                        updateBonusBoxDisplay();
+                        bonusBox.SetBool("appear", true);
                         checkmarkUI.SetBool("checkSelected", true);
                     } else {
                         selectedCategory = "accessory";
@@ -149,6 +156,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                     break;
                 case "check":
                     selectedCategory = "accessory";
+                    bonusBox.SetBool("appear", false);
                     checkmarkUI.SetBool("checkSelected", false); accessoryUI.SetBool("accIsSelected", true);
                     break;
             }
@@ -178,6 +186,8 @@ public class ClothingSelectionV2 : MonoBehaviour
                     accessoryUI.SetBool("accIsSelected", false);
                     if(allOK) {
                         selectedCategory = "check";
+                        updateBonusBoxDisplay();
+                        bonusBox.SetBool("appear", true);
                         checkmarkUI.SetBool("checkSelected", true);
                     } else {
                         selectedCategory = "hair";
@@ -186,6 +196,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                     break;
                 case "check":
                     selectedCategory = "hair";
+                    bonusBox.SetBool("appear", false);
                     checkmarkUI.SetBool("checkSelected", false); hairUI.SetBool("hairIsSelected", true);
                     break;
             }
@@ -532,6 +543,11 @@ public class ClothingSelectionV2 : MonoBehaviour
         if(selectedAccessory != -1) {
             assignedAccessory.GetComponent<SpriteRenderer>().sprite = appliedAccessoryCatalog[selectedAccessory];
         }
+
+        
+        multiplier.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
+        leniencyP.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + "ms";
+        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "required";
     }
 
     private void UpdateRow() {
@@ -647,7 +663,6 @@ public class ClothingSelectionV2 : MonoBehaviour
                 //todo
                 break;
         }
-
         DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
         DressUpStatBonuses.leniency = (0.001*allocateLeniency);
         DressUpStatBonuses.leniencyValue = allocateLeniency;
@@ -791,5 +806,41 @@ public class ClothingSelectionV2 : MonoBehaviour
         if (meterCounter < 5) {
             meter.SetBool("to"+(meterCounter+1), false);
         }
+    }
+
+    public void updateBonusBoxDisplay() {
+        double allocateScore = 0.0; int allocateLeniency = 0; int allocateCoolness = 0;
+        int[] clothingChecks = {selectedHair, selectedTop, selectedBottom, selectedShoe, selectedAccessory};
+                for (int i = 0; i < 5; i++) {
+                    switch(clothingChecks[i]) {
+                        case 0:
+                            allocateScore += 0.2;  
+                            break;
+                        case 1:
+                            allocateLeniency += 10;
+                            break;
+                        case 2:
+                            allocateCoolness -= 5;
+                            break;
+                        case 3:
+                            allocateScore += 0.2;  
+                            break;
+                        case 4:
+                            allocateLeniency += 10;
+                            break;
+                        case 5:
+                            allocateCoolness -= 5;
+                            break;
+                    }
+                }
+
+        DressUpStatBonuses.scoreMultiplier = (1.0 + allocateScore);
+        DressUpStatBonuses.leniency = (0.001*allocateLeniency);
+        DressUpStatBonuses.leniencyValue = allocateLeniency;
+        DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
+
+        multiplier.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
+        leniencyP.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + "ms";
+        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\nrequired";
     }
 }
