@@ -782,13 +782,13 @@ public class ClothingSelectionV2 : MonoBehaviour
         if (shoeOK) {meterCounter++;}
         if (accessoryOK) {meterCounter++;}
 
-        if(meterCounter > 0) {
+        if (meterCounter > 0) {
             meter.SetBool("to"+(meterCounter-1), false);
         }
 
         meter.SetBool("to"+meterCounter, true);
 
-        if(meterCounter < 5) {
+        if (meterCounter < 5) {
             meter.SetBool("to"+(meterCounter+1), false);
         }
     }

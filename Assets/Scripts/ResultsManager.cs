@@ -89,7 +89,7 @@ public class ResultsManager : MonoBehaviour
 
         multiplierText.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
         leniencyText.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + " ms";
-        coolnessText.text = DressUpStatBonuses.scoreThreshold.ToString() + " req";
+        coolnessText.text = DressUpStatBonuses.scoreThreshold.ToString() + " req.";
         peakText.text = Progress.peakNotes.ToString();
 
         finalScoreAfterMultiplierText.text = finalScoreAfterMultiplier.ToString();

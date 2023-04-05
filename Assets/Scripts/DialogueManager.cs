@@ -403,17 +403,17 @@ public class DialogueManager : MonoBehaviour
                 }
                 break;
             case "Dialogue_Day1FailDressUp":
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day1PassDressUp":
                 SceneManager.LoadScene("LevelOne");
                 break;
             case "Dialogue_Day1PassStage":
                 Progress.levelOneCleared = true;
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day1FailStage":
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Tutorial":
                 Progress.dressUpTutorialSeen = true;
@@ -425,17 +425,17 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day2FailDressUp":
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day2PassDressUp":
                 SceneManager.LoadScene("LevelTwo");
                 break;
             case "Dialogue_Day2PassStage":
                 Progress.levelTwoCleared = true;
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day2FailStage":
-                SceneManager.LoadScene("StageSelect");
+                SceneManager.LoadScene("StageSelectV2");
                 break;
             //Day 3
             //TODO

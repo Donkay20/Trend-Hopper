@@ -10,8 +10,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject readyUp;
     public KeyCode pause;
+    public KeyCode up;
+    public KeyCode down;
+    public Animator pauseControl;
+
+    private int selection;
 
     void Start() {
+        selection = 0;
+        GameIsPaused = false;
         pauseMenuUI.SetActive(false);
     }
 
@@ -19,13 +26,60 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(pause))
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
+            if (GameIsPaused) {
+                switch (selection) {
+                    case 0:
+                        Resume();
+                        break;
+                    case 1:
+                        Restart();
+                        break;
+                    case 2:
+                        MainMenu();
+                        break;
+                }
+            } else {
+                selection = 0;
+                pauseControl.SetBool("mm", false);
+                pauseControl.SetBool("restart", false);
+                pauseControl.SetBool("resume", true);
                 Pause();
+            }
+        }
+
+        if (Input.GetKeyDown(down)) {
+            switch(selection) {
+                case 0:
+                    pauseControl.SetBool("resume", false);
+                    pauseControl.SetBool("restart", true);
+                    selection = 1;
+                    break;
+                case 1:
+                    pauseControl.SetBool("restart", false);
+                    pauseControl.SetBool("mm", true);
+                    selection = 2;
+                    break;
+                case 2:
+                    //nothing
+                    break;
+            }
+        }
+
+        if (Input.GetKeyDown(up)) {
+            switch(selection) {
+                case 0:
+                    //nothing
+                    break;
+                case 1:
+                    pauseControl.SetBool("restart", false);
+                    pauseControl.SetBool("resume", true);
+                    selection = 0;
+                    break;
+                case 2:
+                    pauseControl.SetBool("mm", false);
+                    pauseControl.SetBool("restart", true);
+                    selection = 1;
+                    break;
             }
         }
     }
@@ -50,12 +104,13 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; AudioListener.pause = false; pauseMenuUI.SetActive(false);
     }
 
-    public void Quit()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("StageSelectV2");
+        Time.timeScale = 1f; AudioListener.pause = false; pauseMenuUI.SetActive(false);
     }
 
     IEnumerator GetReady() {

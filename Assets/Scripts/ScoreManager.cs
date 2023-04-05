@@ -28,18 +28,23 @@ public class ScoreManager : MonoBehaviour
     [Space]
     public GameObject dangerNotifier;
     public GameObject peakNotifier;
+    [Space]
+    public Animator upPress;
+    public Animator downPress;
+    public Animator leftPress;
+    public Animator rightPress;
 
-    static int comboScore; //can stay
-    static float health;    //can stay
-    static float maxHealth = 200; //can stay
+    static int comboScore; 
+    static float health;    
+    static float maxHealth = 200; 
 
     public int maxCombo = 500;
-    private string hundredToText;        //juice to show each 100 in score.
+    private string hundredToText;           //juice to show each 100 in score.
 
-    public ParticleSystem leftHit; //sfx note hit
-    public ParticleSystem rightHit;
-    public ParticleSystem upHit;
-    public ParticleSystem downHit;
+    private ParticleSystem leftHit;         //sfx note hit
+    private ParticleSystem rightHit;
+    private ParticleSystem upHit;
+    private ParticleSystem downHit;
 
     void Start()
     {
@@ -50,7 +55,6 @@ public class ScoreManager : MonoBehaviour
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
 
         Instance = this;
-
         comboScore = 0;
 
         leftHit = GameObject.Find("LeftArrowSFX").GetComponent<ParticleSystem>();
@@ -76,6 +80,9 @@ public class ScoreManager : MonoBehaviour
                 break;
             case "hard":
                 health = 60;
+                break;
+            case null:
+                health = 150;
                 break;
         }
         Instance.UpdateHealthUI();
@@ -200,6 +207,22 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftArrow)){
+            leftPress.SetTrigger("trigger");
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow)){
+            rightPress.SetTrigger("trigger");
+        }
+         
+        if (Input.GetKey(KeyCode.UpArrow)){
+            upPress.SetTrigger("trigger");
+        }
+        
+        if (Input.GetKey(KeyCode.DownArrow)){
+            downPress.SetTrigger("trigger");
+        }
+
         health = Mathf.Clamp(health,0,200);
 
         if (health < maxHealth/4) {

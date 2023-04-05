@@ -24,10 +24,11 @@ public class Lane : MonoBehaviour
     public float spawnDelay = 0.0f; //make sure this is the same as the song delay
     int spawnIndex = 0;
     int inputIndex = 0;
+    int length;
 
     void Start()
     {
-
+        
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -40,6 +41,9 @@ public class Lane : MonoBehaviour
                 timeStamps.Add(((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f));
             }
         }
+
+        length = timeStamps.Count - 1;
+        Debug.Log(length);
     }
 
     // Update is called once per frame
