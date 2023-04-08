@@ -153,7 +153,7 @@ public class StageSelectManagerV2 : MonoBehaviour
 
         if (Input.GetKeyDown(inputRight)) {
             switch(phase) {
-                case 1:
+                case 1: //if you're on song select, go to stage select (provided you've already cleared the previous stage)
                     switch(selectedLevel) {
                         case 1:
                             phase = 2;
@@ -211,7 +211,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                             
                             break;
                         case 3:
-                            if (Progress.day2IntroSeen) {
+                            if (Progress.day3IntroSeen) {
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
@@ -224,6 +224,7 @@ public class StageSelectManagerV2 : MonoBehaviour
 
                 case 3:
                     switch(selectedLevel) {
+                        //continueChoices: 1 = yes, skip right to dress up scene / 2 = no = play the dialogue normally
                         case 1:
                             if(continueChoices == 1) {
                                 Progress.lastLevel = "dayOneIntro";

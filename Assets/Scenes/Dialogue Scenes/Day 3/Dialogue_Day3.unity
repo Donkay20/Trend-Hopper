@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayThree
+  identity: dayThreeIntro
   dressedUp: 1
   appliedHair: {fileID: 1676357401}
   appliedTop: {fileID: 1125037454}
