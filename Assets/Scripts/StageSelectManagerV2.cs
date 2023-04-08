@@ -192,6 +192,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                     switch(selectedLevel) {
                         case 1:
                             if (Progress.day1IntroSeen) {
+                                Progress.lastLevel = "dayOneIntro";
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
@@ -204,6 +205,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                Progress.lastLevel = "dayTwoIntro";
                                 SceneManager.LoadScene("Dialogue_Day2");
                             }
                             
@@ -213,6 +215,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                Progress.lastLevel = "dayThreeIntro";
                                 SceneManager.LoadScene("Dialogue_Day3");
                             }
                             break;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = System.Random;
 
 public class ClothingSelectionV2 : MonoBehaviour
 {
@@ -91,11 +90,11 @@ public class ClothingSelectionV2 : MonoBehaviour
 
     void Start()
     {
-        if (Progress.lastLevel == null) {
+        if (Progress.lastLevel == null) {       //This should NEVER trigger unless starting from this scene in the editor. If this happens please tell me immediately!!!
             Progress.lastLevel = "dayOneIntro";
         }
 
-        switch(Progress.lastLevel) {
+        switch(Progress.lastLevel) {            //Dependent on the last level, changes the display of the required clothing
             case "dayOneIntro":
                 meterDesc.GetComponent<SpriteRenderer>().sprite = meterTitlePunk;
                 break;
@@ -123,7 +122,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             checkmarkUI.SetBool("checkUnlocked", true);
         }
 
-        if(Input.GetKeyDown(inputUp)) {
+        if(Input.GetKeyDown(inputUp)) { //up trigger.
             upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -163,7 +162,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             UpdateCategory(selectedCategory);
         }
 
-        if(Input.GetKeyDown(inputDown)) {
+        if(Input.GetKeyDown(inputDown)) { //down trigger.
             downTrigger.SetTrigger("downTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -203,7 +202,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             UpdateCategory(selectedCategory);
         }
 
-        if(Input.GetKeyDown(inputLeft)) {
+        if(Input.GetKeyDown(inputLeft)) {   //left trigger.
             leftTrigger.SetTrigger("leftTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -314,7 +313,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             checkIfOK();
         }
 
-        if(Input.GetKeyDown(inputRight)) {
+        if(Input.GetKeyDown(inputRight)) {  //right trigger.
             rightTrigger.SetTrigger("rightTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -422,7 +421,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             checkIfOK();
         }
 
-        if(Input.GetKeyDown(inputSelect)) {
+        if(Input.GetKeyDown(inputSelect)) { //select button trigger.
             if(selectedCategory == "check") {
                 //apply the selected clothing to the universal checker
                 Progress.chosenHair = selectedHair;

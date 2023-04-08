@@ -154,7 +154,7 @@ public class ResultsManager : MonoBehaviour
                 high = false;
                 break;
         }
-
+        appliedClothing();
     }
 
     // Update is called once per frame

@@ -21,6 +21,9 @@ public class DialogueManager : MonoBehaviour
     private bool skipping;              //variable to check if user is fast-forwarding
     private string savedSentence;       //idk why I need this tbh
 
+    private Color unfocus = Color.grey; //animating the color changes doesn't seem to work so I'll just change it in the script
+    private Color focus = Color.white;
+
     public string identity;             //determinant of what scene this is, saved to the global lastLevel variable
     [Space]
     public bool dressedUp;              //bool to determine if she needs to wear a custom outfit in this scene
@@ -46,20 +49,19 @@ public class DialogueManager : MonoBehaviour
     public Sprite detention_bg;         
     public Sprite disco_bg;             //backgrounds
     [Space]
-    public Sprite EMPTY;
+    public Sprite EMPTY;                                                    //blank img to hide stuff
     public Sprite Vicky; public Sprite Rocky; public Sprite Tyler;          //punk NPCs
     public Sprite Mackaylah; public Sprite Milgo; public Sprite meiLing;    //Y2K NPCs
     public Sprite Molly; public Sprite Dennis; public Sprite Sequoia;       //disco NPCs
     [Space]
     public Sprite mcDressedUpTemplate;              //I don't think I really need this tbh
-    public Sprite[] hairCatalog = new Sprite[9];    //expand to 9 upon third set of clothing
+    public Sprite[] hairCatalog = new Sprite[9];    
     public Sprite[] topCatalog = new Sprite[9];
     public Sprite[] bottomCatalog = new Sprite[9];
-    public Sprite[] accessoryCatalog = new Sprite[9];
+    public Sprite[] accessoryCatalog = new Sprite[9];   //this is where all the clothing is held
 
     void Start()
     {   
-
         Progress.lastLevel = identity;                          //saves this scene's identity to determine stuff for future scenes/levels
         continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);  //little indicator to show when to tap right
         status = "neutral";                                     //default emotion to neutral for when the main character isn't in their default outfit
@@ -166,6 +168,12 @@ public class DialogueManager : MonoBehaviour
 
         //tldr: checks the mc for an emotion, if so, parses it out and applies the correct facial expression via animation. then updates the status.
         if (name.Contains("Jassmea")) {                //this logic is under the assumption that the main character is always on the left.
+
+            appliedHair.GetComponent<Image>().color = focus;
+            appliedTop.GetComponent<Image>().color = focus;
+            appliedBottom.GetComponent<Image>().color = focus;
+            appliedAccessory.GetComponent<Image>().color = focus;
+
             nameTag.SetBool("MCisSpeaking", true);
             animateLeft.SetBool("mainCharIsSpeaking", true);    
             animateRight.SetBool("rightCharIsSpeaking", false);
@@ -311,8 +319,16 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
             }
+
+
             
         } else if (name.Contains("TRANSITION")){                                //if the main char is speaking, highlight them. if not, make them out of focus. vice-versa for npcs.
+
+            appliedHair.GetComponent<Image>().color = unfocus;
+            appliedTop.GetComponent<Image>().color = unfocus;
+            appliedBottom.GetComponent<Image>().color = unfocus;
+            appliedAccessory.GetComponent<Image>().color = unfocus;
+
             switch(name) {
                 //logic for transitioning to new backgrounds.
                 case "TRANSITION_SCHOOL":
@@ -328,6 +344,12 @@ public class DialogueManager : MonoBehaviour
                     break;
             }
         } else {
+
+            appliedHair.GetComponent<Image>().color = unfocus;
+            appliedTop.GetComponent<Image>().color = unfocus;
+            appliedBottom.GetComponent<Image>().color = unfocus;
+            appliedAccessory.GetComponent<Image>().color = unfocus;
+
             switch(name) {
                 //logic for NPCs and empty field.
                 case "EMPTY":

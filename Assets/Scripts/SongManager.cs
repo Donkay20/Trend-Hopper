@@ -66,6 +66,7 @@ public class SongManager : MonoBehaviour
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         int maxIndex = notes.Count;
         setMaxIndex();
+        Progress.noteLimit = notes.Count;
         print($"{notes.Count}");
         notes.CopyTo(array, 0);
 

@@ -11,6 +11,7 @@ public static class Progress
 
     public static string difficulty {get; set;}
 
+
     public static int peakNotes {get; set;}
     public static int hitCount {get; set;}
     public static int okCount {get; set;}
@@ -19,6 +20,7 @@ public static class Progress
     public static bool notEnoughHealth {get; set;}
     public static int score {get; set;}
     public static int highestCombo {get; set;}
+    public static int noteLimit {get; set;}
 
     public static bool day1IntroSeen {get; set;}
     public static bool day2IntroSeen {get; set;}

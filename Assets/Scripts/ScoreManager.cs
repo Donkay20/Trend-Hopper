@@ -56,6 +56,7 @@ public class ScoreManager : MonoBehaviour
     private ParticleSystem downHit;
 
     private bool flipped;
+    private bool hitEnd; private int noteCount;
 
     void Start()
     {
@@ -103,6 +104,7 @@ public class ScoreManager : MonoBehaviour
 
     public static void Hit()
     {
+        Instance.noteCount++;
         Instance.flipMC();
         Progress.score += 100; comboScore++; Progress.hitCount++;
         Instance.hitSFX.Play();
@@ -157,6 +159,7 @@ public class ScoreManager : MonoBehaviour
 
     public static void OK()
     {
+        Instance.noteCount++;
         Instance.flipMC();
         Progress.score += 50; comboScore++; Progress.okCount++;
 
@@ -215,6 +218,7 @@ public class ScoreManager : MonoBehaviour
             Progress.failed = true;
             SceneManager.LoadScene("Results");
         }
+        Instance.noteCount++;
     }
 
     // Update is called once per frame
@@ -298,6 +302,12 @@ public class ScoreManager : MonoBehaviour
 
         scoreText.text = Progress.score.ToString();
         healthText.text = health.ToString();
+
+        if (!hitEnd) {
+            if(noteCount == Progress.noteLimit) {
+                Invoke(nameof(delayResults), 9.0f);
+            }
+        }
     }
 
     public void UpdateHealthUI() {
@@ -347,5 +357,9 @@ public class ScoreManager : MonoBehaviour
                 flipped = true;
                 break;
         }
+    }
+
+    public void delayResults() {
+        SceneManager.LoadScene("Results");
     }
 }
