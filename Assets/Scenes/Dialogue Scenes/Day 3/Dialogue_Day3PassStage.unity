@@ -482,7 +482,9 @@ MonoBehaviour:
     - "*squeal* I\u2019m SO stoked to be joining your group. I\u2019m glad you guys
       accepted me in the end."
     - "Enough of the sappy stuff. Let\u2019s head to class before we\u2019re late."
-    - Stage cleared!
+    - 'Stage cleared!
+
+      Returning to stage select.'
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0

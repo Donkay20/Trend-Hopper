@@ -229,19 +229,20 @@ public class ScoreManager : MonoBehaviour
         } else {
             sparkle100.SetActive(false);
         }
-        if (Input.GetKey(KeyCode.LeftArrow)){
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)){
             leftPress.SetTrigger("trigger");
         }
 
-        if (Input.GetKey(KeyCode.RightArrow)){
+        if (Input.GetKeyDown(KeyCode.RightArrow)){
             rightPress.SetTrigger("trigger");
         }
          
-        if (Input.GetKey(KeyCode.UpArrow)){
+        if (Input.GetKeyDown(KeyCode.UpArrow)){
             upPress.SetTrigger("trigger");
         }
         
-        if (Input.GetKey(KeyCode.DownArrow)){
+        if (Input.GetKeyDown(KeyCode.DownArrow)){
             downPress.SetTrigger("trigger");
         }
 

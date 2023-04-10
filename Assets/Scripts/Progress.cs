@@ -34,5 +34,5 @@ public static class Progress
     public static int chosenTop {get; set;}
     public static int chosenBottom {get; set;}
     public static int chosenShoe {get; set;}
-    public static int chosenAccessory{get; set;}
+    public static int chosenAccessory {get; set;}
 }

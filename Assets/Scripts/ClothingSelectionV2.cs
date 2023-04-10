@@ -876,6 +876,6 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         multiplier.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
         leniencyP.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + "ms";
-        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\nrequired";
+        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\n required";
     }
 }

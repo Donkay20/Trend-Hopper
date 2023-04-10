@@ -32,39 +32,40 @@ public class ResultsManager : MonoBehaviour
     public TMPro.TextMeshPro highestComboText;
     public TMPro.TextMeshPro finalScoreAfterMultiplierText;
     [Space]
-    public TMPro.TextMeshPro multiplierText;
+    public TMPro.TextMeshPro multiplierText;                                                                //text fields to influence
     public TMPro.TextMeshPro leniencyText;
     public TMPro.TextMeshPro coolnessText;
     public TMPro.TextMeshPro peakText;
     [Space]
-    public Sprite difficultyEasy; public Sprite difficultyNormal; public Sprite difficultyHard;
-    public GameObject difficultyIcon;
-    public Sprite lv1; public Sprite lv2; public Sprite lv3;
-    public GameObject levelIcon;
-    public Sprite gradeF; public Sprite gradeD; public Sprite gradeC; public Sprite gradeB; public Sprite gradeA; public Sprite gradeS;
-    public GameObject gradeIcon;
+    public Sprite difficultyEasy; public Sprite difficultyNormal; public Sprite difficultyHard;             //difficulty assets
+    public GameObject difficultyIcon;                                                                       //the gameobject to influence in terms of the difficulty displayed
+    public Sprite lv1; public Sprite lv2; public Sprite lv3;                                                //level assets
+    public GameObject levelIcon;                                                                            //the gameobject to influence in terms of the stage
+    public Sprite gradeF; public Sprite gradeD; public Sprite gradeC; 
+    public Sprite gradeB; public Sprite gradeA; public Sprite gradeS;                                       //grade assets
+    public GameObject gradeIcon;                                                                            //the gameobject to influence in terms of the grade
     [Space]
-    public GameObject mcDisplay;
+    public GameObject mcDisplay;    //the gameobject to influence
     public Sprite successSprite;
-    public Sprite failSprite;
+    public Sprite failSprite;       //sprites for when the mc has a good or bad score
     [Space]
     public GameObject appliedHair; 
     public GameObject appliedTop; 
     public GameObject appliedBottom; 
     public GameObject appliedShoe; 
-    public GameObject appliedAccessory;
+    public GameObject appliedAccessory; //the clothes that go on the mc 
     [Space]
     public Sprite[] hairStorageSuccess = new Sprite[9];
     public Sprite[] topStorageSuccess = new Sprite[9];
     public Sprite[] bottomStorageSuccess = new Sprite[9];
     public Sprite[] shoeStorageSuccess = new Sprite[9];
-    public Sprite[] accessoryStorageSuccess = new Sprite[9];
+    public Sprite[] accessoryStorageSuccess = new Sprite[9];    //storage for the clothes upon getting a good grade
     [Space]
     public Sprite[] hairStorageFailure = new Sprite[9];
     public Sprite[] topStorageFailure = new Sprite[9];
     public Sprite[] bottomStorageFailure = new Sprite[9];
     public Sprite[] shoeStorageFailure = new Sprite[9];
-    public Sprite[] accessoryStorageFailure = new Sprite[9];
+    public Sprite[] accessoryStorageFailure = new Sprite[9];    //storage for the clothes upon getting a bad grade
     
     void Start()
     {   
@@ -154,6 +155,10 @@ public class ResultsManager : MonoBehaviour
                 high = false;
                 break;
         }
+        //debugging cause ada is cringe
+        mcDisplay.GetComponent<SpriteRenderer>().sprite = failSprite;
+        high = false;
+        //debugging cause ada is cringe
         appliedClothing();
     }
 
@@ -214,7 +219,7 @@ public class ResultsManager : MonoBehaviour
         }
     }
 
-    private void appliedClothing() {
+    private void appliedClothing() { //fuck you Jaden (and maybe Ada)
         switch(high) {
             case true:
                 appliedHair.GetComponent<SpriteRenderer>().sprite = hairStorageSuccess[Progress.chosenHair];

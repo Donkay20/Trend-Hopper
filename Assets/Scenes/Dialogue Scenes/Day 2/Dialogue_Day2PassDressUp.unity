@@ -636,15 +636,14 @@ MonoBehaviour:
     - "Look who\u2019s here. At least we know you were competent enough to not let
       a rare opportunity slip."
     - "I don\u2019t think anyone would ever want to miss a chance to wipe that smug
-      off your face.\r"
+      look off your face.\r"
     - "Just \u2018cause you wore a nice top and did your hair today doesn\u2019t
       mean you\u2019re capable of that just yet.\r"
     - "Forget a smug face, we\u2019re about to send you home crying."
     - Word. You're about to get owned with your two left feet.
     - All you two do is run your mouth, try using your arms and legs for a change
       and have a dance off with me.
-    - Not today girly, your opponent is me today. Are you ready to show me what you
-      got?
+    - Not today girlie, your opponent is me. Are you ready to show me what you got?
     - You bet I am!
 --- !u!1 &326053767
 GameObject:
@@ -974,6 +973,7 @@ MonoBehaviour:
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 0}
   detention_bg: {fileID: 0}
+  disco_bg: {fileID: 0}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}
@@ -981,6 +981,9 @@ MonoBehaviour:
   Mackaylah: {fileID: 21300000, guid: 56a363975f9788c41a1c05d508fd5b14, type: 3}
   Milgo: {fileID: 21300000, guid: b9dd8ff553a2956448ba372274edf76c, type: 3}
   meiLing: {fileID: 21300000, guid: 4ba83c37042a9de489b436c8fbba3121, type: 3}
+  Molly: {fileID: 0}
+  Dennis: {fileID: 0}
+  Sequoia: {fileID: 0}
   mcDressedUpTemplate: {fileID: 21300000, guid: f8ef0bf52e762054c8e43bdca66ca1ce, type: 3}
   hairCatalog:
   - {fileID: 21300000, guid: 720e9464fdd26184fb4ff11044d82ce4, type: 3}
