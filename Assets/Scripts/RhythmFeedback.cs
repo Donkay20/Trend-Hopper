@@ -10,7 +10,9 @@ public class RhythmFeedback : MonoBehaviour
 {
     // Start is called before the first frame update
     public static RhythmFeedback Instance;
-    public GameObject statTextPrefab;
+    public GameObject basedPrefab;
+    public GameObject midPrefab;
+    public GameObject cringePrefab;
 
     void Start()
     {
@@ -24,11 +26,16 @@ public class RhythmFeedback : MonoBehaviour
     }
 
     public void showResult(string text) {   //accepts the text to insert in the prefab as an argument
-        if (statTextPrefab)                 //the prefab must be assigned
-        {
-            //DestroyInSeconds.Instance.duplicateDestroy();
-            GameObject prefab = Instantiate(statTextPrefab, transform.position, Quaternion.identity);   //idk what this is doing here tbh
-            prefab.GetComponentInChildren<TextMesh>().text = text;                                      //this is changing the text
+        switch (text) {
+            case "based":
+                GameObject prefab = Instantiate(basedPrefab, transform.position, Quaternion.identity);   //idk what this is doing here tbh
+                break;
+            case "mid":
+                GameObject prefab2 = Instantiate(midPrefab, transform.position, Quaternion.identity);
+                break;
+            case "cringe":
+                GameObject prefab3 = Instantiate(cringePrefab, transform.position, Quaternion.identity);
+                break;
         }
     }
 }

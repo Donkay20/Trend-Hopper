@@ -40,6 +40,7 @@ public class ScoreManager : MonoBehaviour
     public Animator rightPress;
     public Animator MC;
     public Animator NPC;
+    public Animator endCard;
     [Space]
 
 
@@ -306,6 +307,13 @@ public class ScoreManager : MonoBehaviour
 
         if (!hitEnd) {
             if(noteCount == Progress.noteLimit) {
+                if (Progress.hitCount == Progress.noteLimit) {
+                    endCard.SetBool("pp", true);
+                } else if ((Progress.hitCount + Progress.okCount) == Progress.noteLimit) {
+                    endCard.SetBool("fc", true);
+                } else {
+                    endCard.SetBool("clear", true);
+                }
                 Invoke(nameof(delayResults), 9.0f);
             }
         }
@@ -361,6 +369,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void delayResults() {
+        endCard.SetBool("pp", false); endCard.SetBool("fc", false); endCard.SetBool("clear", false);
         SceneManager.LoadScene("Results");
     }
 }

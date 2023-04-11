@@ -72,7 +72,7 @@ public class Lane : MonoBehaviour
                 if (Math.Abs(audioTime - timeStamp) - spawnDelay < marginOfError / 3) //perfect timing
                 {
                     Hit();
-                    RhythmFeedback.Instance.showResult("Based!");
+                    RhythmFeedback.Instance.showResult("based");
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -92,7 +92,7 @@ public class Lane : MonoBehaviour
             if (((timeStamp + marginOfError)-spawnDelay <= audioTime) && !missedNote) //ngl, I don't know what's going on here but it works so whatever
             {
                 Miss();
-                RhythmFeedback.Instance.showResult("cringe..");
+                RhythmFeedback.Instance.showResult("cringe");
                 print($"Missed {inputIndex} note");
                 inputIndex++;
                 missedNote = true;

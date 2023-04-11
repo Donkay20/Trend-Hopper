@@ -5,6 +5,7 @@ using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System;
 
 /*
@@ -15,12 +16,15 @@ public class SongManager : MonoBehaviour
 {
     public static SongManager Instance;
     public AudioSource audioSource;
+    public AudioClip audioClip;
     public Lane[] lanes;
     public float songDelayInSeconds;
     public double marginOfError = 0.1; // in seconds
 
     public int inputDelayInMilliseconds;
     public int maxIndex;
+
+    public Image progressBar;
 
     public string fileLocation_hard; public string fileLocation_normal; public string fileLocation_easy;
     public float noteTime;
@@ -96,6 +100,6 @@ public class SongManager : MonoBehaviour
 
     void Update()
     {
-
+        progressBar.fillAmount = audioSource.time / (audioClip.length - 9.0f);
     }
 }

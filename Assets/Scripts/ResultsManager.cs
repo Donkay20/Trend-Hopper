@@ -155,10 +155,6 @@ public class ResultsManager : MonoBehaviour
                 high = false;
                 break;
         }
-        //debugging cause ada is cringe
-        mcDisplay.GetComponent<SpriteRenderer>().sprite = failSprite;
-        high = false;
-        //debugging cause ada is cringe
         appliedClothing();
     }
 
