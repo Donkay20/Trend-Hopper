@@ -63996,9 +63996,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b831bbf77cca4f142b4677f10037b480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basedPrefab: {fileID: 0}
-  midPrefab: {fileID: 0}
-  cringePrefab: {fileID: 0}
+  basedPrefab: {fileID: 2191473416692567701, guid: c4b9824e25a42474481025d76702306a, type: 3}
+  midPrefab: {fileID: 4899554640978008251, guid: 0b7239a79099994439d332a93ce49903, type: 3}
+  cringePrefab: {fileID: 9002140136746363992, guid: b6c90470a0a471a44979ba7e6dd1bf73, type: 3}
 --- !u!1 &1584566266
 GameObject:
   m_ObjectHideFlags: 0
