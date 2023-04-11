@@ -780,10 +780,11 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
-  school_bg: {fileID: 21300000, guid: f43bb6964bd4a53428a6c995385b31f2, type: 3}
+  school_bg: {fileID: 21300000, guid: 7473b3e88252a6444b1f6907bad1dade, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 21300000, guid: 19591dc1918f87844a8f7e2def02a48c, type: 3}
   detention_bg: {fileID: 21300000, guid: d3a3e1361b67aff44b35c6e0614c556c, type: 3}
+  disco_bg: {fileID: 21300000, guid: 180275dcf8186524db67d55d77f956d4, type: 3}
   EMPTY: {fileID: 21300000, guid: 196e80b933b9f5344971810c69f12c50, type: 3}
   Vicky: {fileID: 21300000, guid: f001631a7ee7ab34688fe342576fc3c8, type: 3}
   Rocky: {fileID: 21300000, guid: 920082ad173843447bec0a9285af690e, type: 3}
@@ -791,6 +792,9 @@ MonoBehaviour:
   Mackaylah: {fileID: 0}
   Milgo: {fileID: 0}
   meiLing: {fileID: 0}
+  Molly: {fileID: 0}
+  Dennis: {fileID: 0}
+  Sequoia: {fileID: 0}
   mcDressedUpTemplate: {fileID: 0}
   hairCatalog:
   - {fileID: 0}

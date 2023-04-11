@@ -883,7 +883,7 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
-  school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
+  school_bg: {fileID: 21300000, guid: 7473b3e88252a6444b1f6907bad1dade, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 0}
   detention_bg: {fileID: 0}

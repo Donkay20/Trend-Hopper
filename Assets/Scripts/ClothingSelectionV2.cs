@@ -527,7 +527,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
     }
 
-    private void UpdateOverlay() {
+    private void UpdateOverlay() {  //edit this because Ada is cringe smile SHE'S REALLY CRINGE
         if(selectedHair != -1) {
             assignedHair.GetComponent<SpriteRenderer>().sprite = appliedHairCatalog[selectedHair];
         }
@@ -537,6 +537,12 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
 
         if(selectedBottom != -1) {
+
+            if (selectedBottom == 0) {                                          //fishnet exception
+                assignedShoe.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            } else {
+                assignedShoe.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            }
             assignedBottom.GetComponent<SpriteRenderer>().sprite = appliedBottomCatalog[selectedBottom];
         }
 
@@ -876,6 +882,6 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         multiplier.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
         leniencyP.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + "ms";
-        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\n required";
+        coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\nrequired";
     }
 }

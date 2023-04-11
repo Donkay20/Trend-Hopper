@@ -247,12 +247,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "[Dev Team]\nJaden Tseng: Character artist, Clothing Designer, UI Designer\nAda
     Samiee: Character artist, Clothing Designer\nSina Karimi: SFX Designer, Web Designer\nShaiyan
-    Azim: Character Artist\nMarcus Sett: Programmer, Animator\nEllia Godbout: Project
-    Manager, Dance Pad Designer, Game Designer\nAshley Thong: Background Artist,
-    UI Designer, Narrative Designer, VFX artist\n\n[Music]\n\u2018Psychedelicacy\u2019
-    by Lucid Smog Disorder\n\u2018Say Hello\u2019 by Ben Nickerson (Benickerson)
-    and Jason Nguyen (LILINA)\n\u2018Funk So What\u2019 by Bronson Aguiar, Stephen
-    Edwards, and Mateja Lasan"
+    Azim: NPC Artist\nMarcus Sett: Programmer, Animator\nEllia Godbout: Project Manager,
+    Dance Pad Designer, Game Designer\nAshley Thong: Background Artist, UI Designer,
+    Narrative Designer, VFX artist\n\n[Music]\n\u2018Psychedelicacy\u2019 by Lucid
+    Smog Disorder\n\u2018Say Hello\u2019 by Ben Nickerson (Benickerson) and Jason
+    Nguyen (LILINA)\n\u2018Funk So What\u2019 by Bronson Aguiar, Stephen Edwards,
+    and Mateja Lasan"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
@@ -383,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0242, y: -1.2524}
+  m_AnchoredPosition: {x: 0.43, y: -1.46}
   m_SizeDelta: {x: 17.6316, y: 7.3082}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &205185836

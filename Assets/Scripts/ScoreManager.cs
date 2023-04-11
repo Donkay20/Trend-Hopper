@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro healthText;
     public TMPro.TextMeshPro healthRequirementText;
     [Space]
-    public GameObject thresholdIndicator;
+    public GameObject thresholdIndicator; public Animator thresholdAnim;
     public GameObject hundredTextPrefab;
     [Space]
     public GameObject dangerNotifier;
@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
     public Animator MC;
     public Animator NPC;
     public Animator endCard;
+    public Animator heartPump;
     [Space]
 
 
@@ -61,8 +62,10 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(Progress.noteLimit);
+
         healthRequirementText.text = DressUpStatBonuses.scoreThreshold.ToString();
-        thresholdIndicator = Instantiate(thresholdIndicator); positionThresholdIndicator();
+        positionThresholdIndicator();
 
         comboScoreText.faceColor = new Color32(255, 255, 255, 70); //last value is opacity
         comboSplash.faceColor = new Color32(255, 255, 255, 90);
@@ -74,8 +77,8 @@ public class ScoreManager : MonoBehaviour
         rightHit = GameObject.Find("RightArrowSFX").GetComponent<ParticleSystem>();
         upHit = GameObject.Find("UpArrowSFX").GetComponent<ParticleSystem>();
         downHit = GameObject.Find("DownArrowSFX").GetComponent<ParticleSystem>();
-       
 
+        Instance.noteCount = 0;
         Progress.peakNotes = 0;
         Progress.score = 0;
         Progress.hitCount = 0;
@@ -106,6 +109,7 @@ public class ScoreManager : MonoBehaviour
     public static void Hit()
     {
         Instance.noteCount++;
+        Debug.Log(Instance.noteCount);
         Instance.flipMC();
         Progress.score += 100; comboScore++; Progress.hitCount++;
         Instance.hitSFX.Play();
@@ -155,12 +159,20 @@ public class ScoreManager : MonoBehaviour
                 break;
             }
         }
+
+        if (health == maxHealth) {
+            Instance.heartPump.SetTrigger("goldpump");
+        } else {
+            Instance.heartPump.SetTrigger("pump");
+        }
+
         Instance.UpdateHealthUI();
     }
 
     public static void OK()
     {
         Instance.noteCount++;
+        Debug.Log(Instance.noteCount);
         Instance.flipMC();
         Progress.score += 50; comboScore++; Progress.okCount++;
 
@@ -190,9 +202,15 @@ public class ScoreManager : MonoBehaviour
             case "hard":
                 health += 1;
                 break;
-        }
+            }
         }
 
+        if (health == maxHealth) {
+            Instance.heartPump.SetTrigger("goldpump");
+        } else {
+            Instance.heartPump.SetTrigger("pump");
+        }
+        
         Instance.UpdateHealthUI();
     }
 
@@ -200,6 +218,7 @@ public class ScoreManager : MonoBehaviour
                                 //this code will be edited to include a delay to display a "failure" graphic before a transition happens.
     {
         comboScore = 0; Progress.missCount++; Instance.missSFX.Play();
+        Instance.heartPump.SetTrigger("miss");
 
         switch (Progress.difficulty) {
             case "easy":
@@ -220,6 +239,7 @@ public class ScoreManager : MonoBehaviour
             SceneManager.LoadScene("Results");
         }
         Instance.noteCount++;
+        Debug.Log(Instance.noteCount);
     }
 
     // Update is called once per frame
@@ -297,25 +317,26 @@ public class ScoreManager : MonoBehaviour
         }
         if (health < DressUpStatBonuses.scoreThreshold) {
             Progress.notEnoughHealth = true;
-        }
-        if (health >= DressUpStatBonuses.scoreThreshold) {
+            thresholdAnim.SetBool("pass", false);
+        } else {
             Progress.notEnoughHealth = false;
+            thresholdAnim.SetBool("pass", true);
         }
 
         scoreText.text = Progress.score.ToString();
         healthText.text = health.ToString();
 
-        if (!hitEnd) {
-            if(noteCount == Progress.noteLimit) {
-                if (Progress.hitCount == Progress.noteLimit) {
+        if(Instance.noteCount == Progress.noteLimit) {          //once the song is over (as in, once the notes hit/missed match the total notes in the song)
+                                                                //note: noteLimit is determined in the SongManager class. 
+                if (Progress.hitCount == Progress.noteLimit) {  //perfect
                     endCard.SetBool("pp", true);
-                } else if ((Progress.hitCount + Progress.okCount) == Progress.noteLimit) {
+                } else if ((Progress.hitCount + Progress.okCount) == Progress.noteLimit) {  
+                                                                //full combo
                     endCard.SetBool("fc", true);
                 } else {
-                    endCard.SetBool("clear", true);
+                    endCard.SetBool("clear", true);             //basic clear
                 }
                 Invoke(nameof(delayResults), 9.0f);
-            }
         }
     }
 
@@ -327,22 +348,22 @@ public class ScoreManager : MonoBehaviour
     public void positionThresholdIndicator() {
         switch (DressUpStatBonuses.scoreThreshold) {
             case 125: //0.625
-                thresholdIndicator.transform.position = new Vector3(-1.02f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(-1.02f, 5.47f, 0f);
                 break;
             case 130: //0.65
-                thresholdIndicator.transform.position = new Vector3(-0.69f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(-0.69f, 5.47f, 0f);
                 break;
             case 135: //0.675
-                thresholdIndicator.transform.position = new Vector3(-0.362f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(-0.362f, 5.47f, 0f);
                 break;
             case 140: //0.7
-                thresholdIndicator.transform.position = new Vector3(-0.033f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(-0.033f, 5.47f, 0f);
                 break;
             case 145: //0.725
-                thresholdIndicator.transform.position = new Vector3(0.298f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(0.298f, 5.47f, 0f);
                 break;
             case 150: //0.75
-                thresholdIndicator.transform.position = new Vector3(0.627f, 4.58f, 0f);
+                thresholdIndicator.transform.position = new Vector3(0.627f, 5.47f, 0f);
                 break;  
         }
     }
