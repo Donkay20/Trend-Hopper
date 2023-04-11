@@ -18,6 +18,7 @@ public class StageSelectManagerV2 : MonoBehaviour
     public KeyCode cheatButton;     //debug button.
     [Space]
     public AudioSource preview1; public AudioSource preview2; public AudioSource preview3; //preview music when hovering over a song
+    public AudioSource changeSong; public AudioSource changeDifficulty; public AudioSource confirm;
     [Space]
     public Animator backgrounds;
     public Animator punkAlbum; public Animator popAlbum; public Animator funkAlbum;
@@ -196,6 +197,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day1");
                             }
                             
@@ -205,6 +207,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
                                 SceneManager.LoadScene("Dialogue_Day2");
                             }
@@ -215,6 +218,7 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
                                 SceneManager.LoadScene("Dialogue_Day3");
                             }
@@ -227,26 +231,32 @@ public class StageSelectManagerV2 : MonoBehaviour
                         //continueChoices: 1 = yes, skip right to dress up scene / 2 = no = play the dialogue normally
                         case 1:
                             if(continueChoices == 1) {
+                                confirm.Play();
                                 Progress.lastLevel = "dayOneIntro";
                                 SceneManager.LoadScene("DressUpV2");
                             } else {
+                                confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day1");
                             }
                             break;
                         case 2:
                             if(continueChoices == 1) {
+                                confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
                                 SceneManager.LoadScene("DressUpV2");
                             } else {
+                                confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day2");
                             }
                             break;
                         case 3:
                             //todo
                             if(continueChoices == 1) {
+                                confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
                                 SceneManager.LoadScene("DressUpV2");
                             } else {
+                                confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day3");
                             }
                             break;
@@ -312,6 +322,7 @@ public class StageSelectManagerV2 : MonoBehaviour
         Then, adjust the navigation arrows. Disable them if we can't go up/down any more, and enable them if we can.
         Then, adjust the song previews that are playing. Turn the relevant ones on and the irrelevant ones off.
         */
+        changeSong.Play();
         switch(selectedLevel) {
             case 1:
                 backgrounds.SetBool("2", false); backgrounds.SetBool("1", true);
@@ -349,6 +360,7 @@ public class StageSelectManagerV2 : MonoBehaviour
     }
 
     private void updatePhaseTwo() {
+        changeDifficulty.Play();
         //Set the right difficulty active, set the others inactive.
         switch (difficulty) {
             case "hard":

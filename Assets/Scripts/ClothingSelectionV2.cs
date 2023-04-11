@@ -24,7 +24,7 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Animator checkmarkUI;
     public Animator downTrigger;    //for the UI tab on the left-hand side
     [Space]
-    public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco;
+    public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco; public Sprite empty;
     public GameObject meterDesc;
     public Animator meter;
     [Space]
@@ -67,8 +67,9 @@ public class ClothingSelectionV2 : MonoBehaviour
     public TMPro.TextMeshPro leniencyP;
     public TMPro.TextMeshPro coolness;
     [Space]
-    public AudioSource shiftLeft;
-    public AudioSource shiftRight;
+    public AudioSource shiftClothing;
+    public AudioSource shiftCategory;
+    public AudioSource confirm;
 
     private int hairRow;                                            //row variable series should be 1 or 2 (1-3 later on) to determine what row to show.
     private int topRow;                                             //hover variable series should determine what is being highlighted. goes from 0-5 (later should be 0-8)
@@ -104,6 +105,9 @@ public class ClothingSelectionV2 : MonoBehaviour
             case "dayThreeIntro":
                 meterDesc.GetComponent<SpriteRenderer>().sprite = meterTitleDisco;
                 break;
+            case "EndingIntro":
+                meterDesc.GetComponent<SpriteRenderer>().sprite = empty;
+                break;
         }
         Instance = this;            //initialize the instance
         selectedCategory = "hair";  //set the default position to hair.
@@ -123,6 +127,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(inputUp)) { //up trigger.
+            shiftCategory.Play();
             upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -163,6 +168,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(inputDown)) { //down trigger.
+            shiftCategory.Play();
             downTrigger.SetTrigger("downTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -203,6 +209,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(inputLeft)) {   //left trigger.
+            shiftClothing.Play();
             leftTrigger.SetTrigger("leftTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -314,6 +321,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(inputRight)) {  //right trigger.
+            shiftClothing.Play();
             rightTrigger.SetTrigger("rightTrigger");
             switch(selectedCategory) {
                 case "hair":
@@ -429,6 +437,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                 Progress.chosenBottom = selectedBottom;
                 Progress.chosenShoe = selectedShoe;
                 Progress.chosenAccessory = selectedAccessory;
+                confirm.Play();
 
                 //now figure out what level we're going to. this is determined by the identity set in the dialogue sessions.
                 switch(Progress.lastLevel) {
@@ -456,6 +465,9 @@ public class ClothingSelectionV2 : MonoBehaviour
                         } else {
                             SceneManager.LoadScene("Dialogue_Day3FailDressUp");
                         }
+                        break;
+                    case "EndingIntro":
+                        SceneManager.LoadScene("EndingOutro");
                         break;
                 }
             }
@@ -724,6 +736,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                     hairOK = false;
                 }
                 break;
+            case "EndingIntro":
+                if(selectedHair != -1) {
+                    hairOK = true;
+                }
+                break;
         }
 
         switch(Progress.lastLevel) {
@@ -746,6 +763,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                      topOK = true;
                 } else {
                      topOK = false;
+                }
+                break;
+            case "EndingIntro":
+                if(selectedTop != -1) {
+                    topOK = true;
                 }
                 break;
         }
@@ -772,6 +794,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                      bottomOK = false;
                 }
                 break;
+            case "EndingIntro":
+                if(selectedBottom != -1) {
+                    bottomOK = true;
+                }
+                break;
         }
 
         switch(Progress.lastLevel) {
@@ -796,6 +823,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                      shoeOK = false;
                 }
                 break;
+            case "EndingIntro":
+                if(selectedShoe != -1) {
+                    shoeOK = true;
+                }
+                break;
         }
 
         switch(Progress.lastLevel) {
@@ -818,6 +850,11 @@ public class ClothingSelectionV2 : MonoBehaviour
                      accessoryOK = true;
                 } else {
                      accessoryOK = false;
+                }
+                break;
+            case "EndingIntro":
+                if(selectedAccessory != -1) {
+                    accessoryOK = true;
                 }
                 break;
         }

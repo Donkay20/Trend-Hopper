@@ -813,7 +813,7 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
-  school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
+  school_bg: {fileID: 21300000, guid: af10dccb3424559459d60cddab3aefb7, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 0}
   detention_bg: {fileID: 0}
@@ -857,6 +857,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 49abfb2a32a27534c9fba1d8de1f9fc3, type: 3}
   - {fileID: 21300000, guid: 71dc5448a2d409d4e9ac3ae735ab40c2, type: 3}
   - {fileID: 21300000, guid: 04ef1e60fb8d1684b9747815d30c36f9, type: 3}
+  schoolNoise: {fileID: 0}
 --- !u!4 &576580606
 Transform:
   m_ObjectHideFlags: 0

@@ -66,6 +66,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogue Scenes/Day 3/Dialogue_Day3PassStage.unity
     guid: a62f714aaf28dc040a392b6b0405390a
   - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Ending/EndingIntro.unity
+    guid: 130ec89b584a9544c9cb1031b490d220
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Ending/EndingOutro.unity
+    guid: efbf19861c3fd794cac63488425635a9
+  - enabled: 1
     path: Assets/Scenes/Rhythm Game Scenes/LevelOne.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1

@@ -59,6 +59,8 @@ public class DialogueManager : MonoBehaviour
     public Sprite[] topCatalog = new Sprite[9];
     public Sprite[] bottomCatalog = new Sprite[9];
     public Sprite[] accessoryCatalog = new Sprite[9];   //this is where all the clothing is held
+    [Space]
+    public AudioSource schoolNoise;
 
     void Start()
     {   
@@ -337,14 +339,17 @@ public class DialogueManager : MonoBehaviour
             switch(name) {
                 //logic for transitioning to new backgrounds.
                 case "TRANSITION_SCHOOL":
+                schoolNoise.Play();
                     background.GetComponent<SpriteRenderer>().sprite = school_bg;
                     nameText.text = "-"; changedPrior = true;
                     break;
                 case "TRANSITION_HOME":
+                schoolNoise.Stop();
                     background.GetComponent<SpriteRenderer>().sprite = home_bg;
                     nameText.text = "-"; changedPrior = true;
                     break;
                 case "TRANSITION_CAFE":
+                schoolNoise.Play();
                     nameText.text = "-"; changedPrior = true;
                     break;
             }
@@ -488,10 +493,17 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "Dialogue_Day3PassStage":
                 Progress.levelThreeCleared = true;
-                SceneManager.LoadScene("StageSelectV2");
+                SceneManager.LoadScene("EndingIntro");
                 break;
             case "Dialogue_Day3FailStage":
                 SceneManager.LoadScene("StageSelectV2");
+                break;
+            //Ending
+            case "EndingIntro": 
+                SceneManager.LoadScene("DressUpV2");
+                break;
+            case "EndingOutro":
+                SceneManager.LoadScene("Credits");
                 break;
         }
     }

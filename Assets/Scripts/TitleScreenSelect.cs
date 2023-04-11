@@ -13,6 +13,7 @@ public class TitleScreenSelect : MonoBehaviour
     public static TitleScreenSelect Instance;
 
     public Animator arrow;
+    public AudioSource menuMusic;
     [Space]
     public KeyCode inputUp;
     public KeyCode inputDown;
@@ -23,6 +24,7 @@ public class TitleScreenSelect : MonoBehaviour
     void Start()
     {
         Instance = this;
+        menuMusic.Play();
         selectedCategory = 1;
     }
 
@@ -64,12 +66,15 @@ public class TitleScreenSelect : MonoBehaviour
         if (Input.GetKeyDown(inputRight)) {
             switch (selectedCategory) {
                 case 1:
+                    menuMusic.Stop();
                     SceneManager.LoadScene("StageSelectV2");
                     break;
                 case 2:
+                    menuMusic.Stop();
                     SceneManager.LoadScene("Credits");
                     break;
                 case 3:
+                    menuMusic.Stop();
                     Application.Quit();
                     break;
             }
