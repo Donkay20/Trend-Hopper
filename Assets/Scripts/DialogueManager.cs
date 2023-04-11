@@ -62,6 +62,11 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {   
+        appliedHair.GetComponent<Image>().color = unfocus;
+        appliedTop.GetComponent<Image>().color = unfocus;
+        appliedBottom.GetComponent<Image>().color = unfocus;
+        appliedAccessory.GetComponent<Image>().color = unfocus; //at the start of each dialogue, make all clothing dark alongside the mc who defaults as dark / unfocused
+
         Progress.lastLevel = identity;                          //saves this scene's identity to determine stuff for future scenes/levels
         continuePrefab = Instantiate(continuePrefab); continuePrefab.SetActive(false);  //little indicator to show when to tap right
         status = "neutral";                                     //default emotion to neutral for when the main character isn't in their default outfit
@@ -472,7 +477,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             //Day 3
             case "Dialogue_Day3":
-                Progress.day2IntroSeen = true;
+                Progress.day3IntroSeen = true;
                 SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day3FailDressUp":

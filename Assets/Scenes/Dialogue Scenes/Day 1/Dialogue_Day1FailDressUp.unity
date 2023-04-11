@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Tap <color=red>Right</color=red>.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}

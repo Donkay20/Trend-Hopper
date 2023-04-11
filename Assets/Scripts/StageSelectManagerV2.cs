@@ -291,14 +291,14 @@ public class StageSelectManagerV2 : MonoBehaviour
 
         if (Input.GetKeyDown(cheatButton)) {
             //Debugging purposes.
-            Progress.levelOneCleared = true;
-            Progress.levelTwoCleared = true;
-            Progress.levelThreeCleared = true;
-            Progress.day1IntroSeen = true;
-            Progress.day2IntroSeen = true;
-            Progress.day3IntroSeen = true;
-            day2Lock.SetActive(false);
-            day3Lock.SetActive(false);
+            //Progress.levelOneCleared = true;
+            //Progress.levelTwoCleared = true;
+            //Progress.levelThreeCleared = true;
+            //Progress.day1IntroSeen = true;
+            //Progress.day2IntroSeen = true;
+            //Progress.day3IntroSeen = true;
+            //day2Lock.SetActive(false);
+            //day3Lock.SetActive(false);
         }
     }
 
