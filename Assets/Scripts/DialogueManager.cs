@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour
     public Animator animateLeft;
     public Animator animateRight;       //the animators control the fade-in/fade-out
     public Animator nameTag;            //the animator for the name tag text box
+    public Animator transition;         
     [Space]
     public Sprite school_bg;
     public Sprite home_bg;
@@ -440,71 +441,121 @@ public class DialogueManager : MonoBehaviour
             case "Dialogue_Day1":
                 Progress.day1IntroSeen = true;
                 if (Progress.dressUpTutorialSeen) {
-                    SceneManager.LoadScene("DressUpV2");
+                    StartCoroutine(LoadLevel(1));
+                    //SceneManager.LoadScene("DressUpV2");
                 } else {
-                    SceneManager.LoadScene("Tutorial");
+                    StartCoroutine(LoadLevel(7));
+                    //SceneManager.LoadScene("Tutorial");
                 }
                 break;
             case "Dialogue_Day1FailDressUp":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day1PassDressUp":
-                SceneManager.LoadScene("LevelOne");
+                StartCoroutine(LoadLevel(3));
+                //SceneManager.LoadScene("LevelOne");
                 break;
             case "Dialogue_Day1PassStage":
                 Progress.levelOneCleared = true;
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day1FailStage":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Tutorial":
                 Progress.dressUpTutorialSeen = true;
-                SceneManager.LoadScene("DressUpV2");
+                StartCoroutine(LoadLevel(1));
+                //SceneManager.LoadScene("DressUpV2");
                 break;
             //Day 2
             case "Dialogue_Day2":
                 Progress.day2IntroSeen = true;
-                SceneManager.LoadScene("DressUpV2");
+                StartCoroutine(LoadLevel(1));
+                //SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day2FailDressUp":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day2PassDressUp":
-                SceneManager.LoadScene("LevelTwo");
+                StartCoroutine(LoadLevel(4));
+                //SceneManager.LoadScene("LevelTwo");
                 break;
             case "Dialogue_Day2PassStage":
                 Progress.levelTwoCleared = true;
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day2FailStage":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             //Day 3
             case "Dialogue_Day3":
                 Progress.day3IntroSeen = true;
-                SceneManager.LoadScene("DressUpV2");
+                StartCoroutine(LoadLevel(1));
+                //SceneManager.LoadScene("DressUpV2");
                 break;
             case "Dialogue_Day3FailDressUp":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             case "Dialogue_Day3PassDressUp":
-                SceneManager.LoadScene("LevelThree");
+                StartCoroutine(LoadLevel(5));
+                //SceneManager.LoadScene("LevelThree");
                 break;
             case "Dialogue_Day3PassStage":
                 Progress.levelThreeCleared = true;
-                SceneManager.LoadScene("EndingIntro");
+                StartCoroutine(LoadLevel(6));
+                //SceneManager.LoadScene("EndingIntro");
                 break;
             case "Dialogue_Day3FailStage":
-                SceneManager.LoadScene("StageSelectV2");
+                StartCoroutine(LoadLevel(2));
+                //SceneManager.LoadScene("StageSelectV2");
                 break;
             //Ending
             case "EndingIntro": 
-                SceneManager.LoadScene("DressUpV2");
+                StartCoroutine(LoadLevel(1));
+                //SceneManager.LoadScene("DressUpV2");
                 break;
             case "EndingOutro":
-                SceneManager.LoadScene("Credits");
+                StartCoroutine(LoadLevel(8));
+                //SceneManager.LoadScene("Credits");
                 break;
         }
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("DressUpV2");
+                break;
+            case 2:
+                SceneManager.LoadScene("StageSelectV2");
+                break;
+            case 3:
+                SceneManager.LoadScene("LevelOne");
+                break;
+            case 4:
+                SceneManager.LoadScene("LevelTwo");
+                break;
+            case 5:
+                SceneManager.LoadScene("LevelThree");
+                break;
+            case 6:
+                SceneManager.LoadScene("EndingIntro");
+                break;
+            case 7:
+                SceneManager.LoadScene("Tutorial");
+                break;
+            case 8:
+                SceneManager.LoadScene("Credits");
+                break;
+        }   
     }
 }

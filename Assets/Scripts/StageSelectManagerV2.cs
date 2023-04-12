@@ -27,6 +27,7 @@ public class StageSelectManagerV2 : MonoBehaviour
     public Animator phaseCategory;
     public Animator phase1Navigation;
     public Animator upArrow; public Animator downArrow;     //various menu animations
+    public Animator transition;
     [Space]
     public Animator day2;
     public GameObject day2Lock;
@@ -198,7 +199,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 phase = 3;
                             } else {
                                 confirm.Play();
-                                SceneManager.LoadScene("Dialogue_Day1");
+                                //SceneManager.LoadScene("Dialogue_Day1");
+                                StartCoroutine(LoadLevel(2));
                             }
                             
                             break;
@@ -209,7 +211,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                             } else {
                                 confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
-                                SceneManager.LoadScene("Dialogue_Day2");
+                                //SceneManager.LoadScene("Dialogue_Day2");
+                                StartCoroutine(LoadLevel(3));
                             }
                             
                             break;
@@ -220,7 +223,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                             } else {
                                 confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
-                                SceneManager.LoadScene("Dialogue_Day3");
+                                //SceneManager.LoadScene("Dialogue_Day3");
+                                StartCoroutine(LoadLevel(4));
                             }
                             break;
                     }
@@ -233,20 +237,24 @@ public class StageSelectManagerV2 : MonoBehaviour
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayOneIntro";
-                                SceneManager.LoadScene("DressUpV2");
+                                //SceneManager.LoadScene("DressUpV2");
+                                StartCoroutine(LoadLevel(5));
                             } else {
                                 confirm.Play();
-                                SceneManager.LoadScene("Dialogue_Day1");
+                                //SceneManager.LoadScene("Dialogue_Day1");
+                                StartCoroutine(LoadLevel(2));
                             }
                             break;
                         case 2:
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
-                                SceneManager.LoadScene("DressUpV2");
+                                //SceneManager.LoadScene("DressUpV2");
+                                StartCoroutine(LoadLevel(5));
                             } else {
                                 confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day2");
+                                StartCoroutine(LoadLevel(3));
                             }
                             break;
                         case 3:
@@ -254,10 +262,12 @@ public class StageSelectManagerV2 : MonoBehaviour
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
-                                SceneManager.LoadScene("DressUpV2");
+                                //SceneManager.LoadScene("DressUpV2");
+                                StartCoroutine(LoadLevel(5));
                             } else {
                                 confirm.Play();
                                 SceneManager.LoadScene("Dialogue_Day3");
+                                StartCoroutine(LoadLevel(4));
                             }
                             break;
                     }
@@ -269,7 +279,8 @@ public class StageSelectManagerV2 : MonoBehaviour
             switch(phase) {
                 case 1:
                     //todo add animation
-                    SceneManager.LoadScene("TitleScreen");
+                    StartCoroutine(LoadLevel(1));
+                    //SceneManager.LoadScene("TitleScreen");
                     break;
 
                 case 2:
@@ -301,14 +312,14 @@ public class StageSelectManagerV2 : MonoBehaviour
 
         if (Input.GetKeyDown(cheatButton)) {
             //Debugging purposes.
-            //Progress.levelOneCleared = true;
-            //Progress.levelTwoCleared = true;
-            //Progress.levelThreeCleared = true;
-            //Progress.day1IntroSeen = true;
-            //Progress.day2IntroSeen = true;
-            //Progress.day3IntroSeen = true;
-            //day2Lock.SetActive(false);
-            //day3Lock.SetActive(false);
+            Progress.levelOneCleared = true;
+            Progress.levelTwoCleared = true;
+            Progress.levelThreeCleared = true;
+            Progress.day1IntroSeen = true;
+            Progress.day2IntroSeen = true;
+            Progress.day3IntroSeen = true;
+            day2Lock.SetActive(false);
+            day3Lock.SetActive(false);
         }
     }
 
@@ -373,6 +384,28 @@ public class StageSelectManagerV2 : MonoBehaviour
                 difficultySelection.SetBool("normal", false); difficultySelection.SetBool("hard", false); difficultySelection.SetBool("easy", true);
                 break;
         }
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("TitleScreen");
+                break;
+            case 2:
+                SceneManager.LoadScene("Dialogue_Day1");
+                break;
+            case 3:
+                SceneManager.LoadScene("Dialogue_Day2");
+                break;
+            case 4:
+                SceneManager.LoadScene("Dialogue_Day3");
+                break;
+            case 5:
+                SceneManager.LoadScene("DressUpV2");
+                break;
+        }   
     }
 }
 

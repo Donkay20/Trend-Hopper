@@ -42,6 +42,7 @@ public class ScoreManager : MonoBehaviour
     public Animator NPC;
     public Animator endCard;
     public Animator heartPump;
+    public Animator transition;
     [Space]
 
 
@@ -236,7 +237,7 @@ public class ScoreManager : MonoBehaviour
 
         if (health <= 0) {
             Progress.failed = true;
-            SceneManager.LoadScene("Results");
+            Instance.StartCoroutine(LoadLevel(1));
         }
         Instance.noteCount++;
         Debug.Log(Instance.noteCount);
@@ -391,6 +392,16 @@ public class ScoreManager : MonoBehaviour
 
     public void delayResults() {
         endCard.SetBool("pp", false); endCard.SetBool("fc", false); endCard.SetBool("clear", false);
-        SceneManager.LoadScene("Results");
+        Instance.StartCoroutine(LoadLevel(1));
+    }
+
+    public static IEnumerator LoadLevel(int id) {
+        Instance.transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("Results");
+                break;
+        }   
     }
 }

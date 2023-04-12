@@ -464,6 +464,15 @@ MonoBehaviour:
     - Vicky
     - Vicky
     - Jassmea_WINKING
+    - EMPTY
+    - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
     sentences:
     - "The newbie didn't chicken out. She\u2019s rocking the new look."
     - I never run away from a fight I can't win.
@@ -473,6 +482,17 @@ MonoBehaviour:
     - Alright, everyone chill out. Let's just let the dancing do all the talking.
     - You ready?
     - Bring it on!
+    - '[Rhythm Game Tutorial]'
+    - Hit notes with the correct timings to win!
+    - Depending on bonuses chosen in the dress-up scene, you'll receive perks that'll
+      help you in the rhythm game!
+    - 'Score Multiplier: multiplies your score at the end of the level.'
+    - 'Leniency: increases the amount of time you have for hitting a note.'
+    - 'Coolness: the coolness you need to clear the level.'
+    - If you're at MAX Coolness, you'll be Peaking, which makes the notes gold, granting
+      additional score at the end of the level!
+    - But beware! Hitting zero coolness will cause you to fail the level.
+    - Hit Space at any time to pause. Good luck!
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +817,7 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
+  transition: {fileID: 1244661896}
   school_bg: {fileID: 21300000, guid: 7b26e88409e44564abeb1d4451d8347a, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 0}
@@ -1720,6 +1741,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1244661895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4598290505230453474, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_Name
+      value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8767265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4275752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12372.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+--- !u!95 &1244661896 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4598290505586000610, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+  m_PrefabInstance: {fileID: 1244661895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261753876
 GameObject:
   m_ObjectHideFlags: 0

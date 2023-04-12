@@ -13,6 +13,7 @@ public class TitleScreenSelect : MonoBehaviour
     public static TitleScreenSelect Instance;
 
     public Animator arrow;
+    public Animator transition;
     public AudioSource menuMusic;
     [Space]
     public KeyCode inputUp;
@@ -67,11 +68,13 @@ public class TitleScreenSelect : MonoBehaviour
             switch (selectedCategory) {
                 case 1:
                     menuMusic.Stop();
-                    SceneManager.LoadScene("StageSelectV2");
+                    StartCoroutine(LoadLevel(1));
+                    //SceneManager.LoadScene("StageSelectV2");
                     break;
                 case 2:
                     menuMusic.Stop();
-                    SceneManager.LoadScene("Credits");
+                    StartCoroutine(LoadLevel(2));
+                    //SceneManager.LoadScene("Credits");
                     break;
                 case 3:
                     menuMusic.Stop();
@@ -82,11 +85,15 @@ public class TitleScreenSelect : MonoBehaviour
     }
 
     IEnumerator LoadLevel(int id) {
-        yield return new WaitForSeconds(1);
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
         switch(id) {
             case 1:
                 SceneManager.LoadScene("StageSelectV2");
                 break; 
+            case 2:
+                SceneManager.LoadScene("Credits");
+                break;
         }
         
     }

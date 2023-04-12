@@ -6,11 +6,22 @@ using UnityEngine.SceneManagement;
 public class Credits : MonoBehaviour
 {
     public KeyCode exit;
+    public Animator transition;
 
     void Update()
     {
         if (Input.GetKeyDown(exit)) {
-            SceneManager.LoadScene("TitleScreen");
+            StartCoroutine(LoadLevel(1));
         }
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("TitleScreen");
+                break; 
+        }   
     }
 }

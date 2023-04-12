@@ -471,23 +471,20 @@ MonoBehaviour:
     - '[Jassmea wakes up.]'
     - Today is the big day! I barely got any sleep last night!
     - I am so ready to blow their minds with my sick dance moves, but first, I gotta
-      make sure my outfit <color=blue>matches their vibe</color=blue>.
+      make sure my outfit matches their vibe.
     - '[Dress Up Tutorial]'
     - Dress to impress! Use the wardrobe to dress yourself appropriately to fit the
       theme of the stage.
-    - This stage's theme is <color=blue>Punk</color=blue>. Look out for those types
-      of clothing!
-    - 'Use <color=blue>Up</color=blue> and <color=blue>Down</color=blue> to swap
-      between clothing categories.
+    - This stage's theme is Punk. Look out for those types of clothing!
+    - 'Use Up and Down to swap between clothing categories.
 
-      Use <color=blue>Left</color=blue> and <color=blue>Right</color=blue>
-      to swap between clothing within a category.'
-    - Note that there's <color=blue>more than one row</color=blue> of clothing per
-      category!
-    - Once you've chosen something you like, hit <color=blue>Space</color=blue> to
-      apply it to your character.
+      Use Left and Right
+      to choose between clothing within a category'
+    - Note that there's more than one row of clothing per category!
+    - Once you've finished selecting an outfit, you'll be able to hover the checkmark
+      and see your applied bonuses, depending on your chosen outfit.
     - You'll be able to advance to the next scene once you've chosen from every category
-      <color=blue>at least once</color=blue>.
+      at least once.
     - Good luck!
 --- !u!1 &326053767
 GameObject:
@@ -813,6 +810,7 @@ MonoBehaviour:
   animateLeft: {fileID: 740297276}
   animateRight: {fileID: 1677480853}
   nameTag: {fileID: 33314871}
+  transition: {fileID: 1618794565}
   school_bg: {fileID: 21300000, guid: af10dccb3424559459d60cddab3aefb7, type: 3}
   home_bg: {fileID: 21300000, guid: aed81aeacb56d9c46ba61a020a2b1e61, type: 3}
   cafe_bg: {fileID: 0}
@@ -1797,6 +1795,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1618794564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4598290505230453474, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_Name
+      value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8767265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4275752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12372.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598290505230453475, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+--- !u!95 &1618794565 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4598290505586000610, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+  m_PrefabInstance: {fileID: 1618794564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676357401
 GameObject:
   m_ObjectHideFlags: 0

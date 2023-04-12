@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public KeyCode up;
     public KeyCode down;
     public Animator pauseControl;
+    public Animator transition;
 
     private int selection;
 
@@ -103,13 +104,13 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadLevel(1));
         Time.timeScale = 1f; AudioListener.pause = false; pauseMenuUI.SetActive(false);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("StageSelectV2");
+        StartCoroutine(LoadLevel(2));
         Time.timeScale = 1f; AudioListener.pause = false; pauseMenuUI.SetActive(false);
     }
 
@@ -117,5 +118,18 @@ public class PauseMenu : MonoBehaviour
         GameObject prefab = Instantiate(readyUp, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2.0f);
         AudioListener.pause = false;
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                break;
+            case 2:
+                SceneManager.LoadScene("StageSelectV2");
+                break;
+        }   
     }
 }

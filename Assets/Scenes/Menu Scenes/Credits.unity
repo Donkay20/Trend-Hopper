@@ -245,14 +245,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[Dev Team]\nJaden Tseng: Character artist, Clothing Designer, UI Designer\nAda
-    Samiee: Character artist, Clothing Designer\nSina Karimi: SFX Designer, Web Designer\nShaiyan
-    Azim: NPC Artist\nMarcus Sett: Programmer, Animator\nEllia Godbout: Project Manager,
-    Dance Pad Designer, Game Designer\nAshley Thong: Background Artist, UI Designer,
-    Narrative Designer, VFX artist\n\n[Music]\n\u2018Psychedelicacy\u2019 by Lucid
-    Smog Disorder\n\u2018Say Hello\u2019 by Ben Nickerson (Benickerson) and Jason
-    Nguyen (LILINA)\n\u2018Funk So What\u2019 by Bronson Aguiar, Stephen Edwards,
-    and Mateja Lasan"
+  m_text: "[Dev Team]\nJaden Tseng: Protag artist, NPC Artist, Clothing Designer,
+    UI Designer\nAda Samiee: Character artist, Clothing Designer\nSina Karimi: SFX
+    Designer, Web Designer\nShaiyan Azim: NPC Artist\nMarcus Sett: Programmer, Animator\nEllia
+    Godbout: Project Manager, Dance Pad Designer, Game Designer\nAshley Thong: Background
+    Artist, UI Designer, Narrative Designer, VFX artist\n\n[Music]\n\u2018Psychedelicacy\u2019
+    by Lucid Smog Disorder\n\u2018Say Hello\u2019 by Ben Nickerson (Benickerson)
+    and Jason Nguyen (LILINA)\n\u2018Funk So What\u2019 by Bronson Aguiar, Stephen
+    Edwards, and Mateja Lasan"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
@@ -279,14 +279,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.5
-  m_fontSizeBase: 4.5
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -379,12 +379,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.43, y: -1.46}
-  m_SizeDelta: {x: 17.6316, y: 7.3082}
+  m_AnchoredPosition: {x: -0.0212, y: -1.5849}
+  m_SizeDelta: {x: 17.5939, y: 6.498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &205185836
 GameObject:
@@ -429,7 +429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &316409158
 GameObject:
@@ -513,7 +513,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &343363027
 GameObject:
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exit: 276
+  transition: {fileID: 1772629042}
 --- !u!4 &494470616
 Transform:
   m_ObjectHideFlags: 0
@@ -642,7 +643,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840205189
 GameObject:
@@ -675,8 +676,70 @@ Transform:
   - {fileID: 22926730}
   - {fileID: 343363029}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1772629041
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7640953708768011511, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_Name
+      value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8767265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4275752
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12372.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640953708768011512, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+--- !u!95 &1772629042 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4598290505586000610, guid: 0a357b549337a2d4c9d5b433991796c2, type: 3}
+  m_PrefabInstance: {fileID: 1772629041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989524541
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +905,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

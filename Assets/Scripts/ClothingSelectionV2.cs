@@ -27,6 +27,7 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco; public Sprite empty;
     public GameObject meterDesc;
     public Animator meter;
+    public Animator transition;
     [Space]
     public GameObject clothingSelector;
     public Animator leftTrigger;
@@ -443,31 +444,40 @@ public class ClothingSelectionV2 : MonoBehaviour
                 switch(Progress.lastLevel) {
                     //todo
                     case "dayOneIntro":
+                    
                         if (selectedHair < 3 && selectedTop < 3 && selectedBottom < 3 && selectedShoe < 3 && selectedAccessory < 3) {
-                            SceneManager.LoadScene("Dialogue_Day1PassDressUp");
                             calculateBonus(1);
+                            StartCoroutine(LoadLevel(1));
+                            //SceneManager.LoadScene("Dialogue_Day1PassDressUp");
                         } else {
-                            SceneManager.LoadScene("Dialogue_Day1FailDressUp");
+                            StartCoroutine(LoadLevel(2));
+                            //SceneManager.LoadScene("Dialogue_Day1FailDressUp");
                         }
                         break;
                     case "dayTwoIntro":
-                        if (selectedHair > 2 && selectedHair < 6 && selectedTop > 2 && selectedTop < 6 && selectedBottom > 2 && selectedBottom < 6 && selectedShoe > 2 && selectedShoe < 6 && selectedAccessory > 2 && selectedAccessory < 6) { //this clause will need to be changed when lv3 stuff is here!
-                            SceneManager.LoadScene("Dialogue_Day2PassDressUp");
+
+                        if (selectedHair > 2 && selectedHair < 6 && selectedTop > 2 && selectedTop < 6 && selectedBottom > 2 && selectedBottom < 6 && selectedShoe > 2 && selectedShoe < 6 && selectedAccessory > 2 && selectedAccessory < 6) {
                             calculateBonus(2);
+                            StartCoroutine(LoadLevel(3));
+                            //SceneManager.LoadScene("Dialogue_Day2PassDressUp");
                         } else {
-                            SceneManager.LoadScene("Dialogue_Day2FailDressUp");
+                            StartCoroutine(LoadLevel(4));
+                            //SceneManager.LoadScene("Dialogue_Day2FailDressUp");
                         }
                         break;
                     case "dayThreeIntro":
                         if (selectedHair > 5 && selectedTop > 5 && selectedBottom > 5 && selectedShoe > 5 && selectedAccessory > 5) {
-                            SceneManager.LoadScene("Dialogue_Day3PassDressUp");
                             calculateBonus(3);
+                            StartCoroutine(LoadLevel(5));
+                            //SceneManager.LoadScene("Dialogue_Day3PassDressUp");
                         } else {
-                            SceneManager.LoadScene("Dialogue_Day3FailDressUp");
+                            StartCoroutine(LoadLevel(6));
+                            //SceneManager.LoadScene("Dialogue_Day3FailDressUp");
                         }
                         break;
                     case "EndingIntro":
-                        SceneManager.LoadScene("EndingOutro");
+                        StartCoroutine(LoadLevel(7));
+                        //SceneManager.LoadScene("EndingOutro");
                         break;
                 }
             }
@@ -551,9 +561,9 @@ public class ClothingSelectionV2 : MonoBehaviour
         if(selectedBottom != -1) {
 
             if (selectedBottom == 0) {                                          //fishnet exception
-                assignedShoe.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                assignedBottom.GetComponent<SpriteRenderer>().sortingOrder = 0;
             } else {
-                assignedShoe.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                assignedBottom.GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
             assignedBottom.GetComponent<SpriteRenderer>().sprite = appliedBottomCatalog[selectedBottom];
         }
@@ -662,7 +672,7 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         switch(day) {
             case 1:
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 5; i++) {
                     switch(clothingChecks[i]) {
                         case 0:
                             allocateScore += 0.2;  
@@ -677,7 +687,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                 }
                 break;
             case 2:
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 5; i++) {
                     switch(clothingChecks[i]) {
                         case 3:
                             allocateScore += 0.2;  
@@ -692,7 +702,7 @@ public class ClothingSelectionV2 : MonoBehaviour
                 }
                 break;
             case 3:
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 5; i++) {
                     switch(clothingChecks[i]) {
                         case 6:
                             allocateScore += 0.2;  
@@ -920,5 +930,33 @@ public class ClothingSelectionV2 : MonoBehaviour
         multiplier.text = DressUpStatBonuses.scoreMultiplier.ToString() + "x";
         leniencyP.text = "+" + DressUpStatBonuses.leniencyValue.ToString() + "ms";
         coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\nrequired";
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("Dialogue_Day1PassDressUp");
+                break;
+            case 2:
+                SceneManager.LoadScene("Dialogue_Day1FailDressUp");
+                break;
+            case 3:
+                SceneManager.LoadScene("Dialogue_Day2PassDressUp");
+                break;
+            case 4:
+                SceneManager.LoadScene("Dialogue_Day2FailDressUp");
+                break;
+            case 5:
+                SceneManager.LoadScene("Dialogue_Day3PassDressUp");
+                break;
+            case 6:
+                SceneManager.LoadScene("Dialogue_Day3FailDressUp");
+                break;
+            case 7:
+                SceneManager.LoadScene("EndingOutro");
+                break;
+        }   
     }
 }

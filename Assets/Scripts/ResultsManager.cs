@@ -18,6 +18,7 @@ public class ResultsManager : MonoBehaviour
     private bool high;
 
     public KeyCode input;
+    public Animator transition;
     [Space]
     public AudioSource levelOneTune;
     public AudioSource levelTwoTune;
@@ -102,7 +103,7 @@ public class ResultsManager : MonoBehaviour
                 break;
         }
 
-        finalScoreAfterMultiplier = ((int) Progress.score * DressUpStatBonuses.scoreMultiplier + (Progress.peakNotes*50));
+        finalScoreAfterMultiplier = ((int) Progress.score * DressUpStatBonuses.scoreMultiplier + (Progress.peakNotes*20));
 
         perfectText.text = Progress.hitCount.ToString();          
         okText.text = Progress.okCount.ToString();                
@@ -165,23 +166,23 @@ public class ResultsManager : MonoBehaviour
             switch(Progress.lastLevel) {
                 case "dayOne":
                     if (grade == "F") {
-                        SceneManager.LoadScene("Dialogue_Day1FailStage");
+                        StartCoroutine(LoadLevel(1));
                     } else {
-                        SceneManager.LoadScene("Dialogue_Day1PassStage");
+                        StartCoroutine(LoadLevel(2));
                     }
                     break;
                 case "dayTwo":
                     if (grade == "F") {
-                        SceneManager.LoadScene("Dialogue_Day2FailStage");
+                        StartCoroutine(LoadLevel(3));
                     } else {
-                        SceneManager.LoadScene("Dialogue_Day2PassStage");
+                        StartCoroutine(LoadLevel(4));
                     }
                     break;
                 case "dayThree":
                     if (grade == "F") {
-                        SceneManager.LoadScene("Dialogue_Day3FailStage");
+                        StartCoroutine(LoadLevel(5));
                     } else {
-                        SceneManager.LoadScene("Dialogue_Day3PassStage");
+                        StartCoroutine(LoadLevel(6));
                     }
                     break;
             }
@@ -199,10 +200,10 @@ public class ResultsManager : MonoBehaviour
             if (finalScoreAfterMultiplier >= highestPossibleScore) {
                 grade = "S";
                 gradeIcon.GetComponent<SpriteRenderer>().sprite = gradeS;
-            } else if (finalScoreAfterMultiplier < highestPossibleScore && finalScoreAfterMultiplier >= highestPossibleScore*0.8) {
+            } else if (finalScoreAfterMultiplier < highestPossibleScore && finalScoreAfterMultiplier >= highestPossibleScore*0.90) {
                 grade = "A";
                 gradeIcon.GetComponent<SpriteRenderer>().sprite = gradeA;
-            } else if (finalScoreAfterMultiplier < highestPossibleScore*0.8 && finalScoreAfterMultiplier >= highestPossibleScore*0.6) {
+            } else if (finalScoreAfterMultiplier < highestPossibleScore*0.90 && finalScoreAfterMultiplier >= highestPossibleScore*0.6) {
                 grade = "B";
                 gradeIcon.GetComponent<SpriteRenderer>().sprite = gradeB;
             } else if (finalScoreAfterMultiplier < highestPossibleScore*0.6 && finalScoreAfterMultiplier >= highestPossibleScore*0.4) {
@@ -232,5 +233,30 @@ public class ResultsManager : MonoBehaviour
                 appliedAccessory.GetComponent<SpriteRenderer>().sprite = accessoryStorageFailure[Progress.chosenAccessory];
                 break;
         }
+    }
+
+    IEnumerator LoadLevel(int id) {
+        transition.SetBool("exit", true);
+        yield return new WaitForSeconds(1f);
+        switch(id) {
+            case 1:
+                SceneManager.LoadScene("Dialogue_Day1FailStage");
+                break;
+            case 2:
+                SceneManager.LoadScene("Dialogue_Day1PassStage");
+                break;
+            case 3:
+                SceneManager.LoadScene("Dialogue_Day2FailStage");
+                break;
+            case 4:
+                SceneManager.LoadScene("Dialogue_Day2PassStage");
+                break;
+            case 5:
+                SceneManager.LoadScene("Dialogue_Day3FailStage");
+                break;
+            case 6:
+                SceneManager.LoadScene("Dialogue_Day3PassStage");
+                break;
+        }   
     }
 }
