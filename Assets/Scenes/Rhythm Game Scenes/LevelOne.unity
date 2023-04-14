@@ -21625,7 +21625,6 @@ MonoBehaviour:
   heartGold: {fileID: 21300000, guid: 52e2188718c2f754bbd9a3685a98425a, type: 3}
   heartNormal: {fileID: 21300000, guid: bc4652ad9ae06354f8967bf54c264708, type: 3}
   heart: {fileID: 282595746}
-  sparkle100: {fileID: 1368240304}
   hitSFX: {fileID: 371337196}
   missSFX: {fileID: 1770130747}
   comboScoreText: {fileID: 409047331}
@@ -21648,6 +21647,7 @@ MonoBehaviour:
   heartPump: {fileID: 282595749}
   transition: {fileID: 995469908}
   maxCombo: 500
+  sparkle100: {fileID: 1368240306}
 --- !u!4 &633352010
 Transform:
   m_ObjectHideFlags: 0
