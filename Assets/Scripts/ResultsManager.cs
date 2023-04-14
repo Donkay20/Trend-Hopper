@@ -216,7 +216,7 @@ public class ResultsManager : MonoBehaviour
         }
     }
 
-    private void appliedClothing() { //fuck you Jaden (and maybe Ada)
+    private void appliedClothing() {
         switch(high) {
             case true:
                 appliedHair.GetComponent<SpriteRenderer>().sprite = hairStorageSuccess[Progress.chosenHair];

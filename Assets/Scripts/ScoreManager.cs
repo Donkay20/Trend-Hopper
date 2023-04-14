@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
     public Sprite heartGold; 
     public Sprite heartNormal;
     public GameObject heart;
-    public GameObject sparkle100;
+    public GameObject particlePosition;
     [Space]
     public AudioSource hitSFX;
     public AudioSource missSFX;
@@ -245,13 +245,7 @@ public class ScoreManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (comboScore >= 100) {
-            sparkle100.SetActive(true);
-        } else {
-            sparkle100.SetActive(false);
-        }
-
+    {   
         if (Input.GetKeyDown(KeyCode.LeftArrow)){
             leftPress.SetTrigger("trigger");
         }
@@ -393,6 +387,10 @@ public class ScoreManager : MonoBehaviour
     public void delayResults() {
         endCard.SetBool("pp", false); endCard.SetBool("fc", false); endCard.SetBool("clear", false);
         Instance.StartCoroutine(LoadLevel(1));
+    }
+
+    public void alterParticle(bool tick) {
+
     }
 
     public static IEnumerator LoadLevel(int id) {
