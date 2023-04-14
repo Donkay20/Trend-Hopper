@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     public Sprite heartGold; 
     public Sprite heartNormal;
     public GameObject heart;
+    public GameObject sparkle100;
     [Space]
     public AudioSource hitSFX;
     public AudioSource missSFX;
@@ -56,7 +57,6 @@ public class ScoreManager : MonoBehaviour
     private ParticleSystem rightHit;
     private ParticleSystem upHit;
     private ParticleSystem downHit;
-    public ParticleSystem sparkle100;
 
     private bool flipped;
     private bool hitEnd; private int noteCount;
@@ -247,9 +247,9 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         if (comboScore >= 100) {
-            sparkle100.Play();
+            sparkle100.SetActive(true);
         } else {
-            sparkle100.Stop();
+            sparkle100.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)){
