@@ -437,6 +437,11 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue() {    //switches to different scenes depending on what dialogue is currently playing.
         switch(SceneManager.GetActiveScene().name) {
+            //Game Intro
+            case "Intro":
+                Progress.introSeen = true;
+                StartCoroutine(LoadLevel(2));
+                break;
             //Day 1
             case "Dialogue_Day1":
                 Progress.day1IntroSeen = true;

@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu Scenes/DressUpV2.unity
     guid: 6fb2c60224a1adc47ba37c3510e43412
   - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Day 1/Intro.unity
+    guid: a6ca8d74b7fdd144d8001a682b72af3a
+  - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Day 1/Dialogue_Day1.unity
     guid: 22516ee736a6508489eb72b39a95d369
   - enabled: 1

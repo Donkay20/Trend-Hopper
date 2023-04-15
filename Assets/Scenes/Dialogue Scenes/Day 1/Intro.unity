@@ -360,50 +360,20 @@ MonoBehaviour:
   dialogue:
     names:
     - Jassmea_HAPPY
-    - Vicky
-    - Rocky
-    - Tyler
-    - Jassmea_NEUTRAL
-    - Vicky
-    - Jassmea_HAPPY
-    - Rocky
-    - Tyler
-    - Vicky
-    - Vicky
-    - Vicky
-    - Rocky
-    - Tyler
-    - EMPTY
     - Jassmea_NEUTRAL
     - Jassmea
-    - Jassmea_MAD
     - Jassmea_HAPPY
-    - '-'
+    - Jassmea_MAD
     sentences:
-    - "There are so many new faces! \nO.M.G. Look at that hottie over there!"
-    - Chill, stop gawking at my man. He's off limits.
-    - Eyes to yourself, newbie.
-    - Yeah, you are giving off real creep vibes right now.
-    - I'm so sorry, I had no idea. Forget about it, you guys look SO freaking cool!
-    - Thanks newbie. We'll see you around I guess.
-    - WAIT! Um, I was wondering if... Maybe we could be friends?
-    - Ha! You're funny if you think you could join our group looking like that.
-    - Not to mention you gotta know how to bust a move to hang with us.
-    - Calm down guys, let's give her a chance.
-    - Meet me after school tomorrow at the detention room and we'll have a dance-off.
-      Let's see if you can rock with us.
-    - By the way, your sweater is SO not in right now. Maybe you can change it up
-      a little. Later.
-    - Later, poser.
-    - You are sooo going to look stupid tomorrow, ha ha, see ya.
-    - '[The trio leave.]'
-    - '*internally dies*'
-    - '*slaps face*'
-    - I gotta snap outta of it! This is my chance to prove myself. They were kinda
-      scary, but nothing I can't take!
-    - I'm gonna make myself look so cool tomorrow!
-    - '[Jassmea spends the rest of the school day restless just DYING for the next
-      day to come.]'
+    - Ahhh!! It's the first day of school!! I'm so excited and nervous at the same
+      time I could puke!
+    - Today is a chance at a fresh start so the first few days are crucial.
+    - 'Oh gosh, I just hope everyone likes me. All I want is to fit in and find a
+      group of friends I can hangout with, and potentially a new BFF I can spill
+      all the tea to. '
+    - Maybe I'll even get a boyfriend this year *squeal*. Justin Bieber will always
+      be my bae though.
+    - Ah! I need to stop daydreaming and leave for school, or else I'm gonna be late!
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +571,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap <color=red>Right</color=red>.
+  m_text: '(Tap <color=red>Right</color=red> to advance through text.)
+
+    (Hold
+    <color=red>Down</color=red> to fast-foward through text.)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
   m_sharedMaterial: {fileID: -5542008825834462079, guid: 072541e779610034c8ab35bcc02c2085, type: 2}
@@ -812,7 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1179568436}
   dialogueText: {fileID: 407110388}
-  identity: dayOneIntro
+  identity: Intro
   dressedUp: 0
   appliedHair: {fileID: 1105032524}
   appliedTop: {fileID: 1018978225}
@@ -1601,7 +1574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efa3df74bf7b644f936ec3b9a6a0d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newDetails: Story - Day 1
+  newDetails: Intro
 --- !u!4 &1025242466
 Transform:
   m_ObjectHideFlags: 0

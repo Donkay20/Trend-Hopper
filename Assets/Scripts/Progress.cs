@@ -5,12 +5,12 @@ using UnityEngine;
 public static class Progress
 {
     public static string lastLevel {get; set;}
-    public static bool dressUpTutorialSeen {get; set;}
 
+    public static bool introSeen;
+    public static bool dressUpTutorialSeen {get; set;}
     public static bool day1BeforeDialogueSeen {get; set;}
 
     public static string difficulty {get; set;}
-
 
     public static int peakNotes {get; set;}
     public static int hitCount {get; set;}

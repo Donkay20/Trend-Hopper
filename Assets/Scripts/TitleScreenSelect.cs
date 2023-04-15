@@ -68,13 +68,15 @@ public class TitleScreenSelect : MonoBehaviour
             switch (selectedCategory) {
                 case 1:
                     menuMusic.Stop();
-                    StartCoroutine(LoadLevel(1));
-                    //SceneManager.LoadScene("StageSelectV2");
+                    if (Progress.introSeen) {
+                        StartCoroutine(LoadLevel(1));
+                    } else {
+                        StartCoroutine(LoadLevel(3));
+                    }
                     break;
                 case 2:
                     menuMusic.Stop();
                     StartCoroutine(LoadLevel(2));
-                    //SceneManager.LoadScene("Credits");
                     break;
                 case 3:
                     menuMusic.Stop();
@@ -93,6 +95,9 @@ public class TitleScreenSelect : MonoBehaviour
                 break; 
             case 2:
                 SceneManager.LoadScene("Credits");
+                break;
+            case 3:
+                SceneManager.LoadScene("Intro");
                 break;
         }
         
