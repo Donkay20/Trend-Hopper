@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     public TMPro.TextMeshPro healthRequirementText;
     [Space]
     public GameObject thresholdIndicator; public Animator thresholdAnim;
-    public GameObject hundredTextPrefab;
+    public GameObject hundredTextPrefab; public Animator hundredAnim;
     [Space]
     public GameObject dangerNotifier;
     public GameObject peakNotifier;
@@ -43,6 +43,8 @@ public class ScoreManager : MonoBehaviour
     public Animator endCard;
     public Animator heartPump;
     public Animator transition;
+
+    public Animator scoreAnimation;
     [Space]
 
 
@@ -57,6 +59,11 @@ public class ScoreManager : MonoBehaviour
     private ParticleSystem rightHit;
     private ParticleSystem upHit;
     private ParticleSystem downHit;
+
+    private ParticleSystem leftGoldHit;         //sfx note hit / gold
+    private ParticleSystem rightGoldHit;
+    private ParticleSystem upGoldHit;
+    private ParticleSystem downGoldHit;
 
     private bool flipped;
     private bool hitEnd; private int noteCount;
@@ -78,6 +85,11 @@ public class ScoreManager : MonoBehaviour
         rightHit = GameObject.Find("RightArrowSFX").GetComponent<ParticleSystem>();
         upHit = GameObject.Find("UpArrowSFX").GetComponent<ParticleSystem>();
         downHit = GameObject.Find("DownArrowSFX").GetComponent<ParticleSystem>();
+
+        leftGoldHit = GameObject.Find("LeftArrowSFX_Gold").GetComponent<ParticleSystem>();
+        rightGoldHit = GameObject.Find("RightArrowSFX_Gold").GetComponent<ParticleSystem>();
+        upGoldHit = GameObject.Find("UpArrowSFX_Gold").GetComponent<ParticleSystem>();
+        downGoldHit = GameObject.Find("DownArrowSFX_Gold").GetComponent<ParticleSystem>();
 
         Instance.noteCount = 0;
         Progress.peakNotes = 0;
@@ -117,19 +129,35 @@ public class ScoreManager : MonoBehaviour
 
         //SFX Arrow hits
         if (Input.GetKey(KeyCode.LeftArrow)){
-            Instance.leftHit.Play();
+            if (health == maxHealth) {
+                Instance.leftGoldHit.Play();
+            } else {
+                Instance.leftHit.Play();
+            }
         }
 
         if (Input.GetKey(KeyCode.RightArrow)){
-            Instance.rightHit.Play();
+            if (health == maxHealth) {
+                Instance.rightGoldHit.Play();
+            } else {
+                Instance.rightHit.Play();
+            }
         }
          
         if (Input.GetKey(KeyCode.UpArrow)){
-            Instance.upHit.Play();
+            if (health == maxHealth) {
+                Instance.upGoldHit.Play();
+            } else {
+                Instance.upHit.Play();
+            }
         }
         
         if (Input.GetKey(KeyCode.DownArrow)){
-            Instance.downHit.Play();
+            if (health == maxHealth) {
+                Instance.downGoldHit.Play();
+            } else {
+                Instance.downHit.Play();
+            }
         }
 
         if (comboScore % 100 == 0) {
@@ -246,6 +274,13 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        if (comboScore >= 50) {
+            scoreAnimation.SetBool("hit50", true);
+        } else {
+            scoreAnimation.SetBool("hit50", false);
+        }
+
+
         if (Input.GetKeyDown(KeyCode.LeftArrow)){
             leftPress.SetTrigger("trigger");
         }
@@ -365,8 +400,8 @@ public class ScoreManager : MonoBehaviour
 
     public void hundredIndicator() {
         if (hundredTextPrefab) {
-            GameObject prefab = Instantiate(hundredTextPrefab);
-            prefab.GetComponentInChildren<TextMesh>().text = hundredToText;
+            hundredTextPrefab.GetComponentInChildren<TextMesh>().text = hundredToText;
+            hundredAnim.SetTrigger("hundredHit");
         }
     }
 

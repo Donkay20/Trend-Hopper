@@ -479,7 +479,7 @@ MonoBehaviour:
     - 'Use Up and Down to swap between clothing categories.
 
       Use Left and Right
-      to choose between clothing within a category'
+      to choose between clothing within a category.'
     - Note that there's more than one row of clothing per category!
     - Once you've finished selecting an outfit, you'll be able to hover the checkmark
       and see your applied bonuses, depending on your chosen outfit.
