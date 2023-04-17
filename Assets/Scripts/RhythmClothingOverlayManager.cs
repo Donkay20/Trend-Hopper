@@ -41,9 +41,9 @@ public class RhythmClothingOverlayManager : MonoBehaviour
         appliedVSAccessory.GetComponent<SpriteRenderer>().sprite = VSAccessory[Progress.chosenAccessory];
 
         if (Progress.chosenBottom == 0) {                                          //fishnet exception
-                appliedChibiBottom.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                appliedChibiBottom.GetComponent<SpriteRenderer>().sortingOrder = 1;
             } else {
-                appliedChibiBottom.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                appliedChibiBottom.GetComponent<SpriteRenderer>().sortingOrder = 3;
         }
     }
 }

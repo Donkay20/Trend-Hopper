@@ -23,6 +23,11 @@ public class ClothingSelectionV2 : MonoBehaviour
     public Animator accessoryUI; 
     public Animator checkmarkUI;
     public Animator downTrigger;    //for the UI tab on the left-hand side
+    public Animator hairBonusDisplay;
+    public Animator topBonusDisplay;
+    public Animator bottomBonusDisplay;
+    public Animator shoeBonusDisplay;
+    public Animator accessoryBonusDisplay;
     [Space]
     public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco; public Sprite empty;
     public GameObject meterDesc;
@@ -90,8 +95,7 @@ public class ClothingSelectionV2 : MonoBehaviour
     private int meterCounter;                                       //(range: 0-5) check to see if the clothing is matching the theme of the level
     private bool hairOK; private bool topOK; private bool bottomOK; private bool shoeOK; private bool accessoryOK;   //+1 to matching clothing, +0 if not.
 
-    void Start()
-    {
+    void Start() {
         if (Progress.lastLevel == null) {       //This should NEVER trigger unless starting from this scene in the editor. If this happens please tell me immediately!!!
             Progress.lastLevel = "dayOneIntro";
         }
@@ -119,15 +123,13 @@ public class ClothingSelectionV2 : MonoBehaviour
         selectedHair = -1; selectedTop = -1; selectedBottom = -1; selectedShoe = -1; selectedAccessory = -1; //set them to -1 to initialize so nothing is "chosen"
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if(selectedHair != -1 && selectedTop != -1 && selectedBottom != -1 && selectedShoe != -1 && selectedAccessory != -1) { //if all clothing has been chosen at least once
             allOK = true;
             checkmarkUI.SetBool("checkUnlocked", true);
         }
 
-        if(Input.GetKeyDown(inputUp)) { //up trigger.
+        if(Input.GetKeyDown(inputUp)) {                 //up trigger.
             shiftCategory.Play();
             upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
@@ -168,7 +170,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             UpdateCategory(selectedCategory);
         }
 
-        if(Input.GetKeyDown(inputDown)) { //down trigger.
+        if(Input.GetKeyDown(inputDown)) {               //down trigger.
             shiftCategory.Play();
             downTrigger.SetTrigger("downTrigger");
             switch(selectedCategory) {
@@ -209,7 +211,7 @@ public class ClothingSelectionV2 : MonoBehaviour
             UpdateCategory(selectedCategory);
         }
 
-        if(Input.GetKeyDown(inputLeft)) {   //left trigger.
+        if(Input.GetKeyDown(inputLeft)) {               //left trigger.
             shiftClothing.Play();
             leftTrigger.SetTrigger("leftTrigger");
             switch(selectedCategory) {
@@ -316,12 +318,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                     }
                     break;
             }
-            UpdateRow();
-            UpdateOverlay();
-            checkIfOK();
+            UpdateRow(); UpdateOverlay(); checkIfOK(); updateCategoryBonusDisplay();
         }
 
-        if(Input.GetKeyDown(inputRight)) {  //right trigger.
+        if(Input.GetKeyDown(inputRight)) {              //right trigger.
             shiftClothing.Play();
             rightTrigger.SetTrigger("rightTrigger");
             switch(selectedCategory) {
@@ -425,12 +425,10 @@ public class ClothingSelectionV2 : MonoBehaviour
                     }
                     break;
             }
-            UpdateRow();
-            UpdateOverlay();
-            checkIfOK();
+            UpdateRow(); UpdateOverlay(); checkIfOK(); updateCategoryBonusDisplay();
         }
 
-        if(Input.GetKeyDown(inputSelect)) { //select button trigger.
+        if(Input.GetKeyDown(inputSelect)) {             //select button trigger.
             if(selectedCategory == "check") {
                 //apply the selected clothing to the universal checker
                 Progress.chosenHair = selectedHair;
@@ -484,72 +482,72 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
     }
 
-    private void UpdateCategory (string category) {
+    private void UpdateCategory (string category) {     //This method makes the categories light up when they're selected, and darken when they aren't. Also updates the associated category bonus tooltips.
         switch (category) {
             case "hair":
             clothingSelector.transform.position = new Vector3(-0.5f, 3.4f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = focus;          hairBonusDisplay.GetComponent<SpriteRenderer>().color = focus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;         topBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;      bottomBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        shoeBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;   accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
             }
             break;
             case "top":
             clothingSelector.transform.position = new Vector3(5.1f, 3f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        hairBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = focus;           topBonusDisplay.GetComponent<SpriteRenderer>().color = focus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;      bottomBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        shoeBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;   accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
             }
             break;
             case "bottom":
             clothingSelector.transform.position = new Vector3(5.1f, -1f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        hairBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;         topBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = focus;        bottomBonusDisplay.GetComponent<SpriteRenderer>().color = focus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        shoeBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;   accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
             }
             break;
             case "shoe":
             clothingSelector.transform.position = new Vector3(-0.5f, 1.1f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        hairBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;         topBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;      bottomBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = focus;          shoeBonusDisplay.GetComponent<SpriteRenderer>().color = focus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;   accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
             }
             break;
             case "accessory":
             clothingSelector.transform.position = new Vector3(-0.5f, -1.6f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = focus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        hairBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;         topBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;      bottomBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        shoeBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = focus;     accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = focus;
             }
             break;
             case "check":
             clothingSelector.transform.position = new Vector3(10f, 10f, 0f);
             for (int i = 0; i < 9; i++) {
-                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
-                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;
+                hairRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        hairBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                topRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;         topBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                bottomRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;      bottomBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                shoeRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;        shoeBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
+                accessoryRowsInner[i].GetComponent<SpriteRenderer>().color = unfocus;   accessoryBonusDisplay.GetComponent<SpriteRenderer>().color = unfocus;
             }
             break;
         }
     }
 
-    private void UpdateOverlay() {  //edit this because Ada is cringe smile SHE'S REALLY CRINGE
+    private void UpdateOverlay() {                      // Updates what clothing is displayed on the main character on the left.
         if(selectedHair != -1) {
             assignedHair.GetComponent<SpriteRenderer>().sprite = appliedHairCatalog[selectedHair];
         }
@@ -582,7 +580,97 @@ public class ClothingSelectionV2 : MonoBehaviour
         coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "required";
     }
 
-    private void UpdateRow() {
+    private void updateCategoryBonusDisplay() {         // Updates the tooltip that displays the bonus above every clothing category. 
+        switch (selectedCategory) {
+            case "hair":
+                if (selectedHair == 0 || selectedHair == 3 || selectedHair == 6) {
+                    hairBonusDisplay.SetBool("coolness", false); 
+                    hairBonusDisplay.SetBool("leniency", false); 
+                    hairBonusDisplay.SetBool("score", true);
+                }
+                if (selectedHair == 1 || selectedHair == 4 || selectedHair == 7) {
+                    hairBonusDisplay.SetBool("score", false); 
+                    hairBonusDisplay.SetBool("coolness", false);
+                    hairBonusDisplay.SetBool("leniency", true);
+                }
+                if (selectedHair == 2 || selectedHair == 5 || selectedHair == 8) {
+                    hairBonusDisplay.SetBool("score", false);
+                    hairBonusDisplay.SetBool("leniency", false);
+                    hairBonusDisplay.SetBool("coolness", true);
+                }
+                break;
+            case "top":
+                if (selectedTop == 0 || selectedTop == 3 || selectedTop == 6) {
+                    topBonusDisplay.SetBool("coolness", false); 
+                    topBonusDisplay.SetBool("leniency", false); 
+                    topBonusDisplay.SetBool("score", true);
+                }
+                if (selectedTop == 1 || selectedTop == 4 || selectedTop == 7) {
+                    topBonusDisplay.SetBool("score", false); 
+                    topBonusDisplay.SetBool("coolness", false);
+                    topBonusDisplay.SetBool("leniency", true);
+                }
+                if (selectedTop == 2 || selectedTop == 5 || selectedTop == 8) {
+                    topBonusDisplay.SetBool("score", false);
+                    topBonusDisplay.SetBool("leniency", false);
+                    topBonusDisplay.SetBool("coolness", true);
+                }
+                break;
+            case "bottom":
+                if (selectedBottom == 0 || selectedBottom == 3 || selectedBottom == 6) {
+                    bottomBonusDisplay.SetBool("coolness", false); 
+                    bottomBonusDisplay.SetBool("leniency", false); 
+                    bottomBonusDisplay.SetBool("score", true);
+                }
+                if (selectedBottom == 1 || selectedBottom == 4 || selectedBottom == 7) {
+                    bottomBonusDisplay.SetBool("score", false); 
+                    bottomBonusDisplay.SetBool("coolness", false);
+                    bottomBonusDisplay.SetBool("leniency", true);
+                }
+                if (selectedBottom == 2 || selectedBottom == 5 || selectedBottom == 8) {
+                    bottomBonusDisplay.SetBool("score", false);
+                    bottomBonusDisplay.SetBool("leniency", false);
+                    bottomBonusDisplay.SetBool("coolness", true);
+                }
+                break;
+            case "shoe":
+                if (selectedShoe == 0 || selectedShoe == 3 || selectedShoe == 6) {
+                    shoeBonusDisplay.SetBool("coolness", false); 
+                    shoeBonusDisplay.SetBool("leniency", false); 
+                    shoeBonusDisplay.SetBool("score", true);
+                }
+                if (selectedShoe == 1 || selectedShoe == 4 || selectedShoe == 7) {
+                    shoeBonusDisplay.SetBool("score", false); 
+                    shoeBonusDisplay.SetBool("coolness", false);
+                    shoeBonusDisplay.SetBool("leniency", true);
+                }
+                if (selectedShoe == 2 || selectedShoe == 5 || selectedShoe == 8) {
+                    shoeBonusDisplay.SetBool("score", false);
+                    shoeBonusDisplay.SetBool("leniency", false);
+                    shoeBonusDisplay.SetBool("coolness", true);
+                }
+                break;
+            case "accessory":
+                if (selectedAccessory == 0 || selectedAccessory == 3 || selectedAccessory == 6) {
+                    accessoryBonusDisplay.SetBool("coolness", false); 
+                    accessoryBonusDisplay.SetBool("leniency", false); 
+                    accessoryBonusDisplay.SetBool("score", true);
+                }
+                if (selectedAccessory == 1 || selectedAccessory == 4 || selectedAccessory == 7) {
+                    accessoryBonusDisplay.SetBool("score", false); 
+                    accessoryBonusDisplay.SetBool("coolness", false);
+                    accessoryBonusDisplay.SetBool("leniency", true);
+                }
+                if (selectedAccessory == 2 || selectedAccessory == 5 || selectedAccessory == 8) {
+                    accessoryBonusDisplay.SetBool("score", false);
+                    accessoryBonusDisplay.SetBool("leniency", false);
+                    accessoryBonusDisplay.SetBool("coolness", true);
+                }
+                break;
+        }
+    }
+
+    private void UpdateRow() {                          // Updates which row of clothing for each clothing category will be displayed on-screen.
         /*  The modulo of the hover value will determine what row we're in. As there's only two rows, test against a modulo of 2 (essentially the same parity as odd/even).
             When the third row is added, we will test against a modulo of 3 instead. 
             The reason this needs to be done is 'cause the clothes alternate between styles. 0 is punk, 1 is y2k, 2 is punk, etc.
@@ -666,7 +754,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
     }
 
-    private void calculateBonus(int day) {
+    private void calculateBonus(int day) {              // Used to calculate the bonus for the rhythm game level, depending on the clothing chosen on this screen.
         double allocateScore = 0.0; int allocateLeniency = 0; int allocateCoolness = 0;
         int[] clothingChecks = {selectedHair, selectedTop, selectedBottom, selectedShoe, selectedAccessory};
 
@@ -723,7 +811,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         DressUpStatBonuses.scoreThreshold = (150 + allocateCoolness);
     }
 
-    private void checkIfOK() {
+    private void checkIfOK() {                          // Updates the 'meter' to calculate the associated clothing level.
         switch(Progress.lastLevel) {
             case "dayOneIntro":
                 if(selectedHair == 0 || selectedHair == 1 || selectedHair == 2) {
@@ -887,7 +975,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         }
     }
 
-    public void updateBonusBoxDisplay() {
+    public void updateBonusBoxDisplay() {               // Updates the bonus summary box displayed when hovering over the checkmark/confirm button.
         double allocateScore = 0.0; int allocateLeniency = 0; int allocateCoolness = 0;
         int[] clothingChecks = {selectedHair, selectedTop, selectedBottom, selectedShoe, selectedAccessory};
                 for (int i = 0; i < 5; i++) {
@@ -932,7 +1020,7 @@ public class ClothingSelectionV2 : MonoBehaviour
         coolness.text = DressUpStatBonuses.scoreThreshold.ToString() + "\nrequired";
     }
 
-    IEnumerator LoadLevel(int id) {
+    IEnumerator LoadLevel(int id) {                     // Loads a new scene.
         transition.SetBool("exit", true);
         yield return new WaitForSeconds(1f);
         switch(id) {
