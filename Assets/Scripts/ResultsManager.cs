@@ -231,6 +231,12 @@ public class ResultsManager : MonoBehaviour
                 appliedBottom.GetComponent<SpriteRenderer>().sprite = bottomStorageFailure[Progress.chosenBottom];
                 appliedShoe.GetComponent<SpriteRenderer>().sprite = shoeStorageFailure[Progress.chosenShoe];
                 appliedAccessory.GetComponent<SpriteRenderer>().sprite = accessoryStorageFailure[Progress.chosenAccessory];
+
+                if (Progress.chosenBottom == 0) {
+                    appliedBottom.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                } else {
+                    appliedBottom.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                }
                 break;
         }
     }

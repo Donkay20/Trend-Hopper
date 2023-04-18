@@ -317,34 +317,8 @@ public class ScoreManager : MonoBehaviour
             peakNotifier.SetActive(false);
         }
 
-        if (comboScore >= 2 && comboScore <= 9) {   //ngl I was kinda bored, might remove this later
-            if (comboScore == 2) {
-                comboScoreText.text = "two";
-            }
-            if (comboScore == 3) {
-                comboScoreText.text = "three";
-            }
-            if (comboScore == 4) {
-                comboScoreText.text = "four";
-            }
-            if (comboScore == 5) {
-                comboScoreText.text = "five";
-            }
-            if (comboScore == 6) {
-                comboScoreText.text = "six";
-            }
-            if (comboScore == 7) {
-                comboScoreText.text = "seven";
-            }
-            if (comboScore == 8) {
-                comboScoreText.text = "eight";
-            }
-            if (comboScore == 9) {
-                comboScoreText.text = "nine";
-            }
-        } else {
-            comboScoreText.text = comboScore.ToString();
-        }
+        comboScoreText.text = comboScore.ToString();
+        
         if (health < DressUpStatBonuses.scoreThreshold) {
             Progress.notEnoughHealth = true;
             thresholdAnim.SetBool("pass", false);
