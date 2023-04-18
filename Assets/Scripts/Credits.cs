@@ -8,11 +8,23 @@ public class Credits : MonoBehaviour
     public KeyCode exit;
     public Animator transition;
 
+    void Start() {
+        if (Progress.lastLevel == "EndingOutro") {
+            StartCoroutine(delayExitAfterLoopingOnce());
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(exit)) {
             StartCoroutine(LoadLevel(1));
         }
+    }
+
+    IEnumerator delayExitAfterLoopingOnce() {
+        Progress.lastLevel = "-";
+        yield return new WaitForSeconds(64f);
+        StartCoroutine(LoadLevel(1));
     }
 
     IEnumerator LoadLevel(int id) {
