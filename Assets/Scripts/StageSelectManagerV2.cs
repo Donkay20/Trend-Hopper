@@ -39,6 +39,7 @@ public class StageSelectManagerV2 : MonoBehaviour
     public GameObject phoneDay3;    //the little text in the top-left of the screen denoting what day it is
     [Space]
     public Animator continueController; //the pop-up when you can continue from the beginning or dress-up, provided you've seen the intro before.
+    public ParticleSystem confirmParticle;
 
     void Start()
     {   
@@ -198,6 +199,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                difficultySelection.SetBool("confirm", true);
+                                confirmParticle.Play();
                                 confirm.Play();
                                 //SceneManager.LoadScene("Dialogue_Day1");
                                 StartCoroutine(LoadLevel(2));
@@ -209,6 +212,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                difficultySelection.SetBool("confirm", true);
+                                confirmParticle.Play();
                                 confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
                                 //SceneManager.LoadScene("Dialogue_Day2");
@@ -221,6 +226,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                                 continueController.SetBool("appear", true);
                                 phase = 3;
                             } else {
+                                difficultySelection.SetBool("confirm", true);
+                                confirmParticle.Play();
                                 confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
                                 //SceneManager.LoadScene("Dialogue_Day3");
@@ -234,6 +241,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                     switch(selectedLevel) {
                         //continueChoices: 1 = yes, skip right to dress up scene / 2 = no = play the dialogue normally
                         case 1:
+                            difficultySelection.SetBool("confirm", true);
+                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayOneIntro";
@@ -246,6 +255,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                             }
                             break;
                         case 2:
+                            difficultySelection.SetBool("confirm", true);
+                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
@@ -258,7 +269,8 @@ public class StageSelectManagerV2 : MonoBehaviour
                             }
                             break;
                         case 3:
-                            //todo
+                            difficultySelection.SetBool("confirm", true);
+                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";
@@ -282,7 +294,6 @@ public class StageSelectManagerV2 : MonoBehaviour
                     StartCoroutine(LoadLevel(1));
                     //SceneManager.LoadScene("TitleScreen");
                     break;
-
                 case 2:
                     phase = 1;
                     phaseCategory.SetBool("Phase2", false);

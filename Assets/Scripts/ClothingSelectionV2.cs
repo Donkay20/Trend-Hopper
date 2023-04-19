@@ -31,8 +31,10 @@ public class ClothingSelectionV2 : MonoBehaviour
     [Space]
     public Sprite meterTitlePunk; public Sprite meterTitleY2K; public Sprite meterTitleDisco; public Sprite empty;
     public GameObject meterDesc;
+    public ParticleSystem fullBar;
     public Animator meter;
     public Animator transition;
+    public Animator sparkleMovement;
     [Space]
     public GameObject clothingSelector;
     public Animator leftTrigger;
@@ -134,34 +136,42 @@ public class ClothingSelectionV2 : MonoBehaviour
             upTrigger.SetTrigger("upTrigger");
             switch(selectedCategory) {
                 case "hair":
+                    sparkleMovement.SetBool("hair", false);
                     hairUI.SetBool("hairIsSelected", false);
                     if (allOK) {
+                        sparkleMovement.SetBool("check", true);
                         selectedCategory = "check";
                         updateBonusBoxDisplay();
                         bonusBox.SetBool("appear", true);
                         checkmarkUI.SetBool("checkSelected", true);
                     } else {
+                        sparkleMovement.SetBool("accessory", true);
                         selectedCategory = "accessory";
                         accessoryUI.SetBool("accIsSelected", true);
                     }
                     break;
                 case "top":
+                    sparkleMovement.SetBool("top", false); sparkleMovement.SetBool("hair", true);
                     selectedCategory = "hair";
                     topUI.SetBool("topIsSelected", false); hairUI.SetBool("hairIsSelected", true);
                     break;
                 case "bottom":
+                    sparkleMovement.SetBool("bottom", false); sparkleMovement.SetBool("top", true);
                     selectedCategory = "top";
                     bottomUI.SetBool("bottomIsSelected", false); topUI.SetBool("topIsSelected", true);
                     break;
                 case "shoe":
+                    sparkleMovement.SetBool("shoe", false); sparkleMovement.SetBool("bottom", true);
                     selectedCategory = "bottom";
                     shoeUI.SetBool("shoeIsSelected", false); bottomUI.SetBool("bottomIsSelected", true);
                     break;
                 case "accessory":
+                    sparkleMovement.SetBool("accessory", false); sparkleMovement.SetBool("shoe", true);
                     selectedCategory = "shoe";
                     accessoryUI.SetBool("accIsSelected", false); shoeUI.SetBool("shoeIsSelected", true);
                     break;
                 case "check":
+                    sparkleMovement.SetBool("check", false); sparkleMovement.SetBool("accessory", true);
                     selectedCategory = "accessory";
                     bonusBox.SetBool("appear", false);
                     checkmarkUI.SetBool("checkSelected", false); accessoryUI.SetBool("accIsSelected", true);
@@ -175,34 +185,42 @@ public class ClothingSelectionV2 : MonoBehaviour
             downTrigger.SetTrigger("downTrigger");
             switch(selectedCategory) {
                 case "hair":
+                    sparkleMovement.SetBool("hair", false); sparkleMovement.SetBool("top", true);
                     selectedCategory = "top";
                     hairUI.SetBool("hairIsSelected", false); topUI.SetBool("topIsSelected", true);
                     break;
                 case "top":
+                    sparkleMovement.SetBool("top", false); sparkleMovement.SetBool("bottom", true);
                     selectedCategory = "bottom";
                     topUI.SetBool("topIsSelected", false); bottomUI.SetBool("bottomIsSelected", true);
                     break;
                 case "bottom":
+                    sparkleMovement.SetBool("bottom", false); sparkleMovement.SetBool("shoe", true);
                     selectedCategory = "shoe";
                     bottomUI.SetBool("bottomIsSelected", false); shoeUI.SetBool("shoeIsSelected", true);
                     break;
                 case "shoe":
+                    sparkleMovement.SetBool("shoe", false); sparkleMovement.SetBool("accessory", true);
                     selectedCategory = "accessory";
                     shoeUI.SetBool("shoeIsSelected", false); accessoryUI.SetBool("accIsSelected", true);
                     break;
                 case "accessory":
+                    sparkleMovement.SetBool("accessory", false);
                     accessoryUI.SetBool("accIsSelected", false);
                     if(allOK) {
+                        sparkleMovement.SetBool("check", true);
                         selectedCategory = "check";
                         updateBonusBoxDisplay();
                         bonusBox.SetBool("appear", true);
                         checkmarkUI.SetBool("checkSelected", true);
                     } else {
+                        sparkleMovement.SetBool("accessory", false); sparkleMovement.SetBool("hair", true);
                         selectedCategory = "hair";
                         hairUI.SetBool("hairIsSelected", true);
                     }
                     break;
                 case "check":
+                    sparkleMovement.SetBool("check", false); sparkleMovement.SetBool("hair", true);
                     selectedCategory = "hair";
                     bonusBox.SetBool("appear", false);
                     checkmarkUI.SetBool("checkSelected", false); hairUI.SetBool("hairIsSelected", true);
@@ -972,6 +990,12 @@ public class ClothingSelectionV2 : MonoBehaviour
 
         if (meterCounter < 5) {
             meter.SetBool("to"+(meterCounter+1), false);
+        }
+
+        if (meterCounter == 5) {
+            fullBar.Play();
+        } else {
+            fullBar.Stop();
         }
     }
 
