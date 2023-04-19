@@ -15,6 +15,7 @@ public class TitleScreenSelect : MonoBehaviour
     public Animator arrow;
     public Animator transition;
     public AudioSource menuMusic;
+    public ParticleSystem hopperSplash;
     [Space]
     public KeyCode inputUp;
     public KeyCode inputDown;
@@ -23,7 +24,8 @@ public class TitleScreenSelect : MonoBehaviour
     private int selectedCategory;
 
     void Start()
-    {
+    {   
+        StartCoroutine(playHopperSplashAfterDelay());
         Instance = this;
         menuMusic.Play();
         selectedCategory = 1;
@@ -86,6 +88,11 @@ public class TitleScreenSelect : MonoBehaviour
         }
     }
 
+    IEnumerator playHopperSplashAfterDelay() {
+        yield return new WaitForSeconds(2f);
+        hopperSplash.Play();
+    }
+ 
     IEnumerator LoadLevel(int id) {
         transition.SetBool("exit", true);
         yield return new WaitForSeconds(1f);
