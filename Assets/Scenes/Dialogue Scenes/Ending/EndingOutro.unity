@@ -475,11 +475,11 @@ MonoBehaviour:
     - "Wow! Hey girly, super cute fit today! You gotta tell me where you got that
       top later, it's to die for!\r"
     - "Wow!!! I'm getting all the love today! I can't believe it!\r"
-    - "Rad hairstyle today Jassmea! It feels so... you! Very psychedelic!\r"
+    - "Rad hairstyle today Jassmea! It feels so... you! Very... psychedelic!\r"
     - Whoa, they all liked my outfit! I didn't even have to dress like them!!!! 
       Maybe the most stylish outfits... are really the ones that I style for myself,
       and not everyone else!
-    - The end.
+    - -The end!-
 --- !u!1 &326053767
 GameObject:
   m_ObjectHideFlags: 0

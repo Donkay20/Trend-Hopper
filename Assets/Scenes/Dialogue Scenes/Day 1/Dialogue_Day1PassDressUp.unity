@@ -471,8 +471,6 @@ MonoBehaviour:
     - Tutorial
     - Tutorial
     - Tutorial
-    - Tutorial
-    - Tutorial
     sentences:
     - "The newbie didn't chicken out. She\u2019s rocking the new look."
     - I never run away from a fight I can't win.
@@ -486,12 +484,14 @@ MonoBehaviour:
     - Hit notes with the correct timings to win!
     - Depending on bonuses chosen in the dress-up scene, you'll receive perks that'll
       help you in the rhythm game!
-    - 'Score Multiplier: multiplies your score at the end of the level.'
-    - 'Leniency: increases the amount of time you have for hitting a note.'
-    - 'Coolness: the coolness you need to clear the level.'
-    - If you're at MAX Coolness, you'll be Peaking, which makes the notes gold, granting
-      additional score at the end of the level!
-    - But beware! Hitting zero coolness will cause you to fail the level.
+    - 'Tapping notes accurately increases your coolness (health).
+
+      Missing
+      notes reduces coolness.'
+    - If you're at MAX Coolness, you'll be Peaking! In this state, note are golden,
+      granting you additional score at the end of the level!
+    - But beware! Hitting zero coolness will cause you to fail the level. Do your
+      best to prevent this.
     - Hit Space at any time to pause. Good luck!
 --- !u!1 &326053767
 GameObject:

@@ -467,6 +467,9 @@ MonoBehaviour:
     - Tutorial
     - Tutorial
     - Tutorial
+    - Tutorial
+    - Tutorial
+    - Tutorial
     sentences:
     - '[Jassmea wakes up.]'
     - Today is the big day! I barely got any sleep last night!
@@ -480,7 +483,18 @@ MonoBehaviour:
 
       Use Left and Right
       to choose between clothing within a category.'
-    - Note that there's more than one row of clothing per category!
+    - 'Note that there''s more than one row of clothing per category!
+
+'
+    - Different clothing apply different types of bonuses!
+    - '[Bonuses]
+
+
+      +Score: Increases score multiplier.'
+    - '+Timing/Leniency: The timing window to hit a note is increased.
+
+      +Coolness:
+      The coolness (health) needed to clear a stage is decreased.'
     - Once you've finished selecting an outfit, you'll be able to hover the checkmark
       and see your applied bonuses, depending on your chosen outfit.
     - You'll be able to advance to the next scene once you've chosen from every category
