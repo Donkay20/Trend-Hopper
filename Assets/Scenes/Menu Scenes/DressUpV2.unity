@@ -895,7 +895,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5837,7 +5837,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f919686c26564b74ea10df2627e4012a, type: 2}
+  - {fileID: 2100000, guid: f6eb81d15ee235d41aa1e78b9508f34a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16140,8 +16140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.54, y: -0.25}
-  m_SizeDelta: {x: 3, y: 2}
+  m_AnchoredPosition: {x: -0.71, y: -0.26}
+  m_SizeDelta: {x: 2.9837, y: 1.8533}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385044744
 MonoBehaviour:
@@ -16172,15 +16172,15 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286250753
-  m_fontColor: {r: 0.0047169924, g: 1, b: 0.47750053, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 0.003921569, g: 1, b: 0.4784314, a: 1}
-    topRight: {r: 0.003921569, g: 1, b: 0.4784314, a: 1}
-    bottomLeft: {r: 0.8150126, g: 1, b: 0, a: 1}
-    bottomRight: {r: 0.8150126, g: 1, b: 0, a: 1}
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -16190,8 +16190,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16474,10 +16474,10 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 1, g: 0.98071617, b: 0.023584902, a: 1}
-    topRight: {r: 1, g: 0.98071617, b: 0.023584902, a: 1}
-    bottomLeft: {r: 0.745283, g: 0.46104282, b: 0, a: 1}
-    bottomRight: {r: 0.745283, g: 0.46104282, b: 0, a: 1}
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -16487,8 +16487,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17024,8 +17024,8 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
-    topRight: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
@@ -17037,8 +17037,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17303,22 +17303,22 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press [Space] to start!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
-  m_sharedMaterial: {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
+  m_sharedMaterial: {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4289855743
+  m_fontColor: {r: 1, g: 0, b: 0.6967745, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 1, g: 0, b: 0, a: 1}
-    topRight: {r: 1, g: 0, b: 0, a: 1}
-    bottomLeft: {r: 0, g: 0, b: 0, a: 1}
-    bottomRight: {r: 0, g: 0, b: 0, a: 1}
+    topLeft: {r: 0.70916843, g: 0, b: 0.7830189, a: 1}
+    topRight: {r: 0.70916843, g: 0, b: 0.7830189, a: 1}
+    bottomLeft: {r: 1, g: 0, b: 0.32400036, a: 1}
+    bottomRight: {r: 1, g: 0, b: 0.32400036, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -17393,7 +17393,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1733478513268799115, guid: 5e0aa880d23d555419316f419fc7bdd5, type: 2}
+  - {fileID: -2046786981384001970, guid: 8f90bd9b43e3f884984762e9ef17e575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
