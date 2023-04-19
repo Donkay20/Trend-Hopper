@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject particlePosition;
     [Space]
     public AudioSource hitSFX;
+    public AudioSource midSFX;
     public AudioSource missSFX;
     [Space]
     public TMPro.TextMeshPro comboScoreText;
@@ -200,6 +201,7 @@ public class ScoreManager : MonoBehaviour
 
     public static void OK()
     {
+        Instance.midSFX.Play();
         Instance.noteCount++;
         Debug.Log(Instance.noteCount);
         Instance.flipMC();
