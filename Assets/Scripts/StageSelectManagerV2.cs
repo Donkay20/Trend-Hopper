@@ -242,7 +242,6 @@ public class StageSelectManagerV2 : MonoBehaviour
                         //continueChoices: 1 = yes, skip right to dress up scene / 2 = no = play the dialogue normally
                         case 1:
                             difficultySelection.SetBool("confirm", true);
-                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayOneIntro";
@@ -256,7 +255,6 @@ public class StageSelectManagerV2 : MonoBehaviour
                             break;
                         case 2:
                             difficultySelection.SetBool("confirm", true);
-                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayTwoIntro";
@@ -270,7 +268,6 @@ public class StageSelectManagerV2 : MonoBehaviour
                             break;
                         case 3:
                             difficultySelection.SetBool("confirm", true);
-                            confirmParticle.Play();
                             if(continueChoices == 1) {
                                 confirm.Play();
                                 Progress.lastLevel = "dayThreeIntro";

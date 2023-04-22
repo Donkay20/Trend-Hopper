@@ -23,7 +23,7 @@ public class Credits : MonoBehaviour
 
     IEnumerator delayExitAfterLoopingOnce() {
         Progress.lastLevel = "-";
-        yield return new WaitForSeconds(64f);
+        yield return new WaitForSeconds(69f);
         StartCoroutine(LoadLevel(1));
     }
 

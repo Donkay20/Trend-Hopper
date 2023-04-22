@@ -44,7 +44,7 @@ public class SongManager : MonoBehaviour
     {
         Instance = this;
         if(Progress.difficulty == null) {
-            Progress.difficulty = "hard";
+            Progress.difficulty = "easy";
         }
         ReadFromFile();
     }

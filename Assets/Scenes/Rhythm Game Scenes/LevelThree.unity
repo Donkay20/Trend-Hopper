@@ -147243,8 +147243,8 @@ MonoBehaviour:
   maxIndex: 0
   progressBar: {fileID: 662284788}
   fileLocation_hard: FunkSoWhat_Hard.mid
-  fileLocation_normal: FunkSoWhat_Normal.mid
-  fileLocation_easy: funk_beatmap_easy.mid
+  fileLocation_normal: FunkSoWhat_Normal_FIX.mid
+  fileLocation_easy: funk_beatmap_easy_FIX.mid
   noteTime: 1
   noteSpawnY: -7
   noteTapY: 3
